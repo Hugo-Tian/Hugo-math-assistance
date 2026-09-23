@@ -1,0 +1,2242 @@
+[
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,4}，B={2,3,…,6}，A∩B 的元素个数为多少？",
+    "options": [
+      "2",
+      "4",
+      "6",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "公共元素是 2、3、4，所以有 3 个元素。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-2}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "3",
+      "1",
+      "4",
+      "2"
+    ],
+    "answer": 3,
+    "explanation": "被开方数要求 x−2≥0，因此 x≥2，a=2。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+2x$，求 $f(2)$。",
+    "options": [
+      "9",
+      "7",
+      "10",
+      "8"
+    ],
+    "answer": 3,
+    "explanation": "代入 x=2，得到 2²+2×2=8。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(2-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "1"
+    ],
+    "answer": 3,
+    "explanation": "斜率 2−a>0，即 a<2；四个选项中只有 1 符合。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+2x$ 为奇函数，a 应为多少？",
+    "options": [
+      "2",
+      "-2",
+      "1",
+      "0"
+    ],
+    "answer": 3,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-4x+7$ 在实数集上的最小值为多少？",
+    "options": [
+      "7",
+      "-3",
+      "0",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "配方得到 f(x)=(x−2)²+3，平方项非负，最小值为 3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=4$，则 x 为多少？",
+    "options": [
+      "3",
+      "1",
+      "4",
+      "2"
+    ],
+    "answer": 3,
+    "explanation": "4=2 的 2 次方，指数函数严格单调，因此 x=2。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 4$。",
+    "options": [
+      "3",
+      "1",
+      "4",
+      "2"
+    ],
+    "answer": 3,
+    "explanation": "因为 2 的 2 次方等于 4，根据对数定义可得结果为 2。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(2+h)-f(2)}{h}$。",
+    "options": [
+      "5",
+      "3",
+      "6",
+      "4"
+    ],
+    "answer": 3,
+    "explanation": "差商为 [(2+h)²−2²]/h=4+h，h 趋于 0 时极限为 4。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+2x^2$，求 $f'(1)$。",
+    "options": [
+      "8",
+      "6",
+      "9",
+      "7"
+    ],
+    "answer": 3,
+    "explanation": "导函数为 f′(x)=3x²+4x，代入 x=1 得 7。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(2,4)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-3",
+      "-5",
+      "-2",
+      "-4"
+    ],
+    "answer": 3,
+    "explanation": "斜率 k=2×2=4，点斜式 y−4=4(x−2)，故 b=-4。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-4x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "3",
+      "1",
+      "4",
+      "2"
+    ],
+    "answer": 3,
+    "explanation": "f′(x)=2x−4，x>2 时为正，函数在 [2,+∞) 上严格递增，最小边界 a=2。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-12x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "-2",
+      "0",
+      "3",
+      "2"
+    ],
+    "answer": 3,
+    "explanation": "f′(x)=3(x−2)(x+2)，在 x=2 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-12x$ 在 $[0,4]$ 上的最大值是多少？",
+    "options": [
+      "17",
+      "15",
+      "18",
+      "16"
+    ],
+    "answer": 3,
+    "explanation": "区间内驻点是 x=2。f(0)=0，f(2)=-16，f(4)=16，比较得最大值 16。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,5}，B={3,4,…,8}，A∩B 的元素个数为多少？",
+    "options": [
+      "4",
+      "7",
+      "3",
+      "2"
+    ],
+    "answer": 2,
+    "explanation": "公共元素是 3、4、5，所以有 3 个元素。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-3}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "2",
+      "5",
+      "3",
+      "4"
+    ],
+    "answer": 2,
+    "explanation": "被开方数要求 x−3≥0，因此 x≥3，a=3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+3x$，求 $f(3)$。",
+    "options": [
+      "17",
+      "20",
+      "18",
+      "19"
+    ],
+    "answer": 2,
+    "explanation": "代入 x=3，得到 3²+3×3=18。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(3-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "4",
+      "5",
+      "2",
+      "3"
+    ],
+    "answer": 2,
+    "explanation": "斜率 3−a>0，即 a<3；四个选项中只有 2 符合。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+3x$ 为奇函数，a 应为多少？",
+    "options": [
+      "-3",
+      "1",
+      "0",
+      "3"
+    ],
+    "answer": 2,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-6x+12$ 在实数集上的最小值为多少？",
+    "options": [
+      "-3",
+      "0",
+      "3",
+      "12"
+    ],
+    "answer": 2,
+    "explanation": "配方得到 f(x)=(x−3)²+3，平方项非负，最小值为 3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=8$，则 x 为多少？",
+    "options": [
+      "2",
+      "5",
+      "3",
+      "4"
+    ],
+    "answer": 2,
+    "explanation": "8=2 的 3 次方，指数函数严格单调，因此 x=3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 8$。",
+    "options": [
+      "2",
+      "5",
+      "3",
+      "4"
+    ],
+    "answer": 2,
+    "explanation": "因为 2 的 3 次方等于 8，根据对数定义可得结果为 3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(3+h)-f(3)}{h}$。",
+    "options": [
+      "5",
+      "8",
+      "6",
+      "7"
+    ],
+    "answer": 2,
+    "explanation": "差商为 [(3+h)²−3²]/h=6+h，h 趋于 0 时极限为 6。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+3x^2$，求 $f'(1)$。",
+    "options": [
+      "8",
+      "11",
+      "9",
+      "10"
+    ],
+    "answer": 2,
+    "explanation": "导函数为 f′(x)=3x²+6x，代入 x=1 得 9。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(3,9)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-10",
+      "-7",
+      "-9",
+      "-8"
+    ],
+    "answer": 2,
+    "explanation": "斜率 k=2×3=6，点斜式 y−9=6(x−3)，故 b=-9。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-6x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "2",
+      "5",
+      "3",
+      "4"
+    ],
+    "answer": 2,
+    "explanation": "f′(x)=2x−6，x>3 时为正，函数在 [3,+∞) 上严格递增，最小边界 a=3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-27x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "0",
+      "4",
+      "3",
+      "-3"
+    ],
+    "answer": 2,
+    "explanation": "f′(x)=3(x−3)(x+3)，在 x=3 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-27x$ 在 $[0,6]$ 上的最大值是多少？",
+    "options": [
+      "53",
+      "56",
+      "54",
+      "55"
+    ],
+    "answer": 2,
+    "explanation": "区间内驻点是 x=3。f(0)=0，f(3)=-54，f(6)=54，比较得最大值 54。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,6}，B={4,5,…,10}，A∩B 的元素个数为多少？",
+    "options": [
+      "8",
+      "3",
+      "2",
+      "4"
+    ],
+    "answer": 1,
+    "explanation": "公共元素是 4、5、6，所以有 3 个元素。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-4}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "6",
+      "4",
+      "5",
+      "3"
+    ],
+    "answer": 1,
+    "explanation": "被开方数要求 x−4≥0，因此 x≥4，a=4。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+4x$，求 $f(4)$。",
+    "options": [
+      "34",
+      "32",
+      "33",
+      "31"
+    ],
+    "answer": 1,
+    "explanation": "代入 x=4，得到 4²+4×4=32。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(4-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "6",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": 1,
+    "explanation": "斜率 4−a>0，即 a<4；四个选项中只有 3 符合。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+4x$ 为奇函数，a 应为多少？",
+    "options": [
+      "1",
+      "0",
+      "4",
+      "-4"
+    ],
+    "answer": 1,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-8x+19$ 在实数集上的最小值为多少？",
+    "options": [
+      "0",
+      "3",
+      "19",
+      "-3"
+    ],
+    "answer": 1,
+    "explanation": "配方得到 f(x)=(x−4)²+3，平方项非负，最小值为 3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=16$，则 x 为多少？",
+    "options": [
+      "6",
+      "4",
+      "5",
+      "3"
+    ],
+    "answer": 1,
+    "explanation": "16=2 的 4 次方，指数函数严格单调，因此 x=4。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 16$。",
+    "options": [
+      "6",
+      "4",
+      "5",
+      "3"
+    ],
+    "answer": 1,
+    "explanation": "因为 2 的 4 次方等于 16，根据对数定义可得结果为 4。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(4+h)-f(4)}{h}$。",
+    "options": [
+      "10",
+      "8",
+      "9",
+      "7"
+    ],
+    "answer": 1,
+    "explanation": "差商为 [(4+h)²−4²]/h=8+h，h 趋于 0 时极限为 8。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+4x^2$，求 $f'(1)$。",
+    "options": [
+      "13",
+      "11",
+      "12",
+      "10"
+    ],
+    "answer": 1,
+    "explanation": "导函数为 f′(x)=3x²+8x，代入 x=1 得 11。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(4,16)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-14",
+      "-16",
+      "-15",
+      "-17"
+    ],
+    "answer": 1,
+    "explanation": "斜率 k=2×4=8，点斜式 y−16=8(x−4)，故 b=-16。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-8x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "6",
+      "4",
+      "5",
+      "3"
+    ],
+    "answer": 1,
+    "explanation": "f′(x)=2x−8，x>4 时为正，函数在 [4,+∞) 上严格递增，最小边界 a=4。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-48x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "5",
+      "4",
+      "-4",
+      "0"
+    ],
+    "answer": 1,
+    "explanation": "f′(x)=3(x−4)(x+4)，在 x=4 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-48x$ 在 $[0,8]$ 上的最大值是多少？",
+    "options": [
+      "130",
+      "128",
+      "129",
+      "127"
+    ],
+    "answer": 1,
+    "explanation": "区间内驻点是 x=4。f(0)=0，f(4)=-128，f(8)=128，比较得最大值 128。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,7}，B={5,6,…,12}，A∩B 的元素个数为多少？",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "9"
+    ],
+    "answer": 0,
+    "explanation": "公共元素是 5、6、7，所以有 3 个元素。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-5}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "answer": 0,
+    "explanation": "被开方数要求 x−5≥0，因此 x≥5，a=5。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+5x$，求 $f(5)$。",
+    "options": [
+      "50",
+      "51",
+      "49",
+      "52"
+    ],
+    "answer": 0,
+    "explanation": "代入 x=5，得到 5²+5×5=50。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(5-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "answer": 0,
+    "explanation": "斜率 5−a>0，即 a<5；四个选项中只有 4 符合。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+5x$ 为奇函数，a 应为多少？",
+    "options": [
+      "0",
+      "5",
+      "-5",
+      "1"
+    ],
+    "answer": 0,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-10x+28$ 在实数集上的最小值为多少？",
+    "options": [
+      "3",
+      "28",
+      "-3",
+      "0"
+    ],
+    "answer": 0,
+    "explanation": "配方得到 f(x)=(x−5)²+3，平方项非负，最小值为 3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=32$，则 x 为多少？",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "answer": 0,
+    "explanation": "32=2 的 5 次方，指数函数严格单调，因此 x=5。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 32$。",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "answer": 0,
+    "explanation": "因为 2 的 5 次方等于 32，根据对数定义可得结果为 5。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(5+h)-f(5)}{h}$。",
+    "options": [
+      "10",
+      "11",
+      "9",
+      "12"
+    ],
+    "answer": 0,
+    "explanation": "差商为 [(5+h)²−5²]/h=10+h，h 趋于 0 时极限为 10。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+5x^2$，求 $f'(1)$。",
+    "options": [
+      "13",
+      "14",
+      "12",
+      "15"
+    ],
+    "answer": 0,
+    "explanation": "导函数为 f′(x)=3x²+10x，代入 x=1 得 13。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(5,25)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-25",
+      "-24",
+      "-26",
+      "-23"
+    ],
+    "answer": 0,
+    "explanation": "斜率 k=2×5=10，点斜式 y−25=10(x−5)，故 b=-25。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-10x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "answer": 0,
+    "explanation": "f′(x)=2x−10，x>5 时为正，函数在 [5,+∞) 上严格递增，最小边界 a=5。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-75x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "5",
+      "-5",
+      "0",
+      "6"
+    ],
+    "answer": 0,
+    "explanation": "f′(x)=3(x−5)(x+5)，在 x=5 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-75x$ 在 $[0,10]$ 上的最大值是多少？",
+    "options": [
+      "250",
+      "251",
+      "249",
+      "252"
+    ],
+    "answer": 0,
+    "explanation": "区间内驻点是 x=5。f(0)=0，f(5)=-250，f(10)=250，比较得最大值 250。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,8}，B={6,7,…,14}，A∩B 的元素个数为多少？",
+    "options": [
+      "2",
+      "4",
+      "10",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "公共元素是 6、7、8，所以有 3 个元素。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-6}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "7",
+      "5",
+      "8",
+      "6"
+    ],
+    "answer": 3,
+    "explanation": "被开方数要求 x−6≥0，因此 x≥6，a=6。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+6x$，求 $f(6)$。",
+    "options": [
+      "73",
+      "71",
+      "74",
+      "72"
+    ],
+    "answer": 3,
+    "explanation": "代入 x=6，得到 6²+6×6=72。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(6-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "6",
+      "7",
+      "8",
+      "5"
+    ],
+    "answer": 3,
+    "explanation": "斜率 6−a>0，即 a<6；四个选项中只有 5 符合。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+6x$ 为奇函数，a 应为多少？",
+    "options": [
+      "6",
+      "-6",
+      "1",
+      "0"
+    ],
+    "answer": 3,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-12x+39$ 在实数集上的最小值为多少？",
+    "options": [
+      "39",
+      "-3",
+      "0",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "配方得到 f(x)=(x−6)²+3，平方项非负，最小值为 3。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=64$，则 x 为多少？",
+    "options": [
+      "7",
+      "5",
+      "8",
+      "6"
+    ],
+    "answer": 3,
+    "explanation": "64=2 的 6 次方，指数函数严格单调，因此 x=6。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 64$。",
+    "options": [
+      "7",
+      "5",
+      "8",
+      "6"
+    ],
+    "answer": 3,
+    "explanation": "因为 2 的 6 次方等于 64，根据对数定义可得结果为 6。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(6+h)-f(6)}{h}$。",
+    "options": [
+      "13",
+      "11",
+      "14",
+      "12"
+    ],
+    "answer": 3,
+    "explanation": "差商为 [(6+h)²−6²]/h=12+h，h 趋于 0 时极限为 12。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+6x^2$，求 $f'(1)$。",
+    "options": [
+      "16",
+      "14",
+      "17",
+      "15"
+    ],
+    "answer": 3,
+    "explanation": "导函数为 f′(x)=3x²+12x，代入 x=1 得 15。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(6,36)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-35",
+      "-37",
+      "-34",
+      "-36"
+    ],
+    "answer": 3,
+    "explanation": "斜率 k=2×6=12，点斜式 y−36=12(x−6)，故 b=-36。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-12x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "7",
+      "5",
+      "8",
+      "6"
+    ],
+    "answer": 3,
+    "explanation": "f′(x)=2x−12，x>6 时为正，函数在 [6,+∞) 上严格递增，最小边界 a=6。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-108x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "-6",
+      "0",
+      "7",
+      "6"
+    ],
+    "answer": 3,
+    "explanation": "f′(x)=3(x−6)(x+6)，在 x=6 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-108x$ 在 $[0,12]$ 上的最大值是多少？",
+    "options": [
+      "433",
+      "431",
+      "434",
+      "432"
+    ],
+    "answer": 3,
+    "explanation": "区间内驻点是 x=6。f(0)=0，f(6)=-432，f(12)=432，比较得最大值 432。",
+    "difficulty": 1,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,9}，B={7,8,…,16}，A∩B 的元素个数为多少？",
+    "options": [
+      "4",
+      "11",
+      "3",
+      "2"
+    ],
+    "answer": 2,
+    "explanation": "公共元素是 7、8、9，所以有 3 个元素。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-7}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "6",
+      "9",
+      "7",
+      "8"
+    ],
+    "answer": 2,
+    "explanation": "被开方数要求 x−7≥0，因此 x≥7，a=7。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+7x$，求 $f(7)$。",
+    "options": [
+      "97",
+      "100",
+      "98",
+      "99"
+    ],
+    "answer": 2,
+    "explanation": "代入 x=7，得到 7²+7×7=98。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(7-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "8",
+      "9",
+      "6",
+      "7"
+    ],
+    "answer": 2,
+    "explanation": "斜率 7−a>0，即 a<7；四个选项中只有 6 符合。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+7x$ 为奇函数，a 应为多少？",
+    "options": [
+      "-7",
+      "1",
+      "0",
+      "7"
+    ],
+    "answer": 2,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-14x+52$ 在实数集上的最小值为多少？",
+    "options": [
+      "-3",
+      "0",
+      "3",
+      "52"
+    ],
+    "answer": 2,
+    "explanation": "配方得到 f(x)=(x−7)²+3，平方项非负，最小值为 3。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=128$，则 x 为多少？",
+    "options": [
+      "6",
+      "9",
+      "7",
+      "8"
+    ],
+    "answer": 2,
+    "explanation": "128=2 的 7 次方，指数函数严格单调，因此 x=7。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 128$。",
+    "options": [
+      "6",
+      "9",
+      "7",
+      "8"
+    ],
+    "answer": 2,
+    "explanation": "因为 2 的 7 次方等于 128，根据对数定义可得结果为 7。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(7+h)-f(7)}{h}$。",
+    "options": [
+      "13",
+      "16",
+      "14",
+      "15"
+    ],
+    "answer": 2,
+    "explanation": "差商为 [(7+h)²−7²]/h=14+h，h 趋于 0 时极限为 14。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+7x^2$，求 $f'(1)$。",
+    "options": [
+      "16",
+      "19",
+      "17",
+      "18"
+    ],
+    "answer": 2,
+    "explanation": "导函数为 f′(x)=3x²+14x，代入 x=1 得 17。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(7,49)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-50",
+      "-47",
+      "-49",
+      "-48"
+    ],
+    "answer": 2,
+    "explanation": "斜率 k=2×7=14，点斜式 y−49=14(x−7)，故 b=-49。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-14x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "6",
+      "9",
+      "7",
+      "8"
+    ],
+    "answer": 2,
+    "explanation": "f′(x)=2x−14，x>7 时为正，函数在 [7,+∞) 上严格递增，最小边界 a=7。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-147x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "0",
+      "8",
+      "7",
+      "-7"
+    ],
+    "answer": 2,
+    "explanation": "f′(x)=3(x−7)(x+7)，在 x=7 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-147x$ 在 $[0,14]$ 上的最大值是多少？",
+    "options": [
+      "685",
+      "688",
+      "686",
+      "687"
+    ],
+    "answer": 2,
+    "explanation": "区间内驻点是 x=7。f(0)=0，f(7)=-686，f(14)=686，比较得最大值 686。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,10}，B={8,9,…,18}，A∩B 的元素个数为多少？",
+    "options": [
+      "12",
+      "3",
+      "2",
+      "4"
+    ],
+    "answer": 1,
+    "explanation": "公共元素是 8、9、10，所以有 3 个元素。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-8}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "10",
+      "8",
+      "9",
+      "7"
+    ],
+    "answer": 1,
+    "explanation": "被开方数要求 x−8≥0，因此 x≥8，a=8。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+8x$，求 $f(8)$。",
+    "options": [
+      "130",
+      "128",
+      "129",
+      "127"
+    ],
+    "answer": 1,
+    "explanation": "代入 x=8，得到 8²+8×8=128。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(8-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "10",
+      "7",
+      "8",
+      "9"
+    ],
+    "answer": 1,
+    "explanation": "斜率 8−a>0，即 a<8；四个选项中只有 7 符合。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+8x$ 为奇函数，a 应为多少？",
+    "options": [
+      "1",
+      "0",
+      "8",
+      "-8"
+    ],
+    "answer": 1,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-16x+67$ 在实数集上的最小值为多少？",
+    "options": [
+      "0",
+      "3",
+      "67",
+      "-3"
+    ],
+    "answer": 1,
+    "explanation": "配方得到 f(x)=(x−8)²+3，平方项非负，最小值为 3。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=256$，则 x 为多少？",
+    "options": [
+      "10",
+      "8",
+      "9",
+      "7"
+    ],
+    "answer": 1,
+    "explanation": "256=2 的 8 次方，指数函数严格单调，因此 x=8。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 256$。",
+    "options": [
+      "10",
+      "8",
+      "9",
+      "7"
+    ],
+    "answer": 1,
+    "explanation": "因为 2 的 8 次方等于 256，根据对数定义可得结果为 8。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(8+h)-f(8)}{h}$。",
+    "options": [
+      "18",
+      "16",
+      "17",
+      "15"
+    ],
+    "answer": 1,
+    "explanation": "差商为 [(8+h)²−8²]/h=16+h，h 趋于 0 时极限为 16。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+8x^2$，求 $f'(1)$。",
+    "options": [
+      "21",
+      "19",
+      "20",
+      "18"
+    ],
+    "answer": 1,
+    "explanation": "导函数为 f′(x)=3x²+16x，代入 x=1 得 19。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(8,64)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-62",
+      "-64",
+      "-63",
+      "-65"
+    ],
+    "answer": 1,
+    "explanation": "斜率 k=2×8=16，点斜式 y−64=16(x−8)，故 b=-64。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-16x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "10",
+      "8",
+      "9",
+      "7"
+    ],
+    "answer": 1,
+    "explanation": "f′(x)=2x−16，x>8 时为正，函数在 [8,+∞) 上严格递增，最小边界 a=8。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-192x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "9",
+      "8",
+      "-8",
+      "0"
+    ],
+    "answer": 1,
+    "explanation": "f′(x)=3(x−8)(x+8)，在 x=8 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-192x$ 在 $[0,16]$ 上的最大值是多少？",
+    "options": [
+      "1026",
+      "1024",
+      "1025",
+      "1023"
+    ],
+    "answer": 1,
+    "explanation": "区间内驻点是 x=8。f(0)=0，f(8)=-1024，f(16)=1024，比较得最大值 1024。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,11}，B={9,10,…,20}，A∩B 的元素个数为多少？",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "13"
+    ],
+    "answer": 0,
+    "explanation": "公共元素是 9、10、11，所以有 3 个元素。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-9}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "answer": 0,
+    "explanation": "被开方数要求 x−9≥0，因此 x≥9，a=9。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+9x$，求 $f(9)$。",
+    "options": [
+      "162",
+      "163",
+      "161",
+      "164"
+    ],
+    "answer": 0,
+    "explanation": "代入 x=9，得到 9²+9×9=162。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(9-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "answer": 0,
+    "explanation": "斜率 9−a>0，即 a<9；四个选项中只有 8 符合。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+9x$ 为奇函数，a 应为多少？",
+    "options": [
+      "0",
+      "9",
+      "-9",
+      "1"
+    ],
+    "answer": 0,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-18x+84$ 在实数集上的最小值为多少？",
+    "options": [
+      "3",
+      "84",
+      "-3",
+      "0"
+    ],
+    "answer": 0,
+    "explanation": "配方得到 f(x)=(x−9)²+3，平方项非负，最小值为 3。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=512$，则 x 为多少？",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "answer": 0,
+    "explanation": "512=2 的 9 次方，指数函数严格单调，因此 x=9。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 512$。",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "answer": 0,
+    "explanation": "因为 2 的 9 次方等于 512，根据对数定义可得结果为 9。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(9+h)-f(9)}{h}$。",
+    "options": [
+      "18",
+      "19",
+      "17",
+      "20"
+    ],
+    "answer": 0,
+    "explanation": "差商为 [(9+h)²−9²]/h=18+h，h 趋于 0 时极限为 18。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+9x^2$，求 $f'(1)$。",
+    "options": [
+      "21",
+      "22",
+      "20",
+      "23"
+    ],
+    "answer": 0,
+    "explanation": "导函数为 f′(x)=3x²+18x，代入 x=1 得 21。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(9,81)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-81",
+      "-80",
+      "-82",
+      "-79"
+    ],
+    "answer": 0,
+    "explanation": "斜率 k=2×9=18，点斜式 y−81=18(x−9)，故 b=-81。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-18x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "answer": 0,
+    "explanation": "f′(x)=2x−18，x>9 时为正，函数在 [9,+∞) 上严格递增，最小边界 a=9。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-243x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "9",
+      "-9",
+      "0",
+      "10"
+    ],
+    "answer": 0,
+    "explanation": "f′(x)=3(x−9)(x+9)，在 x=9 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-243x$ 在 $[0,18]$ 上的最大值是多少？",
+    "options": [
+      "1458",
+      "1459",
+      "1457",
+      "1460"
+    ],
+    "answer": 0,
+    "explanation": "区间内驻点是 x=9。f(0)=0，f(9)=-1458，f(18)=1458，比较得最大值 1458。",
+    "difficulty": 2,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,12}，B={10,11,…,22}，A∩B 的元素个数为多少？",
+    "options": [
+      "2",
+      "4",
+      "14",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "公共元素是 10、11、12，所以有 3 个元素。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-10}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "11",
+      "9",
+      "12",
+      "10"
+    ],
+    "answer": 3,
+    "explanation": "被开方数要求 x−10≥0，因此 x≥10，a=10。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+10x$，求 $f(10)$。",
+    "options": [
+      "201",
+      "199",
+      "202",
+      "200"
+    ],
+    "answer": 3,
+    "explanation": "代入 x=10，得到 10²+10×10=200。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(10-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "10",
+      "11",
+      "12",
+      "9"
+    ],
+    "answer": 3,
+    "explanation": "斜率 10−a>0，即 a<10；四个选项中只有 9 符合。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+10x$ 为奇函数，a 应为多少？",
+    "options": [
+      "10",
+      "-10",
+      "1",
+      "0"
+    ],
+    "answer": 3,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-20x+103$ 在实数集上的最小值为多少？",
+    "options": [
+      "103",
+      "-3",
+      "0",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "配方得到 f(x)=(x−10)²+3，平方项非负，最小值为 3。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=1024$，则 x 为多少？",
+    "options": [
+      "11",
+      "9",
+      "12",
+      "10"
+    ],
+    "answer": 3,
+    "explanation": "1024=2 的 10 次方，指数函数严格单调，因此 x=10。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 1024$。",
+    "options": [
+      "11",
+      "9",
+      "12",
+      "10"
+    ],
+    "answer": 3,
+    "explanation": "因为 2 的 10 次方等于 1024，根据对数定义可得结果为 10。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(10+h)-f(10)}{h}$。",
+    "options": [
+      "21",
+      "19",
+      "22",
+      "20"
+    ],
+    "answer": 3,
+    "explanation": "差商为 [(10+h)²−10²]/h=20+h，h 趋于 0 时极限为 20。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+10x^2$，求 $f'(1)$。",
+    "options": [
+      "24",
+      "22",
+      "25",
+      "23"
+    ],
+    "answer": 3,
+    "explanation": "导函数为 f′(x)=3x²+20x，代入 x=1 得 23。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(10,100)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-99",
+      "-101",
+      "-98",
+      "-100"
+    ],
+    "answer": 3,
+    "explanation": "斜率 k=2×10=20，点斜式 y−100=20(x−10)，故 b=-100。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-20x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "11",
+      "9",
+      "12",
+      "10"
+    ],
+    "answer": 3,
+    "explanation": "f′(x)=2x−20，x>10 时为正，函数在 [10,+∞) 上严格递增，最小边界 a=10。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-300x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "-10",
+      "0",
+      "11",
+      "10"
+    ],
+    "answer": 3,
+    "explanation": "f′(x)=3(x−10)(x+10)，在 x=10 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-300x$ 在 $[0,20]$ 上的最大值是多少？",
+    "options": [
+      "2001",
+      "1999",
+      "2002",
+      "2000"
+    ],
+    "answer": 3,
+    "explanation": "区间内驻点是 x=10。f(0)=0，f(10)=-2000，f(20)=2000，比较得最大值 2000。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "sets",
+    "auxiliary_ids": [],
+    "stem": "集合 A={1,2,…,13}，B={11,12,…,24}，A∩B 的元素个数为多少？",
+    "options": [
+      "4",
+      "15",
+      "3",
+      "2"
+    ],
+    "answer": 2,
+    "explanation": "公共元素是 11、12、13，所以有 3 个元素。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "domain",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=\\sqrt{x-11}$ 的定义域为 $[a,+\\infty)$，a 等于多少？",
+    "options": [
+      "10",
+      "13",
+      "11",
+      "12"
+    ],
+    "answer": 2,
+    "explanation": "被开方数要求 x−11≥0，因此 x≥11，a=11。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "evaluation",
+    "auxiliary_ids": [],
+    "stem": "已知 $f(x)=x^2+11x$，求 $f(11)$。",
+    "options": [
+      "241",
+      "244",
+      "242",
+      "243"
+    ],
+    "answer": 2,
+    "explanation": "代入 x=11，得到 11²+11×11=242。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=(11-a)x+1$ 在实数集上严格递增。以下 a 的值哪一个符合条件？",
+    "options": [
+      "12",
+      "13",
+      "10",
+      "11"
+    ],
+    "answer": 2,
+    "explanation": "斜率 11−a>0，即 a<11；四个选项中只有 10 符合。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "parity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+ax^2+11x$ 为奇函数，a 应为多少？",
+    "options": [
+      "-11",
+      "1",
+      "0",
+      "11"
+    ],
+    "answer": 2,
+    "explanation": "定义域为实数集，f(−x)=−f(x) 要求偶次项系数为 0，所以 a=0。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "quadratic",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-22x+124$ 在实数集上的最小值为多少？",
+    "options": [
+      "-3",
+      "0",
+      "3",
+      "124"
+    ],
+    "answer": 2,
+    "explanation": "配方得到 f(x)=(x−11)²+3，平方项非负，最小值为 3。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "exponential",
+    "auxiliary_ids": [],
+    "stem": "若 $2^x=2048$，则 x 为多少？",
+    "options": [
+      "10",
+      "13",
+      "11",
+      "12"
+    ],
+    "answer": 2,
+    "explanation": "2048=2 的 11 次方，指数函数严格单调，因此 x=11。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "logarithm",
+    "auxiliary_ids": [],
+    "stem": "计算 $\\log_2 2048$。",
+    "options": [
+      "10",
+      "13",
+      "11",
+      "12"
+    ],
+    "answer": 2,
+    "explanation": "因为 2 的 11 次方等于 2048，根据对数定义可得结果为 11。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_definition",
+    "auxiliary_ids": [],
+    "stem": "设 $f(x)=x^2$，求 $\\lim_{h\\to0}\\frac{f(11+h)-f(11)}{h}$。",
+    "options": [
+      "21",
+      "24",
+      "22",
+      "23"
+    ],
+    "answer": 2,
+    "explanation": "差商为 [(11+h)²−11²]/h=22+h，h 趋于 0 时极限为 22。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_rules",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3+11x^2$，求 $f'(1)$。",
+    "options": [
+      "24",
+      "27",
+      "25",
+      "26"
+    ],
+    "answer": 2,
+    "explanation": "导函数为 f′(x)=3x²+22x，代入 x=1 得 25。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "tangent",
+    "auxiliary_ids": [],
+    "stem": "曲线 $y=x^2$ 在点 $(11,121)$ 处的切线写成 $y=kx+b$，b 为多少？",
+    "options": [
+      "-122",
+      "-119",
+      "-121",
+      "-120"
+    ],
+    "answer": 2,
+    "explanation": "斜率 k=2×11=22，点斜式 y−121=22(x−11)，故 b=-121。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "derivative_monotonicity",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^2-22x$ 的严格递增区间为 $[a,+\\infty)$，a 的最小值为多少？",
+    "options": [
+      "10",
+      "13",
+      "11",
+      "12"
+    ],
+    "answer": 2,
+    "explanation": "f′(x)=2x−22，x>11 时为正，函数在 [11,+∞) 上严格递增，最小边界 a=11。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "extrema",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-363x$ 的极小值点的横坐标是多少？",
+    "options": [
+      "0",
+      "12",
+      "11",
+      "-11"
+    ],
+    "answer": 2,
+    "explanation": "f′(x)=3(x−11)(x+11)，在 x=11 两侧由负变正，所以该处为极小值点。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  },
+  {
+    "knowledge_id": "optimization",
+    "auxiliary_ids": [],
+    "stem": "函数 $f(x)=x^3-363x$ 在 $[0,22]$ 上的最大值是多少？",
+    "options": [
+      "2661",
+      "2664",
+      "2662",
+      "2663"
+    ],
+    "answer": 2,
+    "explanation": "区间内驻点是 x=11。f(0)=0，f(11)=-2662，f(22)=2662，比较得最大值 2662。",
+    "difficulty": 3,
+    "source": "原创演示题 · 参数化数学练习，非官方真题",
+    "active": true
+  }
+]

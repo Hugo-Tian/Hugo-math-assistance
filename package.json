@@ -1,0 +1,25 @@
+{
+  "name": "zhixu-adaptive-math",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.15",
+    "katex": "^0.16.38",
+    "marked": "^18.0.12",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.30",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "vite": "^7.3.1"
+  }
+}

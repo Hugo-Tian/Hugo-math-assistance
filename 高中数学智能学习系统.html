@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>高中数学智能学习系统</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#534AB7;--purple-light:#EEEDFE;--purple-mid:#AFA9EC;--purple-dark:#3C3489;
+  --teal:#0F6E56;--teal-light:#E1F5EE;--teal-mid:#5DCAA5;
+  --amber:#854F0B;--amber-light:#FAEEDA;--amber-mid:#EF9F27;
+  --coral:#993C1D;--coral-light:#FAECE7;
+  --bg:#F8F7FC;--surface:#fff;--border:#E5E3F5;
+  --text:#1a1a2e;--text-muted:#6b6b8a;--text-hint:#a0a0bc;
+  --radius:8px;--radius-lg:12px;--radius-xl:16px;
+}
+body{font-family:'Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.6}
+
+/* ─── Layout ─── */
+.shell{display:flex;min-height:100vh}
+.sidebar{width:200px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:0;flex-shrink:0}
+.main{flex:1;overflow-y:auto;padding:24px}
+
+/* ─── Sidebar ─── */
+.logo{padding:20px 20px 16px;border-bottom:1px solid var(--border)}
+.logo-icon{width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.logo-icon svg{width:18px;height:18px;fill:#fff}
+.logo-name{font-size:13px;font-weight:700;color:var(--purple-dark)}
+.logo-sub{font-size:11px;color:var(--text-hint);margin-top:1px}
+.nav{padding:12px 8px;flex:1}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius);cursor:pointer;color:var(--text-muted);font-size:13px;transition:all .15s;margin-bottom:2px}
+.nav-item:hover{background:var(--purple-light);color:var(--purple-dark)}
+.nav-item.active{background:var(--purple-light);color:var(--purple);font-weight:500}
+.nav-item svg{width:18px;height:18px;flex-shrink:0}
+.nav-section{font-size:10px;color:var(--text-hint);text-transform:uppercase;letter-spacing:.08em;padding:8px 12px 4px;margin-top:8px}
+.stat-box{margin:12px 8px;padding:12px;background:var(--purple-light);border-radius:var(--radius-lg)}
+.stat-label{font-size:11px;color:var(--purple-dark);margin-bottom:4px}
+.stat-row{display:flex;justify-content:space-between;align-items:baseline}
+.stat-num{font-size:22px;font-weight:700;color:var(--purple)}
+.stat-unit{font-size:11px;color:var(--text-muted)}
+.streak{margin-top:8px;display:flex;gap:3px}
+.streak-dot{width:8px;height:8px;border-radius:50%;background:var(--purple-mid)}
+.streak-dot.on{background:var(--purple)}
+
+/* ─── Section ─── */
+.section{display:none}
+.section.active{display:block}
+.page-header{margin-bottom:20px}
+.page-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:2px}
+.page-sub{font-size:13px;color:var(--text-muted)}
+
+/* ─── Cards ─── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+.card+.card{margin-top:10px}
+
+/* ─── Sub-tab ─── */
+.sub-tabs{display:flex;gap:6px;margin-bottom:18px;background:var(--purple-light);padding:4px;border-radius:var(--radius-lg);width:fit-content}
+.sub-tab{padding:6px 16px;border-radius:var(--radius);font-size:13px;cursor:pointer;color:var(--text-muted);transition:all .15s;border:none;background:transparent}
+.sub-tab.active{background:var(--surface);color:var(--purple);font-weight:500;box-shadow:0 1px 4px rgba(83,74,183,.12)}
+
+/* ─── Chapter grid (闯关) ─── */
+.chapter-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:700px){.chapter-grid{grid-template-columns:1fr}.shell{flex-direction:column}.sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border)}}
+.chapter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;cursor:pointer;transition:all .2s}
+.chapter-card:hover{border-color:var(--purple-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(83,74,183,.1)}
+.chapter-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.chapter-name{font-size:14px;font-weight:500}
+.badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500}
+.badge-req{background:var(--amber-light);color:var(--amber)}
+.badge-adv{background:var(--teal-light);color:var(--teal)}
+.badge-ext{background:var(--coral-light);color:var(--coral)}
+.pbar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px}
+.pbar-fill{height:100%;background:var(--purple);border-radius:2px;transition:width .4s}
+.pbar-text{font-size:11px;color:var(--text-hint)}
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.pill{font-size:11px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;transition:all .15s}
+.pill:hover{border-color:var(--purple-mid);color:var(--purple)}
+.pill.done{background:var(--teal-light);color:var(--teal);border-color:var(--teal-mid)}
+.pill.locked{opacity:.45;pointer-events:none}
+
+/* ─── Learn Detail ─── */
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text-hint);cursor:pointer;margin-bottom:14px;transition:color .15s}
+.back-btn:hover{color:var(--purple)}
+.video-block{background:var(--purple-light);border-radius:var(--radius-lg);height:180px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;cursor:pointer;border:1px solid var(--purple-mid);transition:all .15s}
+.video-block:hover{background:#E3E0FB}
+.play-circle{width:52px;height:52px;background:var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.play-circle svg{width:22px;height:22px;fill:#fff;margin-left:3px}
+.detail-desc{font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:14px;padding:12px;background:var(--bg);border-radius:var(--radius);border-left:3px solid var(--purple)}
+.quiz-section{border-top:1px solid var(--border);padding-top:14px}
+.quiz-label{font-size:11px;font-weight:500;color:var(--text-hint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.quiz-q{font-size:14px;margin-bottom:12px;line-height:1.7;font-weight:500}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-size:13px;cursor:pointer;transition:all .15s;background:var(--surface)}
+.opt:hover{border-color:var(--purple-mid);background:var(--purple-light);color:var(--purple-dark)}
+.opt.correct{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal)}
+.opt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
+.quiz-result{font-size:13px;margin-top:10px;padding:8px 12px;border-radius:var(--radius);font-weight:500}
+.quiz-result.ok{background:var(--teal-light);color:var(--teal)}
+.quiz-result.err{background:#FCEBEB;color:#791F1F}
+
+/* ─── Knowledge Tree ─── */
+.tree-hint{font-size:12px;color:var(--text-hint);margin-bottom:10px;display:flex;align-items:center;gap:4px}
+.tree-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+.tree-legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text-muted)}
+.legend-dot{width:10px;height:10px;border-radius:2px}
+
+/* ─── Practice ─── */
+.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.mode-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:16px;cursor:pointer;transition:all .15s}
+.mode-card:hover{border-color:var(--purple-mid)}
+.mode-card.sel{border-color:var(--purple);background:var(--purple-light)}
+.mode-icon{font-size:22px;margin-bottom:6px;color:var(--purple)}
+.mode-icon svg{width:24px;height:24px;stroke:var(--purple);fill:none;stroke-width:1.5}
+.mode-title{font-size:14px;font-weight:500;margin-bottom:2px}
+.mode-desc{font-size:12px;color:var(--text-muted)}
+.form-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.form-label{font-size:13px;color:var(--text-muted);min-width:60px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-size:12px;padding:4px 10px;border-radius:10px;border:1px solid var(--border);cursor:pointer;color:var(--text-muted);transition:all .15s}
+.tag.sel{background:var(--purple);color:#fff;border-color:var(--purple)}
+.tag:hover:not(.sel){border-color:var(--purple-mid);color:var(--purple-dark)}
+.primary-btn{width:100%;padding:11px;background:var(--purple);color:#fff;border:none;border-radius:var(--radius-lg);font-size:14px;font-weight:500;cursor:pointer;transition:background .15s;margin-top:4px}
+.primary-btn:hover{background:var(--purple-dark)}
+.weak-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)}
+.weak-name{font-size:13px;min-width:96px}
+.weak-bar-wrap{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.weak-bar{height:100%;border-radius:3px}
+.weak-pct{font-size:12px;color:var(--text-hint);min-width:30px;text-align:right}
+.pq-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.pq-info{font-size:13px;color:var(--text-muted)}
+.pq-badge{font-size:11px;padding:3px 10px;border-radius:10px;background:var(--purple-light);color:var(--purple-dark);font-weight:500}
+.next-btn{width:100%;padding:10px;background:var(--purple);color:#fff;border:none;border-radius:var(--radius);font-size:14px;cursor:pointer;margin-top:14px;display:none}
+.next-btn:hover{background:var(--purple-dark)}
+
+/* ─── Search ─── */
+.search-bar{display:flex;gap:8px;margin-bottom:14px}
+.search-input{flex:1;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-lg);font-size:14px;color:var(--text);background:var(--surface);font-family:inherit;transition:border .15s}
+.search-input:focus{outline:none;border-color:var(--purple)}
+.search-btn{padding:11px 20px;background:var(--purple);color:#fff;border:none;border-radius:var(--radius-lg);cursor:pointer;font-size:14px;transition:background .15s}
+.search-btn:hover{background:var(--purple-dark)}
+.upload-zone{border:1.5px dashed var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;margin-bottom:14px;cursor:pointer;transition:all .15s}
+.upload-zone:hover{border-color:var(--purple);background:var(--purple-light)}
+.upload-icon{width:36px;height:36px;stroke:var(--text-hint);fill:none;stroke-width:1.5;margin:0 auto 8px}
+.upload-text{font-size:13px;color:var(--text-hint)}
+.hot-label{font-size:12px;color:var(--text-hint);margin-bottom:6px}
+.hot-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.hot-tag{font-size:12px;padding:4px 10px;border-radius:10px;background:var(--surface);border:1px solid var(--border);cursor:pointer;color:var(--text-muted);transition:all .15s}
+.hot-tag:hover{border-color:var(--purple-mid);color:var(--purple-dark)}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;transition:border .15s}
+.result-card:hover{border-color:var(--purple-mid)}
+.result-head{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.result-tag{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--purple-light);color:var(--purple-dark);font-weight:500}
+.diff-1{background:var(--teal-light);color:var(--teal)}
+.diff-2{background:var(--amber-light);color:var(--amber)}
+.diff-3{background:var(--coral-light);color:var(--coral)}
+.result-q{font-size:14px;line-height:1.7;margin-bottom:10px;color:var(--text)}
+.result-acts{display:flex;gap:8px}
+.act-btn{padding:5px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:12px;cursor:pointer;background:transparent;color:var(--text-muted);transition:all .15s}
+.act-btn:hover{border-color:var(--purple-mid);color:var(--purple-dark)}
+input[type=range]{accent-color:var(--purple)}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ─── Sidebar ─── -->
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="logo-name">数学通</div>
+    <div class="logo-sub">高中数学智能学习</div>
+  </div>
+  <nav class="nav">
+    <div class="nav-section">学习</div>
+    <div class="nav-item active" onclick="switchTab('learn',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      学习模式
+    </div>
+    <div class="nav-item" onclick="switchTab('practice',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      练习模式
+    </div>
+    <div class="nav-item" onclick="switchTab('search',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      搜题模式
+    </div>
+    <div class="nav-section">我的</div>
+    <div class="nav-item" onclick="switchTab('wrong',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      错题本
+    </div>
+    <div class="nav-item" onclick="switchTab('report',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      学习报告
+    </div>
+  </nav>
+  <div class="stat-box">
+    <div class="stat-label">今日学习</div>
+    <div class="stat-row">
+      <span class="stat-num">42</span>
+      <span class="stat-unit">分钟</span>
+    </div>
+    <div class="stat-label" style="margin-top:8px">连续打卡</div>
+    <div class="streak">
+      <div class="streak-dot on"></div><div class="streak-dot on"></div><div class="streak-dot on"></div>
+      <div class="streak-dot on"></div><div class="streak-dot on"></div><div class="streak-dot"></div><div class="streak-dot"></div>
+    </div>
+    <div style="font-size:10px;color:var(--purple-dark);margin-top:4px">已坚持 5 天 🔥</div>
+  </div>
+</aside>
+
+<!-- ─── Main ─── -->
+<main class="main">
+
+  <!-- 学习模式 -->
+  <div class="section active" id="sec-learn">
+    <div id="learn-main">
+      <div class="page-header">
+        <div class="page-title">学习模式</div>
+        <div class="page-sub">选择知识点，看视频 · 做练习 · 拿星星</div>
+      </div>
+      <div class="sub-tabs">
+        <button class="sub-tab active" id="sbtn-quest" onclick="switchLearnMode('quest')">⚔️ 闯关模式</button>
+        <button class="sub-tab" id="sbtn-tree" onclick="switchLearnMode('tree')">🌳 知识树模式</button>
+      </div>
+
+      <!-- 闯关 -->
+      <div id="mode-quest">
+        <div class="chapter-grid">
+          <div class="chapter-card" onclick="openChapter('func')">
+            <div class="chapter-head"><span class="chapter-name">函数与导数</span><span class="badge badge-req">必修</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:72%"></div></div>
+            <div class="pbar-text">已解锁 13 / 18 个知识点</div>
+            <div class="pills">
+              <span class="pill done">函数概念</span><span class="pill done">基本初等函数</span>
+              <span class="pill done">导数定义</span><span class="pill">导数应用</span>
+              <span class="pill locked">积分初步</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('seq')">
+            <div class="chapter-head"><span class="chapter-name">数列</span><span class="badge badge-req">必修</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:50%"></div></div>
+            <div class="pbar-text">已解锁 5 / 10 个知识点</div>
+            <div class="pills">
+              <span class="pill done">等差数列</span><span class="pill done">等比数列</span>
+              <span class="pill">数列求和</span><span class="pill locked">递推数列</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('trig')">
+            <div class="chapter-head"><span class="chapter-name">三角函数</span><span class="badge badge-req">必修</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:40%"></div></div>
+            <div class="pbar-text">已解锁 6 / 15 个知识点</div>
+            <div class="pills">
+              <span class="pill done">弧度制</span><span class="pill done">正弦余弦</span>
+              <span class="pill">和差化积</span><span class="pill locked">正弦定理</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('prob')">
+            <div class="chapter-head"><span class="chapter-name">概率与统计</span><span class="badge badge-req">必修</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:20%"></div></div>
+            <div class="pbar-text">已解锁 3 / 14 个知识点</div>
+            <div class="pills">
+              <span class="pill done">古典概型</span><span class="pill">条件概率</span>
+              <span class="pill locked">正态分布</span><span class="pill locked">假设检验</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('vec')">
+            <div class="chapter-head"><span class="chapter-name">向量与空间几何</span><span class="badge badge-adv">选修 A</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:30%"></div></div>
+            <div class="pbar-text">已解锁 4 / 13 个知识点</div>
+            <div class="pills">
+              <span class="pill done">向量加减</span><span class="pill done">数量积</span>
+              <span class="pill">空间向量</span><span class="pill locked">立体几何</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('ana')">
+            <div class="chapter-head"><span class="chapter-name">解析几何</span><span class="badge badge-adv">选修 A</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:10%"></div></div>
+            <div class="pbar-text">已解锁 1 / 12 个知识点</div>
+            <div class="pills">
+              <span class="pill done">直线方程</span><span class="pill locked">圆的方程</span>
+              <span class="pill locked">椭圆</span><span class="pill locked">双曲线</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('cnt')">
+            <div class="chapter-head"><span class="chapter-name">计数原理</span><span class="badge badge-ext">选修 B</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:25%"></div></div>
+            <div class="pbar-text">已解锁 2 / 8 个知识点</div>
+            <div class="pills">
+              <span class="pill done">排列</span><span class="pill done">组合</span>
+              <span class="pill locked">二项式定理</span><span class="pill locked">容斥原理</span>
+            </div>
+          </div>
+          <div class="chapter-card" onclick="openChapter('comp')">
+            <div class="chapter-head"><span class="chapter-name">复数</span><span class="badge badge-ext">选修 B</span></div>
+            <div class="pbar"><div class="pbar-fill" style="width:0%"></div></div>
+            <div class="pbar-text">未开始 · 0 / 6 个知识点</div>
+            <div class="pills">
+              <span class="pill locked">复数概念</span><span class="pill locked">复数运算</span>
+              <span class="pill locked">复数几何意义</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 知识树 -->
+      <div id="mode-tree" style="display:none">
+        <div class="tree-hint">💡 点击任意节点进入该知识点学习</div>
+        <div class="tree-wrap">
+          <svg id="tree-svg" width="720" height="460" viewBox="0 0 720 460" style="display:block;overflow:visible;max-width:100%"></svg>
+        </div>
+        <div class="tree-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>必修模块</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>选修 A</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>选修 B</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 学习详情 -->
+    <div id="learn-detail" style="display:none">
+      <div class="back-btn" onclick="backToLearn()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        返回
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+          <div>
+            <div style="font-size:11px;color:var(--text-hint);margin-bottom:3px" id="detail-chapter"></div>
+            <h2 style="font-size:17px;font-weight:700" id="detail-title"></h2>
+          </div>
+          <span class="badge" id="detail-badge" style="margin-top:2px"></span>
+        </div>
+        <div class="video-block" onclick="alert('视频播放功能需接入真实视频资源')">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </div>
+        <div class="detail-desc" id="detail-desc"></div>
+        <div class="quiz-section">
+          <div class="quiz-label">随堂练习</div>
+          <div class="quiz-q" id="quiz-q"></div>
+          <div class="opts" id="quiz-opts"></div>
+          <div id="quiz-result" class="quiz-result" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 练习模式 -->
+  <div class="section" id="sec-practice">
+    <div id="practice-main">
+      <div class="page-header">
+        <div class="page-title">练习模式</div>
+        <div class="page-sub">自主刷题或让 AI 智能推荐薄弱点</div>
+      </div>
+      <div class="mode-cards">
+        <div class="mode-card sel" id="pcard-custom" onclick="selectPMode('custom')">
+          <div class="mode-icon">
+            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div class="mode-title">自主练习</div>
+          <div class="mode-desc">自选知识点与题量</div>
+        </div>
+        <div class="mode-card" id="pcard-smart" onclick="selectPMode('smart')">
+          <div class="mode-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 100 16A8 8 0 0012 2z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="mode-title">智能推荐</div>
+          <div class="mode-desc">系统分析薄弱知识点</div>
+        </div>
+      </div>
+
+      <div class="card" id="practice-custom">
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px;font-weight:500">选择知识点</div>
+        <div class="tags">
+          <span class="tag sel" onclick="this.classList.toggle('sel')">函数单调性</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">导数计算</span>
+          <span class="tag sel" onclick="this.classList.toggle('sel')">等差数列</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">等比数列</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">三角恒等变换</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">正弦定理</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">排列组合</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">概率计算</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">椭圆</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">向量运算</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">复数</span>
+          <span class="tag" onclick="this.classList.toggle('sel')">数列求和</span>
+        </div>
+        <div class="form-row">
+          <span class="form-label">题目数量</span>
+          <input type="range" min="5" max="30" value="10" step="5" style="flex:1" oninput="document.getElementById('qty-out').textContent=this.value"/>
+          <strong id="qty-out">10</strong>&nbsp;<span style="color:var(--text-hint);font-size:12px">题</span>
+        </div>
+        <div class="form-row">
+          <span class="form-label">难度</span>
+          <span class="tag sel" onclick="setDiff(this)">基础</span>
+          <span class="tag" onclick="setDiff(this)">提升</span>
+          <span class="tag" onclick="setDiff(this)">竞赛</span>
+        </div>
+        <button class="primary-btn" onclick="startPractice()">开始练习 →</button>
+      </div>
+
+      <div class="card" id="practice-smart" style="display:none">
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;font-weight:500">近期薄弱知识点（正确率）</div>
+        <div style="margin-bottom:14px">
+          <div class="weak-item"><span class="weak-name">三角恒等变换</span><div class="weak-bar-wrap"><div class="weak-bar" style="width:28%;background:#D85A30"></div></div><span class="weak-pct">28%</span></div>
+          <div class="weak-item"><span class="weak-name">解析几何综合</span><div class="weak-bar-wrap"><div class="weak-bar" style="width:35%;background:#EF9F27"></div></div><span class="weak-pct">35%</span></div>
+          <div class="weak-item"><span class="weak-name">导数应用</span><div class="weak-bar-wrap"><div class="weak-bar" style="width:48%;background:#EF9F27"></div></div><span class="weak-pct">48%</span></div>
+          <div class="weak-item"><span class="weak-name">概率统计</span><div class="weak-bar-wrap"><div class="weak-bar" style="width:55%;background:#639922"></div></div><span class="weak-pct">55%</span></div>
+          <div class="weak-item"><span class="weak-name">数列递推</span><div class="weak-bar-wrap"><div class="weak-bar" style="width:60%;background:#639922"></div></div><span class="weak-pct">60%</span></div>
+        </div>
+        <div style="font-size:12px;color:var(--text-hint);margin-bottom:12px">系统将重点推送正确率低于 65% 的知识点题目</div>
+        <button class="primary-btn" onclick="startPractice()">生成专属练习 ✨</button>
+      </div>
+    </div>
+
+    <!-- 练习题 -->
+    <div id="practice-quiz" style="display:none">
+      <div class="back-btn" onclick="backToPractice()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        返回
+      </div>
+      <div class="pq-header">
+        <span class="pq-info">题目 <strong id="pq-cur">1</strong> / <strong id="pq-total">5</strong></span>
+        <span class="pq-badge" id="pq-topic"></span>
+      </div>
+      <div class="pbar" style="margin-bottom:16px"><div class="pbar-fill" id="pq-progress" style="width:0%"></div></div>
+      <div class="card">
+        <div class="quiz-q" id="pq-q"></div>
+        <div class="opts" id="pq-opts"></div>
+        <div id="pq-result" class="quiz-result" style="display:none"></div>
+        <button class="next-btn" id="pq-next" onclick="nextPQ()">下一题 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 搜题模式 -->
+  <div class="section" id="sec-search">
+    <div class="page-header">
+      <div class="page-title">搜题模式</div>
+      <div class="page-sub">输入题目关键词，或拍照上传</div>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" id="search-input" placeholder="输入题目关键词，如：设 f(x)=x²-2x，求极值…" onkeydown="if(event.key==='Enter')doSearch()"/>
+      <button class="search-btn" onclick="doSearch()">搜索</button>
+    </div>
+    <div class="upload-zone" onclick="alert('拍照识题功能需接入 OCR 接口')">
+      <svg class="upload-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="upload-text">拍照上传题目图片，AI 自动识别解析</div>
+    </div>
+    <div class="hot-label">热门搜索</div>
+    <div class="hot-tags">
+      <span class="hot-tag" onclick="hotSearch('导数求极值')">导数求极值</span>
+      <span class="hot-tag" onclick="hotSearch('等差等比混合数列')">等差等比混合数列</span>
+      <span class="hot-tag" onclick="hotSearch('椭圆焦点三角形')">椭圆焦点三角形</span>
+      <span class="hot-tag" onclick="hotSearch('条件概率')">条件概率</span>
+      <span class="hot-tag" onclick="hotSearch('辅助角公式')">辅助角公式</span>
+      <span class="hot-tag" onclick="hotSearch('正弦定理')">正弦定理</span>
+      <span class="hot-tag" onclick="hotSearch('二项式定理')">二项式定理</span>
+      <span class="hot-tag" onclick="hotSearch('向量夹角')">向量夹角</span>
+    </div>
+    <div id="search-results"></div>
+  </div>
+
+  <!-- 错题本（占位） -->
+  <div class="section" id="sec-wrong">
+    <div class="page-header"><div class="page-title">错题本</div><div class="page-sub">收录做错的题目，反复巩固</div></div>
+    <div class="card" style="text-align:center;padding:48px;color:var(--text-hint)">
+      <div style="font-size:40px;margin-bottom:12px">📖</div>
+      <div style="font-size:14px">暂无错题记录</div>
+      <div style="font-size:12px;margin-top:4px">去练习模式做题，答错的题会自动收录到这里</div>
+    </div>
+  </div>
+
+  <!-- 学习报告（占位） -->
+  <div class="section" id="sec-report">
+    <div class="page-header"><div class="page-title">学习报告</div><div class="page-sub">数据化呈现学习进度与薄弱点</div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+      <div class="card" style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:var(--purple)">147</div>
+        <div style="font-size:12px;color:var(--text-hint);margin-top:2px">累计做题数</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:var(--teal)">68%</div>
+        <div style="font-size:12px;color:var(--text-hint);margin-top:2px">综合正确率</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:var(--amber)">5天</div>
+        <div style="font-size:12px;color:var(--text-hint);margin-top:2px">连续学习天数</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:500;margin-bottom:12px">各模块掌握情况</div>
+      <div id="report-bars"></div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<script>
+const chapters={
+  func:{name:'导数定义与计算',chapter:'函数与导数',badge:'必修',badgeClass:'badge-req',
+    desc:'导数是函数在某点的瞬时变化率，几何意义为该点切线斜率。基本求导公式：(xⁿ)\'=nxⁿ⁻¹，(sinx)\'=cosx，(cosx)\'=-sinx，(eˣ)\'=eˣ，(lnx)\'=1/x。复合函数求导用链式法则。',
+    q:'函数 f(x)=x³-3x 在 x=1 处的导数值 f\'(1) =',opts:['0','1','-3','3'],ans:0},
+  seq:{name:'等差数列通项与求和',chapter:'数列',badge:'必修',badgeClass:'badge-req',
+    desc:'等差数列各项之差恒为公差 d。通项公式：aₙ=a₁+(n-1)d。前 n 项和：Sₙ=na₁+n(n-1)d/2=(a₁+aₙ)n/2。判断等差：aₙ₊₁-aₙ=常数。',
+    q:'等差数列 {aₙ} 中，a₁=2，公差 d=3，则前 10 项和 S₁₀=',opts:['155','155','185','155'],ans:0},
+  trig:{name:'三角函数基本公式',chapter:'三角函数',badge:'必修',badgeClass:'badge-req',
+    desc:'平方关系：sin²x+cos²x=1。和差公式：sin(α±β)=sinαcosβ±cosαsinβ；cos(α±β)=cosαcosβ∓sinαsinβ。二倍角：sin2α=2sinαcosα；cos2α=cos²α-sin²α=1-2sin²α。',
+    q:'已知 sinα=3/5，α∈(π/2, π)，则 cos2α=',opts:['7/25','-7/25','24/25','-24/25'],ans:3},
+  prob:{name:'古典概型与条件概率',chapter:'概率与统计',badge:'必修',badgeClass:'badge-req',
+    desc:'古典概型：等可能事件，P(A)=m/n（m为满足A的事件数，n为总事件数）。条件概率：P(A|B)=P(AB)/P(B)。相互独立：P(AB)=P(A)·P(B)。全概率公式：P(A)=ΣP(Bᵢ)P(A|Bᵢ)。',
+    q:'掷一枚均匀骰子，已知朝上面为偶数，则朝上面为 4 的概率是',opts:['1/6','1/3','1/2','2/3'],ans:1},
+  vec:{name:'向量数量积',chapter:'向量与空间几何',badge:'选修 A',badgeClass:'badge-adv',
+    desc:'向量数量积（点积）：a·b=|a||b|cosθ，其中 θ 为两向量夹角。坐标形式：(x₁,y₁)·(x₂,y₂)=x₁x₂+y₁y₂。a·b=0 ⟺ a⊥b。向量模：|a|=√(a·a)。',
+    q:'向量 a=(2,1)，b=(1,-2)，则 a·b=',opts:['0','3','5','-5'],ans:0},
+  ana:{name:'椭圆标准方程',chapter:'解析几何',badge:'选修 A',badgeClass:'badge-adv',
+    desc:'椭圆标准方程：x²/a²+y²/b²=1（a>b>0）。焦点在 x 轴，焦距 2c，c²=a²-b²。离心率 e=c/a∈(0,1)。焦点坐标：(±c,0)。长轴长 2a，短轴长 2b。',
+    q:'椭圆 x²/4+y²/3=1 的焦距为',opts:['1','2','4','√7'],ans:1},
+  cnt:{name:'排列与组合',chapter:'计数原理',badge:'选修 B',badgeClass:'badge-ext',
+    desc:'分步计数原理（乘法）：完成事件需 k 步，各步有 n₁,n₂,…,nₖ种方法，总数=n₁×n₂×…×nₖ。排列数 Aₙᵐ=n!/(n-m)!。组合数 Cₙᵐ=n!/(m!(n-m)!)=Aₙᵐ/m!。性质：Cₙᵐ=Cₙⁿ⁻ᵐ。',
+    q:'从 6 人中选 4 人的组合数 C₆⁴ =',opts:['15','30','60','120'],ans:0},
+  comp:{name:'复数的概念与运算',chapter:'复数',badge:'选修 B',badgeClass:'badge-ext',
+    desc:'虚数单位 i 满足 i²=-1。复数 z=a+bi（a,b∈ℝ），a 为实部，b 为虚部。模 |z|=√(a²+b²)。共轭复数 z̄=a-bi。运算：加减实虚部分别相加减；乘法展开合并（利用 i²=-1）。',
+    q:'复数 z=(1+i)/(1-i) 的实部为',opts:['0','1','-1','2'],ans:0},
+};
+
+const treeConfig=[
+  {id:'func',label:'函数与导数',x:65,y:90,w:112,h:30,fill:'#EEEDFE',stroke:'#AFA9EC',tc:'#3C3489',
+   children:[
+     {id:'func',label:'函数性质',x:10,y:160,w:88,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7',
+      children:[
+        {id:'func',label:'单调性',x:8,y:220,w:64,h:22,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+        {id:'func',label:'奇偶性',x:78,y:220,w:64,h:22,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+      ]},
+     {id:'func',label:'导数计算',x:108,y:160,w:88,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+     {id:'func',label:'导数应用',x:206,y:160,w:88,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7',
+      children:[
+        {id:'func',label:'极值',x:168,y:220,w:56,h:22,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+        {id:'func',label:'最值',x:232,y:220,w:56,h:22,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+      ]},
+   ]},
+  {id:'seq',label:'数列',x:210,y:90,w:80,h:30,fill:'#EEEDFE',stroke:'#AFA9EC',tc:'#3C3489',
+   children:[
+     {id:'seq',label:'等差数列',x:186,y:160,w:86,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+     {id:'seq',label:'等比数列',x:280,y:160,w:86,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+   ]},
+  {id:'trig',label:'三角函数',x:322,y:90,w:96,h:30,fill:'#EEEDFE',stroke:'#AFA9EC',tc:'#3C3489',
+   children:[
+     {id:'trig',label:'基本公式',x:302,y:160,w:80,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+     {id:'trig',label:'正弦余弦定理',x:390,y:160,w:100,h:26,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+   ]},
+  {id:'vec',label:'向量与几何',x:450,y:90,w:100,h:30,fill:'#E1F5EE',stroke:'#5DCAA5',tc:'#085041',
+   children:[
+     {id:'vec',label:'平面向量',x:434,y:160,w:80,h:26,fill:'#E1F5EE',stroke:'#9FE1CB',tc:'#085041'},
+     {id:'vec',label:'立体几何',x:522,y:160,w:80,h:26,fill:'#E1F5EE',stroke:'#9FE1CB',tc:'#085041'},
+   ]},
+  {id:'prob',label:'概率统计',x:580,y:90,w:90,h:30,fill:'#FAEEDA',stroke:'#EF9F27',tc:'#633806',
+   children:[
+     {id:'prob',label:'概率模型',x:556,y:160,w:80,h:26,fill:'#FAEEDA',stroke:'#FAC775',tc:'#633806'},
+     {id:'prob',label:'统计推断',x:644,y:160,w:80,h:26,fill:'#FAEEDA',stroke:'#FAC775',tc:'#633806'},
+   ]},
+  {id:'ana',label:'解析几何',x:310,y:310,w:90,h:28,fill:'#EEEDFE',stroke:'#AFA9EC',tc:'#3C3489',group:'解析几何（选修 A）',
+   children:[
+     {id:'ana',label:'椭圆',x:298,y:368,w:60,h:22,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+     {id:'ana',label:'双曲线',x:366,y:368,w:60,h:22,fill:'#EEEDFE',stroke:'#CECBF6',tc:'#534AB7'},
+   ]},
+  {id:'cnt',label:'排列组合',x:52,y:310,w:90,h:28,fill:'#FAEEDA',stroke:'#EF9F27',tc:'#633806',group:'计数与复数（选修 B）'},
+  {id:'comp',label:'复数',x:152,y:310,w:70,h:28,fill:'#FAEEDA',stroke:'#EF9F27',tc:'#633806'},
+  {id:'ana',label:'抛物线',x:440,y:310,w:70,h:28,fill:'#EEEDFE',stroke:'#AFA9EC',tc:'#3C3489'},
+];
+
+function buildTree(){
+  const svg=document.getElementById('tree-svg');
+  svg.innerHTML='';
+  const ns='http://www.w3.org/2000/svg';
+  function line(x1,y1,x2,y2,color){
+    const l=document.createElementNS(ns,'line');
+    l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);
+    l.setAttribute('stroke',color||'#AFA9EC');l.setAttribute('stroke-width','0.8');
+    svg.appendChild(l);
+  }
+  function node(nd,pcx,pby){
+    const cx=nd.x+nd.w/2, cy=nd.y+nd.h/2;
+    if(pcx!==undefined) line(pcx,pby,cx,nd.y,nd.stroke);
+    const g=document.createElementNS(ns,'g');
+    g.style.cursor='pointer';
+    g.addEventListener('click',()=>openChapter(nd.id));
+    g.addEventListener('mouseenter',()=>{r.setAttribute('opacity','0.75');});
+    g.addEventListener('mouseleave',()=>{r.setAttribute('opacity','1');});
+    const r=document.createElementNS(ns,'rect');
+    r.setAttribute('x',nd.x);r.setAttribute('y',nd.y);
+    r.setAttribute('width',nd.w);r.setAttribute('height',nd.h);
+    r.setAttribute('rx','6');r.setAttribute('fill',nd.fill);
+    r.setAttribute('stroke',nd.stroke);r.setAttribute('stroke-width','0.8');
+    g.appendChild(r);
+    const t=document.createElementNS(ns,'text');
+    t.setAttribute('x',cx);t.setAttribute('y',cy+4);
+    t.setAttribute('text-anchor','middle');t.setAttribute('font-size','11');
+    t.setAttribute('fill',nd.tc);t.setAttribute('font-family',"'Noto Sans SC',sans-serif");
+    t.textContent=nd.label;
+    g.appendChild(t);
+    svg.appendChild(g);
+    if(nd.children) nd.children.forEach(ch=>node(ch,cx,nd.y+nd.h));
+  }
+
+  // root
+  const rcx=360,ry=16,rw=120,rh=30;
+  const rg=document.createElementNS(ns,'g');
+  const rr=document.createElementNS(ns,'rect');
+  rr.setAttribute('x',rcx-rw/2);rr.setAttribute('y',ry);rr.setAttribute('width',rw);rr.setAttribute('height',rh);
+  rr.setAttribute('rx','15');rr.setAttribute('fill','#534AB7');
+  rg.appendChild(rr);
+  const rt=document.createElementNS(ns,'text');
+  rt.setAttribute('x',rcx);rt.setAttribute('y',ry+20);rt.setAttribute('text-anchor','middle');
+  rt.setAttribute('font-size','13');rt.setAttribute('font-weight','500');rt.setAttribute('fill','#fff');
+  rt.setAttribute('font-family',"'Noto Sans SC',sans-serif");rt.textContent='高中数学';
+  rg.appendChild(rt);
+  svg.appendChild(rg);
+
+  // connect root to L1 branches
+  const l1=[{x:65,w:112},{x:210,w:80},{x:322,w:96},{x:450,w:100},{x:580,w:90}];
+  l1.forEach(b=>line(rcx,ry+rh,b.x+b.w/2,90,'#AFA9EC'));
+
+  // group boxes
+  function groupBox(x,y,w,h,label,tc){
+    const gr=document.createElementNS(ns,'rect');
+    gr.setAttribute('x',x);gr.setAttribute('y',y);gr.setAttribute('width',w);gr.setAttribute('height',h);
+    gr.setAttribute('rx','8');gr.setAttribute('fill','#F8F7FC');
+    gr.setAttribute('stroke','#E5E3F5');gr.setAttribute('stroke-width','0.8');
+    svg.insertBefore(gr,svg.firstChild);
+    const gt=document.createElementNS(ns,'text');
+    gt.setAttribute('x',x+6);gt.setAttribute('y',y-5);
+    gt.setAttribute('font-size','10');gt.setAttribute('fill',tc||'#6b6b8a');
+    gt.setAttribute('font-family',"'Noto Sans SC',sans-serif");
+    gt.textContent=label;
+    svg.appendChild(gt);
+  }
+  groupBox(36,298,200,48,'计数与复数（选修 B）','#854F0B');
+  groupBox(294,298,230,108,'解析几何（选修 A）','#534AB7');
+
+  treeConfig.forEach(nd=>node(nd));
+
+  // exam hint box
+  const hx=520,hy=300;
+  const hbox=document.createElementNS(ns,'rect');
+  hbox.setAttribute('x',hx);hbox.setAttribute('y',hy);
+  hbox.setAttribute('width',185);hbox.setAttribute('height',100);
+  hbox.setAttribute('rx','8');hbox.setAttribute('fill','#F8F7FC');
+  hbox.setAttribute('stroke','#E5E3F5');hbox.setAttribute('stroke-width','0.8');
+  svg.appendChild(hbox);
+  const htitle=document.createElementNS(ns,'text');
+  htitle.setAttribute('x',hx+93);htitle.setAttribute('y',hy+16);
+  htitle.setAttribute('text-anchor','middle');htitle.setAttribute('font-size','11');
+  htitle.setAttribute('font-weight','500');htitle.setAttribute('fill','#3C3489');
+  htitle.setAttribute('font-family',"'Noto Sans SC',sans-serif");htitle.textContent='高考核心考点';
+  svg.appendChild(htitle);
+  [['函数导数（约 18 分）','#0F6E56'],['解析几何（约 22 分）','#0F6E56'],['概率统计（约 12 分）','#0F6E56'],['数列（约 12 分）','#0F6E56']].forEach(([text,color],i)=>{
+    const ht=document.createElementNS(ns,'text');
+    ht.setAttribute('x',hx+10);ht.setAttribute('y',hy+34+i*18);
+    ht.setAttribute('font-size','10');ht.setAttribute('fill',color);
+    ht.setAttribute('font-family',"'Noto Sans SC',sans-serif");ht.textContent='• '+text;
+    svg.appendChild(ht);
+  });
+}
+
+// ─── Navigation ───
+function switchTab(t,el){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('sec-'+t).classList.add('active');
+  if(t==='report') buildReport();
+}
+function switchLearnMode(m){
+  ['quest','tree'].forEach(x=>{
+    document.getElementById('sbtn-'+x).classList.toggle('active',x===m);
+    document.getElementById('mode-'+x).style.display=x===m?'block':'none';
+  });
+  if(m==='tree') buildTree();
+}
+
+// ─── Chapter detail ───
+function openChapter(id){
+  const d=chapters[id]; if(!d) return;
+  document.getElementById('detail-chapter').textContent=d.chapter;
+  document.getElementById('detail-title').textContent=d.name;
+  const badge=document.getElementById('detail-badge');
+  badge.textContent=d.badge; badge.className='badge '+d.badgeClass;
+  document.getElementById('detail-desc').textContent=d.desc;
+  document.getElementById('quiz-q').textContent=d.q;
+  const optsEl=document.getElementById('quiz-opts'); optsEl.innerHTML='';
+  d.opts.forEach((o,i)=>{
+    const el=document.createElement('div'); el.className='opt'; el.textContent=o;
+    el.onclick=()=>checkAns(i,d.ans,d.opts,optsEl,document.getElementById('quiz-result'));
+    optsEl.appendChild(el);
+  });
+  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('learn-main').style.display='none';
+  document.getElementById('learn-detail').style.display='block';
+}
+function checkAns(i,ans,opts,optsEl,resEl){
+  optsEl.querySelectorAll('.opt').forEach((o,idx)=>{
+    o.style.pointerEvents='none';
+    if(idx===ans) o.classList.add('correct');
+    else if(idx===i&&i!==ans) o.classList.add('wrong');
+  });
+  resEl.style.display='block';
+  const ok=i===ans;
+  resEl.className='quiz-result '+(ok?'ok':'err');
+  resEl.textContent=ok?'✓ 回答正确！继续保持~':'✗ 回答错误，正确答案是：'+opts[ans];
+}
+function backToLearn(){
+  document.getElementById('learn-main').style.display='block';
+  document.getElementById('learn-detail').style.display='none';
+}
+
+// ─── Practice ───
+function selectPMode(m){
+  ['custom','smart'].forEach(x=>{
+    document.getElementById('pcard-'+x).classList.toggle('sel',x===m);
+    document.getElementById('practice-'+x).style.display=x===m?'block':'none';
+  });
+}
+function setDiff(el){
+  el.closest('.form-row').querySelectorAll('.tag').forEach(t=>t.classList.remove('sel'));
+  el.classList.add('sel');
+}
+const pQuestions=[
+  {q:'f(x)=2x³-3x²，则 f\'(1)=',opts:['0','1','2','3'],ans:0,topic:'导数计算'},
+  {q:'等差数列 a₁=1，d=2，则前 5 项和 S₅=',opts:['15','20','25','30'],ans:2,topic:'等差数列'},
+  {q:'sin(π/4+π/6) 的值为',opts:['(√6+√2)/4','(√6-√2)/4','√3/2','√2/2'],ans:0,topic:'三角恒等变换'},
+  {q:'从 5 人中选 2 人 C₅²=',opts:['10','15','20','30'],ans:0,topic:'排列组合'},
+  {q:'椭圆 x²/9+y²/4=1 的焦距 2c=',opts:['2√5','4','√5','2√13'],ans:0,topic:'椭圆'},
+];
+let curPQ=0,pqLocked=false;
+function startPractice(){
+  curPQ=0; pqLocked=false;
+  document.getElementById('pq-total').textContent=pQuestions.length;
+  loadPQ();
+  document.getElementById('practice-main').style.display='none';
+  document.getElementById('practice-quiz').style.display='block';
+}
+function loadPQ(){
+  const q=pQuestions[curPQ];
+  document.getElementById('pq-cur').textContent=curPQ+1;
+  document.getElementById('pq-topic').textContent=q.topic;
+  document.getElementById('pq-progress').style.width=Math.round((curPQ/pQuestions.length)*100)+'%';
+  document.getElementById('pq-q').textContent=q.q;
+  const optsEl=document.getElementById('pq-opts'); optsEl.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const el=document.createElement('div'); el.className='opt'; el.textContent=o;
+    el.onclick=()=>{
+      if(pqLocked) return; pqLocked=true;
+      checkAns(i,q.ans,q.opts,optsEl,document.getElementById('pq-result'));
+      document.getElementById('pq-result').style.display='block';
+      const nx=document.getElementById('pq-next');
+      if(curPQ<pQuestions.length-1){nx.style.display='block';}
+      else{nx.style.display='none';setTimeout(()=>alert('练习完成！共 '+pQuestions.length+' 题。'),400);}
+    };
+    optsEl.appendChild(el);
+  });
+  document.getElementById('pq-result').style.display='none';
+  document.getElementById('pq-next').style.display='none';
+  pqLocked=false;
+}
+function nextPQ(){ curPQ++; pqLocked=false; loadPQ(); }
+function backToPractice(){
+  document.getElementById('practice-main').style.display='block';
+  document.getElementById('practice-quiz').style.display='none';
+}
+
+// ─── Search ───
+const sampleResults=[
+  {tag:'导数应用',diff:2,q:'已知函数 f(x)=x³-ax²+bx 在 x=1 处有极大值 2，求 a、b 的值并求 f(x) 的单调区间。'},
+  {tag:'解析几何',diff:3,q:'椭圆 C：x²/a²+y²/b²=1（a>b>0）离心率为 √3/2，短轴长为 2，直线 l 过右焦点交椭圆于 A、B，求 |AB| 最小值。'},
+  {tag:'概率统计',diff:1,q:'10 件正品 3 件次品，随机取 3 件，至少含 1 件次品的概率是多少？'},
+  {tag:'数列',diff:2,q:'数列 {aₙ} 满足 a₁=1，aₙ₊₁=2aₙ+1，求通项公式。'},
+];
+function doSearch(){
+  const kw=document.getElementById('search-input').value.trim();
+  if(!kw) return; renderResults(kw);
+}
+function hotSearch(kw){ document.getElementById('search-input').value=kw; renderResults(kw); }
+function renderResults(kw){
+  const el=document.getElementById('search-results');
+  el.innerHTML=`<div style="font-size:13px;color:var(--text-muted);margin-bottom:10px">搜索"${kw}"，找到 ${sampleResults.length} 道相关题目</div>`;
+  sampleResults.forEach(r=>{
+    const dc=['','diff-1','diff-2','diff-3'][r.diff];
+    const dl=['','基础','提升','竞赛'][r.diff];
+    const div=document.createElement('div'); div.className='result-card';
+    div.innerHTML=`<div class="result-head"><span class="result-tag">${r.tag}</span><span class="badge ${dc}" style="font-size:10px;padding:2px 7px">${dl}</span></div>
+      <div class="result-q">${r.q}</div>
+      <div class="result-acts">
+        <button class="act-btn" onclick="alert('查看解析功能需接入 AI 接口')">查看解析</button>
+        <button class="act-btn" onclick="alert('出类似题功能需接入 AI 接口')">出类似题</button>
+        <button class="act-btn" onclick="this.textContent='已收藏 ✓';this.style.color='var(--teal)'">收藏</button>
+      </div>`;
+    el.appendChild(div);
+  });
+}
+
+// ─── Report ───
+const reportData=[
+  {name:'函数与导数',pct:72,color:'#534AB7'},{name:'数列',pct:50,color:'#534AB7'},
+  {name:'三角函数',pct:40,color:'#534AB7'},{name:'概率统计',pct:20,color:'#534AB7'},
+  {name:'向量几何',pct:30,color:'#0F6E56'},{name:'解析几何',pct:10,color:'#0F6E56'},
+  {name:'计数原理',pct:25,color:'#854F0B'},{name:'复数',pct:0,color:'#854F0B'},
+];
+function buildReport(){
+  const el=document.getElementById('report-bars');
+  el.innerHTML=reportData.map(d=>`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="font-size:12px;min-width:80px;color:var(--text-muted)">${d.name}</div>
+      <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+        <div style="width:${d.pct}%;height:100%;background:${d.color};border-radius:4px;transition:width .6s"></div>
+      </div>
+      <div style="font-size:12px;min-width:30px;text-align:right;color:var(--text-hint)">${d.pct}%</div>
+    </div>`).join('');
+}
+</script>
+</body>
+</html>

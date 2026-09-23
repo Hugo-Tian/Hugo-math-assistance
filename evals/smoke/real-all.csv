@@ -1,0 +1,4 @@
+﻿category,elapsed_ms,expected_evidence,expected_tools,id,input,reason,rubric,split,status,variant
+knowledge,,"[""notes-derivative_rules-000""]",[],qa-derivative_rules-1,幂函数与和差求导，为什么先求导再代入？,missing_api_key,"[""导函数"", ""常数""]",dev,skipped,direct
+knowledge,,"[""notes-derivative_rules-000""]",[],qa-derivative_rules-1,幂函数与和差求导，为什么先求导再代入？,missing_api_key,"[""导函数"", ""常数""]",dev,skipped,rag
+tools,,[],"[""get_learning_profile"", ""get_wrong_questions"", ""get_prerequisites"", ""recommend_practice""]",tools-07,根据我最近的错题，帮我安排三天复习。,missing_api_key,"[""读取本人错题、先修、推荐，草稿不自动保存""]",dev,skipped,agent

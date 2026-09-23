@@ -1,0 +1,68 @@
+# retrieval / test 实际评测
+
+执行时间：2026-09-12T04:08:05.199292+00:00
+
+模型：deepseek-chat；Embedding：BAAI/bge-small-zh-v1.5；Prompt：math-assistant-v1.0；索引：201623d292ae4b42b035e1d0efdca036
+
+真实 API 调用：0；Mock 调用：0。
+
+```json
+{
+  "keyword": {
+    "rows": 29,
+    "executed": 29,
+    "skipped": 0,
+    "error_rate": 0.0,
+    "hit_at_k": 1.0,
+    "hit_at_k_n": 14,
+    "recall_at_k": 1.0,
+    "recall_at_k_n": 14,
+    "insufficient_retrieval": 0.3333333333333333,
+    "insufficient_retrieval_n": 3,
+    "tool_selection_success": null,
+    "tool_selection_success_n": 0,
+    "parameter_validity": null,
+    "parameter_validity_n": 0,
+    "citation_id_validity": null,
+    "citation_id_validity_n": 0,
+    "expected_refusal": null,
+    "expected_refusal_n": 0,
+    "assessment_guard": null,
+    "assessment_guard_n": 0,
+    "automated_plan_completion": null,
+    "automated_plan_completion_n": 0,
+    "latency_mean_ms": 3.7586206896551726,
+    "latency_p95_ms": 16
+  },
+  "vector": {
+    "rows": 29,
+    "executed": 29,
+    "skipped": 0,
+    "error_rate": 0.0,
+    "hit_at_k": 0.9285714285714286,
+    "hit_at_k_n": 14,
+    "recall_at_k": 0.9285714285714286,
+    "recall_at_k_n": 14,
+    "insufficient_retrieval": 1.0,
+    "insufficient_retrieval_n": 3,
+    "tool_selection_success": null,
+    "tool_selection_success_n": 0,
+    "parameter_validity": null,
+    "parameter_validity_n": 0,
+    "citation_id_validity": null,
+    "citation_id_validity_n": 0,
+    "expected_refusal": null,
+    "expected_refusal_n": 0,
+    "assessment_guard": null,
+    "assessment_guard_n": 0,
+    "automated_plan_completion": null,
+    "automated_plan_completion_n": 0,
+    "latency_mean_ms": 29.137931034482758,
+    "latency_p95_ms": 16
+  }
+}
+```
+
+Hit/Recall 仅对有相关证据标注的案例计算；拒答指标与安全指标使用各自适用分母。检索延迟包含本地模型首次加载，回答延迟包含检索、工具、模型和校验。Token 未返回时为未知。
+
+引用 ID 合法不代表支持结论；开放回答正确性、引用支持和任务完成需在 CSV 人工填写评分。Mock 仅验证应用流程，不代表真实模型效果。未配置 Key 的 direct/RAG 行标记 skipped，不生成伪造分数。

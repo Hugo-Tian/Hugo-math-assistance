@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "executed_at": "2026-09-14T02:13:12.370393+00:00",
+    "suite": "real",
+    "split": "all",
+    "provider_mode": "real",
+    "model": "deepseek-flash",
+    "embedding": "BAAI/bge-small-zh-v1.5",
+    "prompt_version": "math-assistant-v1.0",
+    "index_version": "201623d292ae4b42b035e1d0efdca036",
+    "embedding_fingerprint": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38",
+    "top_k": 5,
+    "threshold": 0.65,
+    "cases_sha256": "a0b58e1b9297710b3e93c3ccc9e6e498eb966230257509915319673418b9c52f",
+    "actual_provider_calls": 0,
+    "mock_calls": 0,
+    "max_real_calls": 4,
+    "metrics": {
+      "agent": {
+        "rows": 1,
+        "executed": 0,
+        "skipped": 1,
+        "error_rate": null,
+        "hit_at_k": null,
+        "hit_at_k_n": 0,
+        "recall_at_k": null,
+        "recall_at_k_n": 0,
+        "insufficient_retrieval": null,
+        "insufficient_retrieval_n": 0,
+        "tool_selection_success": null,
+        "tool_selection_success_n": 0,
+        "parameter_validity": null,
+        "parameter_validity_n": 0,
+        "citation_id_validity": null,
+        "citation_id_validity_n": 0,
+        "expected_refusal": null,
+        "expected_refusal_n": 0,
+        "assessment_guard": null,
+        "assessment_guard_n": 0,
+        "automated_plan_completion": null,
+        "automated_plan_completion_n": 0,
+        "latency_mean_ms": null,
+        "latency_p95_ms": null
+      },
+      "direct": {
+        "rows": 1,
+        "executed": 0,
+        "skipped": 1,
+        "error_rate": null,
+        "hit_at_k": null,
+        "hit_at_k_n": 0,
+        "recall_at_k": null,
+        "recall_at_k_n": 0,
+        "insufficient_retrieval": null,
+        "insufficient_retrieval_n": 0,
+        "tool_selection_success": null,
+        "tool_selection_success_n": 0,
+        "parameter_validity": null,
+        "parameter_validity_n": 0,
+        "citation_id_validity": null,
+        "citation_id_validity_n": 0,
+        "expected_refusal": null,
+        "expected_refusal_n": 0,
+        "assessment_guard": null,
+        "assessment_guard_n": 0,
+        "automated_plan_completion": null,
+        "automated_plan_completion_n": 0,
+        "latency_mean_ms": null,
+        "latency_p95_ms": null
+      },
+      "rag": {
+        "rows": 1,
+        "executed": 0,
+        "skipped": 1,
+        "error_rate": null,
+        "hit_at_k": null,
+        "hit_at_k_n": 0,
+        "recall_at_k": null,
+        "recall_at_k_n": 0,
+        "insufficient_retrieval": null,
+        "insufficient_retrieval_n": 0,
+        "tool_selection_success": null,
+        "tool_selection_success_n": 0,
+        "parameter_validity": null,
+        "parameter_validity_n": 0,
+        "citation_id_validity": null,
+        "citation_id_validity_n": 0,
+        "expected_refusal": null,
+        "expected_refusal_n": 0,
+        "assessment_guard": null,
+        "assessment_guard_n": 0,
+        "automated_plan_completion": null,
+        "automated_plan_completion_n": 0,
+        "latency_mean_ms": null,
+        "latency_p95_ms": null
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "qa-derivative_rules-1",
+      "category": "knowledge",
+      "split": "dev",
+      "variant": "direct",
+      "input": "幂函数与和差求导，为什么先求导再代入？",
+      "expected_evidence": [
+        "notes-derivative_rules-000"
+      ],
+      "expected_tools": [],
+      "rubric": [
+        "导函数",
+        "常数"
+      ],
+      "status": "skipped",
+      "reason": "missing_api_key",
+      "elapsed_ms": null
+    },
+    {
+      "id": "qa-derivative_rules-1",
+      "category": "knowledge",
+      "split": "dev",
+      "variant": "rag",
+      "input": "幂函数与和差求导，为什么先求导再代入？",
+      "expected_evidence": [
+        "notes-derivative_rules-000"
+      ],
+      "expected_tools": [],
+      "rubric": [
+        "导函数",
+        "常数"
+      ],
+      "status": "skipped",
+      "reason": "missing_api_key",
+      "elapsed_ms": null
+    },
+    {
+      "id": "tools-07",
+      "category": "tools",
+      "split": "dev",
+      "variant": "agent",
+      "input": "根据我最近的错题，帮我安排三天复习。",
+      "expected_evidence": [],
+      "expected_tools": [
+        "get_learning_profile",
+        "get_wrong_questions",
+        "get_prerequisites",
+        "recommend_practice"
+      ],
+      "rubric": [
+        "读取本人错题、先修、推荐，草稿不自动保存"
+      ],
+      "status": "skipped",
+      "reason": "missing_api_key",
+      "elapsed_ms": null
+    }
+  ]
+}
