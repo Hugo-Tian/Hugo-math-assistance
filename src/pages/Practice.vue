@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useLearning, percent, difficultyName } from '../store'
 import MathText from '../components/MathText.vue'
 const store=useLearning(), route=useRoute(), router=useRouter()
-const mode=ref(route.query.knowledge ? 'custom' : 'adaptive'), knowledge=ref(route.query.knowledge || 'sets'), difficulty=ref(1), count=ref(5)
+const mode=ref(route.query.knowledge ? 'custom' : 'adaptive'), knowledge=ref(route.query.knowledge || store.nodes[0]?.id || ''), difficulty=ref(1), count=ref(5)
 const session=ref(null), result=ref(null), selected=ref(null), busy=ref(false), retryKey=ref('')
 const question=computed(() => session.value?.question)
 async function start() { busy.value=true; await store.run(async () => {

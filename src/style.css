@@ -12,3 +12,5 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 .mobile-logout{display:none}
 @media(max-width:800px){.mobile-logout{display:block;font-size:11px}}
+.course-switch{display:flex;flex-direction:column;gap:6px}.course-switch select{font-size:12px;padding:7px 9px}
+@media(max-width:800px){.sidebar .course-switch{display:flex;padding:14px 0 0}}

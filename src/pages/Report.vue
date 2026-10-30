@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useLearning, percent } from '../store'
-const store=useLearning(), topic=ref(store.user.goal_id || 'sets')
+const store=useLearning(), topic=ref(store.goalId || store.nodes[0]?.id || '')
 const r=computed(() => store.report)
 const points=computed(() => (r.value?.trend || []).filter(t=>t.knowledge_id===topic.value).slice(-20))
 const line=computed(() => points.value.map((p,i)=>`${40+i*(620/Math.max(points.value.length-1,1))},${190-p.mastery*160}`).join(' '))

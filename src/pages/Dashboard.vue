@@ -4,9 +4,9 @@ import { useLearning, percent } from '../store'
 import { useRouter } from 'vue-router'
 const store = useLearning(), router = useRouter()
 const recs = computed(() => store.recommendations?.recommendations || [])
-const goal = ref(store.user.goal_id || '')
+const goal = ref(store.goalId || '')
 const passed = computed(() => store.nodes.filter(n => n.passed_at).length)
-async function saveGoal() { await store.run(async () => { await store.api('/me/goal', { method: 'PUT', body: JSON.stringify({ knowledge_id: goal.value || null }) }); store.user.goal_id = goal.value || null; await store.refresh() }) }
+async function saveGoal() { await store.run(async () => { await store.api('/me/goal', { method: 'PUT', body: JSON.stringify({ knowledge_id: goal.value || null }) }); await store.refresh() }) }
 </script>
 <template>
   <div class="page-heading"><div><p class="eyebrow">今天，从适合你的地方开始</p><h1>让学习有迹可循</h1><p>理解当前状态，再选择下一步。</p></div><span class="badge">{{ store.user.is_demo ? '模拟历史演示' : '个人学习记录' }}</span></div>
