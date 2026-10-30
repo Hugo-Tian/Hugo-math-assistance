@@ -123,3 +123,27 @@ def test_assistant_retrieval_tools_and_guard_isolation(ai):
     c.post('/api/sessions', headers=h, json={'mode': 'custom', 'knowledge_id': 'sets', 'count': 2})
     assert c.get('/api/assistant/status', headers=h).json()['assessment_open']
     assert not c.get(f'{LA}/assistant/status', headers=h).json()['assessment_open']
+
+def test_teacher_dashboard_permissions_numbers_and_isolation(env, learner):
+    c, f = env
+    admin = setup_la(c, learner)
+    assert c.get('/api/teacher/dashboard', headers=learner).status_code == 403
+    s = c.post('/api/sessions', headers=learner, json={'mode': 'custom', 'knowledge_id': 'sets', 'count': 1}).json()
+    from backend.models import Question
+    with f() as db:
+        answer = db.get(Question, s['question']['id']).answer
+    c.post(f'/api/sessions/{s["id"]}/answers', headers=learner,
+           json={'question_id': s['question']['id'], 'selected': (answer + 1) % 4, 'idempotency_key': str(uuid.uuid4())})
+    d = c.get('/api/teacher/dashboard', headers=admin).json()
+    row = next(r for r in d['students'] if r['username'] == 'learner')
+    assert row['attempts'] == 1 and row['accuracy'] == 0 and row['cells']['sets']['samples'] == 1
+    top = c.get('/api/recommendations', headers=learner).json()['recommendations'][0]['knowledge_id']
+    assert any(p['knowledge_id'] == top and 'learner' in p['students'] for p in d['sticking_points'])
+    assert d['frequent_mistakes'][0]['question_id'] == s['question']['id'] and d['frequent_mistakes'][0]['errors'] == 1
+    sets = next(n for n in d['summary'] if n['knowledge_id'] == 'sets')
+    assert sets['assessed'] == 1 and sets['attempts_7d'] == 1
+    # The other course's dashboard sees the same student but none of the hs-math activity.
+    la = c.get(f'{LA}/teacher/dashboard', headers=admin).json()
+    assert [k['id'] for k in la['knowledge']] == ['la.vectors']
+    assert next(r for r in la['students'] if r['username'] == 'learner')['attempts'] == 0
+    assert la['frequent_mistakes'] == [] and la['sticking_points'] == []

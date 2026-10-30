@@ -13,6 +13,7 @@ import Search from './pages/Search.vue'
 import Mistakes from './pages/Mistakes.vue'
 import Report from './pages/Report.vue'
 import Admin from './pages/Admin.vue'
+import Teacher from './pages/Teacher.vue'
 import './style.css'
 import 'katex/dist/katex.min.css'
 
@@ -29,6 +30,7 @@ const router = createRouter({ history: createWebHistory(), routes: [
     { path: 'mistakes', component: Mistakes, meta: { title: '错题本' } },
     { path: 'report', component: Report, meta: { title: '学习报告' } },
     { path: 'admin', component: Admin, meta: { title: '内容管理' } },
+    { path: 'teacher', component: Teacher, meta: { title: '教学看板' } },
     { path: 'assistant', component: Assistant, meta: { title: '学习助手' } },
     { path: 'knowledge-admin', component: KnowledgeAdmin, meta: { title: '知识库管理' } },
     { path: ':pathMatch(.*)*', redirect: to => `/c/${to.params.course}` },
