@@ -1,10 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import String, Integer, Float, Boolean, DateTime, Date, ForeignKey, Text, JSON, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 from .db import Base
 
 def utcnow():
-    return datetime.utcnow()
+    # Naive UTC, matching the existing DateTime columns.
+    return datetime.now(timezone.utc).replace(tzinfo=None)
 
 class User(Base):
     __tablename__ = 'users'

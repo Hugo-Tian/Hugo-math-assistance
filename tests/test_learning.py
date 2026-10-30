@@ -210,3 +210,14 @@ def test_goal_relevance_stable_ties_and_multi_prerequisite(env,learner):
     rec=c.get('/api/recommendations',headers=learner).json()
     assert all(0<=r['score']<=1 for r in rec['recommendations'])
     assert all(r['factors']['goal']==.5 for r in rec['recommendations'])
+
+def test_login_failures_throttled_and_reset_on_success(env):
+    c, _ = env
+    c.post('/api/auth/register', json={'username': 'throttle', 'password': 'Password123!'})
+    for _ in range(4):
+        assert c.post('/api/auth/login', json={'username': 'throttle', 'password': 'Wrong12345!'}).status_code == 401
+    assert c.post('/api/auth/login', json={'username': 'throttle', 'password': 'Password123!'}).status_code == 200
+    for _ in range(5):
+        assert c.post('/api/auth/login', json={'username': 'Throttle', 'password': 'Wrong12345!'}).status_code == 401
+    # Locked even with the right password until the window passes.
+    assert c.post('/api/auth/login', json={'username': 'throttle', 'password': 'Password123!'}).status_code == 429

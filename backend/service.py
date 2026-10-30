@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime, timezone
 from fastapi import HTTPException
 from sqlalchemy import select, update
-from .models import User, Question, PracticeSession, Attempt, Exposure, Recommendation, Knowledge
+from .models import User, Question, PracticeSession, Attempt, Exposure, Recommendation, Knowledge, utcnow
 from .algorithms import recompute, rebuild_mistakes, recommend
 from .config import TIMEZONE, VERSION
 
@@ -102,7 +102,7 @@ def submit_answer(db, user, sid, data, at=None, simulated=False):
     if s.ended or not pending or pending['id'] != data.question_id:
         raise HTTPException(409, '请按练习顺序提交当前题目')
     q = db.get(Question, data.question_id)
-    now = at or datetime.utcnow()
+    now = at or utcnow()
     day = now.replace(tzinfo=timezone.utc).astimezone(TIMEZONE).date()
     exposure = db.get(Exposure, (user.id, q.id))
     duplicate_day = db.scalar(select(Attempt.id).where(Attempt.user_id == user.id, Attempt.question_id == q.id, Attempt.effective_day == day))

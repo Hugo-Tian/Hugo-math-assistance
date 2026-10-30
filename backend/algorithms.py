@@ -1,7 +1,7 @@
 """Deterministic, auditable heuristics. No learned parameters or ML claims."""
 from datetime import datetime, timezone
 from sqlalchemy import select
-from .models import Knowledge, Prerequisite, Mastery, Attempt, Mistake
+from .models import Knowledge, Prerequisite, Mastery, Attempt, Mistake, utcnow
 from .config import PASS_MASTERY, PASS_DISTINCT, WINDOW, VERSION
 
 def graph(db):
@@ -102,7 +102,7 @@ def knowledge_view(db, user_id):
     return result
 
 def recommend(db, user, now=None):
-    now = now or datetime.utcnow()
+    now = now or utcnow()
     nodes = knowledge_view(db, user.id)
     by_id = {n['id']: n for n in nodes}
     goal = user.goal_id

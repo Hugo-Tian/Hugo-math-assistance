@@ -23,6 +23,7 @@ $projectBackend = Start-Process -FilePath $projectPython -ArgumentList '-m','uvi
 try {
     Write-Host 'Open http://127.0.0.1:5173 . Press Ctrl+C here to stop this launcher.'
     npm run dev
+    if ($LASTEXITCODE -ne 0) { throw 'Frontend startup failed' }
 } finally {
     if (!$projectBackend.HasExited) { Stop-Process -Id $projectBackend.Id }
 }

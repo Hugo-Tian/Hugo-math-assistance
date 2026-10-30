@@ -5,7 +5,11 @@ from backend.db import Base, make_engine, get_db
 from backend.main import app
 from backend.seed import seed
 from backend.models import User
-from backend.security import passwords
+from backend.security import passwords, login_throttle
+
+@pytest.fixture(autouse=True)
+def reset_login_throttle():
+    login_throttle.failures.clear()
 
 @pytest.fixture
 def env(tmp_path):

@@ -3,6 +3,11 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class Strict(BaseModel):
     model_config=ConfigDict(extra='forbid',strict=True)
+class AssistantOutput(Strict):
+    answer:str=Field(min_length=1,max_length=16000)
+    citations:list[str]=Field(max_length=40)
+    # Plan semantics are validated separately so the one-repair/fallback flow remains available.
+    plan:dict|None
 class NewConversation(Strict):
     title:str=Field(default='新的学习对话',min_length=1,max_length=120)
     knowledge_id:str|None=None

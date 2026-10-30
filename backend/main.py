@@ -1,3 +1,4 @@
+import logging
 import os
 from collections import defaultdict
 from datetime import timezone
@@ -7,12 +8,13 @@ from sqlalchemy import select, delete, func, or_
 from sqlalchemy.exc import IntegrityError
 from .db import get_db
 from .models import User, AuthToken, Knowledge, Prerequisite, Question, Attempt, Mastery, Mistake, Recommendation, PracticeSession
-from .security import current_user, administrator, passwords, issue_token, bearer, token_digest
+from .security import current_user, administrator, passwords, issue_token, bearer, token_digest, login_throttle
 from .schemas import Credentials, SessionInput, AnswerInput, KnowledgeInput, QuestionInput, GoalInput
 from .algorithms import graph, validate_dag, knowledge_view, recompute, rebuild_mistakes
 from .service import public_question, start_session, session_view, owned_session, submit_answer, record_recommendation, lock_user
 from .config import PASS_MASTERY, PASS_DISTINCT, WINDOW, VERSION, TIMEZONE
 
+logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'), format='%(asctime)s %(levelname)s %(name)s %(message)s')
 app = FastAPI(title='知序 · 高中数学智能学习助手', version='2.0.0')
 from .ai.routes import router as assistant_router
 app.include_router(assistant_router)
@@ -41,9 +43,12 @@ def register(data: Credentials, db=Depends(get_db)):
 
 @app.post('/api/auth/login')
 def login(data: Credentials, db=Depends(get_db)):
+    login_throttle.check(data.username)
     u = db.scalar(select(User).where(User.username == data.username))
     if not u or not passwords.verify(data.password, u.password_hash):
+        login_throttle.failed(data.username)
         raise HTTPException(401, '用户名或密码错误')
+    login_throttle.succeeded(data.username)
     token = issue_token(db, u)
     db.commit()
     return dict(token=token, user=user_info(u))

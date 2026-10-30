@@ -19,10 +19,12 @@ class Settings:
     embedding_model: str = 'BAAI/bge-small-zh-v1.5'
     embedding_cache: str = 'storage/models'
     index_dir: str = 'storage/index'
-    retrieval_mode: str = 'vector'
+    retrieval_mode: str = 'hybrid'
     top_k: int = 5
     vector_threshold: float = .65
     keyword_threshold: float = .08
+    hybrid_keyword: float = .2
+    hybrid_vector_floor: float = .6
     rag_chars: int = 5000
 
     @classmethod
@@ -35,8 +37,9 @@ class Settings:
             context_chars=int(os.getenv('LLM_CONTEXT_CHARS','14000')),request_seconds=int(os.getenv('LLM_REQUEST_SECONDS','100')),
             allow_mock=os.getenv('ALLOW_TEST_MOCK','false').lower()=='true',embedding_model=os.getenv('EMBEDDING_MODEL','BAAI/bge-small-zh-v1.5'),
             embedding_cache=os.getenv('EMBEDDING_CACHE','storage/models'),index_dir=os.getenv('RAG_INDEX_DIR','storage/index'),
-            retrieval_mode=os.getenv('RAG_MODE','vector'),top_k=min(10,max(1,int(os.getenv('RAG_TOP_K','5')))),
+            retrieval_mode=os.getenv('RAG_MODE','hybrid'),top_k=min(10,max(1,int(os.getenv('RAG_TOP_K','5')))),
             vector_threshold=float(os.getenv('RAG_VECTOR_THRESHOLD','.65')),keyword_threshold=float(os.getenv('RAG_KEYWORD_THRESHOLD','.08')),
+            hybrid_keyword=float(os.getenv('RAG_HYBRID_KEYWORD','.2')),hybrid_vector_floor=float(os.getenv('RAG_HYBRID_VECTOR_FLOOR','.6')),
             rag_chars=int(os.getenv('RAG_CONTEXT_CHARS','5000')))
 
 def settings(): return Settings.from_env()

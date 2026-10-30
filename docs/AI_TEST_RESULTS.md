@@ -1,5 +1,7 @@
 # AI 升级实际验证记录
 
+最新回归见 [2026-10-16 验证记录](VALIDATION_20261016.md)：47 项 pytest、6 项 E2E 通过，新增展示断言后 2 项 AI E2E 再次通过；真实模型仍未配置。以下保留 2026-09-14 历史记录，不代表本轮重复验证了其中所有环境。
+
 执行日期：2026-09-14。本次使用 Windows、Python 3.12、SQLite，依赖版本见 requirements.lock.txt 和 package-lock.json。
 
 ## 已运行

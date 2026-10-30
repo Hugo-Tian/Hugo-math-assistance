@@ -84,7 +84,7 @@ def import_document(db,filename,data,kid,source,question_id=None,title=None,docu
 
 def allowed_chunks(db,user_id,knowledge_id=None,guard=True):
     if guard and assessment_open(db,user_id):return []
-    rows=db.execute(select(Chunk,Document).join(Document,Document.id==Chunk.document_id).where(Document.active.is_(True),Document.status.in_(['parsed','indexed']))).all()
+    rows=db.execute(select(Chunk,Document).join(Document,Document.id==Chunk.document_id).where(Document.active.is_(True),Document.status.in_(['parsed','indexed'])).execution_options(populate_existing=True)).all()
     allowed_questions=set(db.scalars(select(Attempt.question_id).where(Attempt.user_id==user_id)))
     return [(c,d) for c,d in rows if (not knowledge_id or d.knowledge_id==knowledge_id) and (d.scope=='public' or d.question_id in allowed_questions)]
 
@@ -145,6 +145,45 @@ def rebuild_index(db,config):
         db.commit()
         return dict(version=version,chunks=len(rows),dimension=vectors.shape[1],model=config.embedding_model)
 
+@lru_cache(maxsize=2)
+def load_index(path):
+    # Index files are immutable per version (a rebuild writes a new uuid file), so the path is a safe cache key.
+    import faiss
+    return faiss.read_index(path)
+
+def vector_scores(rows,query,config):
+    directory=Path(config.index_dir)
+    try:manifest=json.loads((directory/'manifest.json').read_text(encoding='utf-8'))
+    except (OSError,ValueError):raise ModelError('index_missing','知识库尚未建立向量索引，请管理员初始化。')
+    if manifest['model']!=config.embedding_model:raise ModelError('index_incompatible','Embedding 模型已变更，需要重建索引。')
+    vector=embed([query],config,query=True)
+    if manifest.get('model_fingerprint')!=embedding_fingerprint(config.embedding_model,config.embedding_cache):raise ModelError('index_incompatible','Embedding 权重版本与索引不同，请重建索引。')
+    index=load_index(str(directory/manifest['file']))
+    if vector.shape[1]!=manifest['dimension'] or index.d!=manifest['dimension']:raise ModelError('index_incompatible','Embedding 维度与索引不一致。')
+    # SQL authorization first. Unpermitted results are never turned into contexts.
+    permitted={c.id:(c,d) for c,d in rows}
+    distances,indices=index.search(vector,len(manifest['ids']))
+    scores=[]
+    for score,i in zip(distances[0],indices[0]):
+        cid=manifest['ids'][i] if i>=0 else None
+        if cid in permitted:
+            c,d=permitted[cid]
+            if manifest['hashes'][cid]==hashlib.sha256(c.content.encode()).hexdigest():scores.append((float(score),c,d))
+    return scores,manifest['version']
+
+def hybrid_scores(rows,query,config,rrf_k=60):
+    """RRF over vector and keyword ranks. A chunk is admitted when the vector score clears the normal threshold,
+    or when both signals are moderately strong (keyword >= hybrid_keyword, vector >= hybrid_vector_floor)."""
+    vectors,version=vector_scores(rows,query,config)
+    keywords={c.id:lexical_score(query,c.title+' '+c.content) for c,d in rows}
+    vector_rank={c.id:i for i,(s,c,d) in enumerate(sorted(vectors,key=lambda x:(-x[0],x[1].id)))}
+    keyword_rank={cid:i for i,cid in enumerate(sorted(keywords,key=lambda k:(-keywords[k],k)))}
+    scores=[]
+    for s,c,d in vectors:
+        if s>=config.vector_threshold or (keywords[c.id]>=config.hybrid_keyword and s>=config.hybrid_vector_floor):
+            scores.append((1/(rrf_k+vector_rank[c.id]+1)+1/(rrf_k+keyword_rank[c.id]+1),c,d))
+    return scores,version
+
 def retrieve(db,user_id,query,config,knowledge_id=None,mode=None,top_k=None):
     rows=allowed_chunks(db,user_id,knowledge_id)
     if not rows:return {'evidence':[],'mode':mode or config.retrieval_mode,'index_version':None}
@@ -152,25 +191,10 @@ def retrieve(db,user_id,query,config,knowledge_id=None,mode=None,top_k=None):
     if mode=='keyword':
         scores=[(lexical_score(query,c.title+' '+c.content),c,d) for c,d in rows];threshold=config.keyword_threshold;version='keyword-v1'
     elif mode=='vector':
-        import faiss
-        directory=Path(config.index_dir)
-        try:manifest=json.loads((directory/'manifest.json').read_text(encoding='utf-8'))
-        except (OSError,ValueError):raise ModelError('index_missing','知识库尚未建立向量索引，请管理员初始化。')
-        if manifest['model']!=config.embedding_model:raise ModelError('index_incompatible','Embedding 模型已变更，需要重建索引。')
-        vector=embed([query],config,query=True)
-        if manifest.get('model_fingerprint')!=embedding_fingerprint(config.embedding_model,config.embedding_cache):raise ModelError('index_incompatible','Embedding 权重版本与索引不同，请重建索引。')
-        index=faiss.read_index(str(directory/manifest['file']))
-        if vector.shape[1]!=manifest['dimension'] or index.d!=manifest['dimension']:raise ModelError('index_incompatible','Embedding 维度与索引不一致。')
-        # SQL authorization first. Unpermitted results are never turned into contexts.
-        permitted={c.id:(c,d) for c,d in rows}
-        distances,indices=index.search(vector,len(manifest['ids']))
-        scores=[]
-        for score,i in zip(distances[0],indices[0]):
-            cid=manifest['ids'][i] if i>=0 else None
-            if cid in permitted:
-                c,d=permitted[cid]
-                if manifest['hashes'][cid]==hashlib.sha256(c.content.encode()).hexdigest():scores.append((float(score),c,d))
-        threshold=config.vector_threshold;version=manifest['version']
+        scores,version=vector_scores(rows,query,config);threshold=config.vector_threshold
+    elif mode=='hybrid':
+        # Admission is decided inside hybrid_scores; RRF values are only for ordering.
+        scores,version=hybrid_scores(rows,query,config);threshold=0;version='hybrid-'+version
     else:raise ValueError('未知检索模式')
     scores.sort(key=lambda x:(-x[0],x[1].id));evidence=[];length=0
     for score,c,d in scores:

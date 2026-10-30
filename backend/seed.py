@@ -5,7 +5,7 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from sqlalchemy import select, func
 from .db import SessionLocal
-from .models import Knowledge, Prerequisite, Question, User
+from .models import Knowledge, Prerequisite, Question, User, utcnow
 from .question_bank import KNOWLEDGE, items
 from .schemas import SessionInput, AnswerInput
 from .security import passwords
@@ -45,7 +45,7 @@ def seed(db, demos=True):
                 for i, q in enumerate(qs[:5]):
                     correct = kid in strong_nodes
                     submit_answer(db, u, s.id, AnswerInput(question_id=q.id, selected=q.answer if correct else (q.answer+1)%4,
-                                  idempotency_key=str(uuid.uuid4())), at=datetime.utcnow()-timedelta(days=2, minutes=5-i), simulated=True)
+                                  idempotency_key=str(uuid.uuid4())), at=utcnow()-timedelta(days=2, minutes=5-i), simulated=True)
     db.commit()
     return True
 

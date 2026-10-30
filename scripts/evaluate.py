@@ -48,8 +48,10 @@ def main():
             nonlocal count
             if count>=args.max_calls and args.suite=='real':raise ModelError('evaluation_call_cap','本次评测已达到真实调用量上限。')
             count+=1;result=await provider.complete(*params);raw_outputs.append(result);return result
+        async def aclose(self):
+            if hasattr(provider,'aclose'):await provider.aclose()
     for case in cases:
-        variants=['keyword','vector'] if args.suite=='retrieval' else (['direct','rag'] if case['category']=='knowledge' else ['agent' if case['expected_tools'] or case['category'] in ('security','plans') else 'rag'])
+        variants=['keyword','vector','hybrid'] if args.suite=='retrieval' else (['direct','rag'] if case['category']=='knowledge' else ['agent' if case['expected_tools'] or case['category'] in ('security','plans') else 'rag'])
         for variant in variants:
             row=dict(id=case['id'],category=case['category'],split=case['split'],variant=variant,input=case['input'],expected_evidence=case['expected_evidence'],expected_tools=case['expected_tools'],rubric=case['rubric'])
             if args.suite=='real' and (not config.key or count>=args.max_calls):
@@ -79,7 +81,8 @@ def main():
                         row.update(status=turn.status,answer=turn.answer,citations=turn.citations,plan=turn.plan,metadata=turn.metadata_json,
                             tool_traces=[dict(name=t.name,status=t.status,elapsed_ms=t.elapsed_ms,args=t.arguments) for t in traces],
                             tool_selection_success=int(set(case['expected_tools']).issubset(called)) if case['expected_tools'] else None,
-                            parameter_validity=sum(t.status=='success' for t in traces)/len(traces) if traces else None,
+                            parameter_validity=sum(not t.arguments.get('rejected',False) for t in traces)/len(traces) if traces else None,
+                            tool_execution_success=sum(t.status=='success' for t in traces)/len(traces) if traces else None,
                             citation_id_validity=1 if turn.citations and turn.status=='completed' else (0 if turn.metadata_json.get('error') in ('invalid_citation','missing_citation') else None),
                             expected_refusal=int(turn.status=='insufficient_evidence') if case['category']=='insufficient' else None,
                             assessment_guard=int(turn.status=='assessment_hint' and not turn.citations and turn.metadata_json['model_calls']==0) if context.get('active_assessment') else None,
@@ -93,7 +96,7 @@ def main():
     metrics={}
     for variant in sorted({r['variant'] for r in output}):
         rows=[r for r in output if r['variant']==variant];active=[r for r in rows if r['status']!='skipped'];m={'rows':len(rows),'executed':len(active),'skipped':len(rows)-len(active),'error_rate':sum(r['status'] in ['failed','error'] for r in active)/len(active) if active else None}
-        for key in ['hit_at_k','recall_at_k','insufficient_retrieval','tool_selection_success','parameter_validity','citation_id_validity','expected_refusal','assessment_guard','automated_plan_completion']:
+        for key in ['hit_at_k','recall_at_k','insufficient_retrieval','tool_selection_success','parameter_validity','tool_execution_success','citation_id_validity','expected_refusal','assessment_guard','automated_plan_completion']:
             values=[r[key] for r in rows if r.get(key) is not None];m[key]=sum(values)/len(values) if values else None;m[key+'_n']=len(values)
         latencies=[r['elapsed_ms'] for r in active if r.get('elapsed_ms') is not None];m['latency_mean_ms']=statistics.mean(latencies) if latencies else None
         m['latency_p95_ms']=sorted(latencies)[max(0,__import__('math').ceil(.95*len(latencies))-1)] if latencies else None

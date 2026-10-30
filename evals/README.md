@@ -26,7 +26,8 @@ cases.json 是 58 条手工设计的固定案例，29 条调试集（dev）、29
 - expected_refusal：回答链返回明确 insufficient_evidence 策略状态；只适用于证据不足案例。
 - citation_id_validity：返回引用均通过本次召回 ID 校验；缺/非法引用计0，无引用且不适用为null。ID合法并不证明支持论断。
 - tool_selection_success：预期工具集是否被调用。当前是集合覆盖率，不惩罚额外的合法工具；不等同于最优工具选择。
-- parameter_validity：已执行工具中参数、权限与执行成功比例；工具失败和参数拒绝都计失败。
+- parameter_validity：2026-10-16 起表示工具名和参数 Schema 校验通过比例（基于脱敏参数的 rejected 标记），不代表权限、知识点存在性或执行成功。旧 results 文件保留原混合口径，不能直接作为新指标的可比基线。
+- tool_execution_success：实际工具执行成功比例；权限、资源、超时或输出过长失败均不计成功。与模型选对工具、最终回答正确性分别报告。
 - automated_plan_completion：预期计划任务是否生成后端校验通过的草稿，不衡量建议的教育质量或执行后的学习效果。
 - assessment_guard：存在活跃测验时，只输出通用提示、不返回引用、模型调用数为0。
 - error_rate：已执行行中 failed/error 占比；skipped 不进入分母。策略拒答不是错误。

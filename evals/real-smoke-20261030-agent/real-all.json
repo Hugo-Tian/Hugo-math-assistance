@@ -1,0 +1,379 @@
+{
+  "metadata": {
+    "executed_at": "2026-10-30T12:19:17.531711+00:00",
+    "suite": "real",
+    "split": "all",
+    "provider_mode": "real",
+    "model": "deepseek-flash",
+    "embedding": "BAAI/bge-small-zh-v1.5",
+    "prompt_version": "math-assistant-v1.0",
+    "index_version": "201623d292ae4b42b035e1d0efdca036",
+    "embedding_fingerprint": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38",
+    "top_k": 5,
+    "threshold": 0.65,
+    "cases_sha256": "a0b58e1b9297710b3e93c3ccc9e6e498eb966230257509915319673418b9c52f",
+    "actual_provider_calls": 3,
+    "mock_calls": 0,
+    "max_real_calls": 6,
+    "metrics": {
+      "agent": {
+        "rows": 1,
+        "executed": 1,
+        "skipped": 0,
+        "error_rate": 0.0,
+        "hit_at_k": null,
+        "hit_at_k_n": 0,
+        "recall_at_k": null,
+        "recall_at_k_n": 0,
+        "insufficient_retrieval": null,
+        "insufficient_retrieval_n": 0,
+        "tool_selection_success": 1.0,
+        "tool_selection_success_n": 1,
+        "parameter_validity": 1.0,
+        "parameter_validity_n": 1,
+        "tool_execution_success": 1.0,
+        "tool_execution_success_n": 1,
+        "citation_id_validity": 1.0,
+        "citation_id_validity_n": 1,
+        "expected_refusal": null,
+        "expected_refusal_n": 0,
+        "assessment_guard": null,
+        "assessment_guard_n": 0,
+        "automated_plan_completion": 1.0,
+        "automated_plan_completion_n": 1,
+        "latency_mean_ms": 13075.1,
+        "latency_p95_ms": 13075.1
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "tools-07",
+      "category": "tools",
+      "split": "dev",
+      "variant": "agent",
+      "input": "根据我最近的错题，帮我安排三天复习。",
+      "expected_evidence": [],
+      "expected_tools": [
+        "get_learning_profile",
+        "get_wrong_questions",
+        "get_prerequisites",
+        "recommend_practice"
+      ],
+      "rubric": [
+        "读取本人错题、先修、推荐，草稿不自动保存"
+      ],
+      "status": "completed",
+      "answer": "## 你的错题诊断\n\n最近 5 道错题全部集中在**函数单调性（monotonicity）**，而且都是同一类题：\n\n> 已知 $f(x)=(k-a)x+1$ 在 $\\mathbb{R}$ 上严格递增，问 $a$ 可以取哪个值。\n\n你的 5 次作答（题号 4、18、32、46、60）**全部选错**，且错误方式一致：没有先把斜率表达式列出来解不等式，而是凭感觉挑选项。例如第 4 题 $f(x)=(2-a)x+1$，正确做法是 $2-a>0\\Rightarrow a<2$，只有 1 符合，你选了 2（恰好是临界值，此时 $k=0$，是常函数，不是严格递增）。\n\n**关键结论**：一次函数 $f(x)=kx+b$ 的增减只由 $k$ 决定，$k>0$ 递增、$k<0$ 递减、$k=0$ 是常函数不能算严格递增；截距 $b$ 只改变图像上下位置，不影响单调方向。参数题的标准流程是：**先写斜率表达式 → 再解不等式 → 最后在选项中筛选**。\n\n**易错点**：① 把临界值（$k=0$）当成递增；② 不等式方向写反（$6-a>0$ 应得 $a<6$，不是 $a>6$）；③ 只看选项数字大小，不代回验证。\n\n## 当前学习状态\n\n- 函数单调性：掌握度约 **14%**，有效样本 5 条，状态“学习中”，尚未通过。\n- 先修知识点“函数求值（evaluation）”：**无缺口**，可以直接开始。\n- 推荐规则（rules-v1.0）也把单调性排在第 1 位，理由正是“掌握度低 + 是闭区间最值的先修”。\n\n## 三天复习计划（草稿，未保存）\n\n```json\n{\n  \"goal\": \"把一次函数单调性的参数判断从 14% 提升到稳定通过，并迁移到含参单调性判断\",\n  \"days\": [\n    {\n      \"day\": 1,\n      \"tasks\": [\n        {\n          \"knowledge_id\": \"monotonicity\",\n          \"question_count\": 5,\n          \"estimated_minutes\": 20,\n          \"reason\": \"先修无缺口，可直接开始。针对错题暴露的同一漏洞：先写斜率 k 的表达式再解不等式，重点练临界值 k=0 的排除。\",\n          \"question_ids\": [4, 18, 32, 46, 60],\n          \"conditional_on_pass\": false\n        }\n      ]\n    },\n    {\n      \"day\": 2,\n      \"tasks\": [\n        {\n          \"knowledge_id\": \"monotonicity\",\n          \"question_count\": 5,\n          \"estimated_minutes\": 20,\n          \"reason\": \"换新题（已曝光题不重复计分），检验第 1 天的方法是否真正内化；同时加入“递减”与“常函数”干扰项，防止只记递增结论。\",\n          \"question_ids\": [],\n          \"conditional_on_pass\": false\n        }\n      ]\n    },\n    {\n      \"day\": 3,\n      \"tasks\": [\n        {\n          \"knowledge_id\": \"monotonicity\",\n          \"question_count\": 5,\n          \"estimated_minutes\": 20,\n          \"reason\": \"综合巩固：混合递增/递减/区间限定三类表述，并回顾“多个单调区间不能随意合并”的易错点，形成稳定正确率。\",\n          \"question_ids\": [],\n          \"conditional_on_pass\": false\n        }\n      ]\n    }\n  ],\n  \"basis\": [\n    \"最近 5 道错题（题号 4、18、32、46、60）全部属于 monotonicity，错误模式一致\",\n    \"get_mastery：monotonicity 掌握度 14%，有效样本 5 条，状态学习中，未通过\",\n    \"get_prerequisites：先修 evaluation 无缺口，available=true，可直接开始\",\n    \"recommend_practice（rules-v1.0）将 monotonicity 列为第 1 优先，建议先巩固\",\n    \"时间为估算值；已曝光题不重复计分\"\n  ]\n}\n```\n\n**说明**：以上只是计划草稿，我没有保存，也没有改动你的任何学习数据。是否保存、是否调整题量，由你决定。\n\n需要我把第 1 天的 5 道错题逐题拆解成“斜率表达式 → 不等式 → 选项验证”的三步模板吗？",
+      "citations": [
+        {
+          "chunk_id": "notes-monotonicity-001",
+          "document_id": "notes-monotonicity",
+          "title": "一次函数与斜率",
+          "chapter": "函数性质",
+          "page": null,
+          "knowledge_id": "monotonicity",
+          "content": "一次函数 f(x)=kx+b 的增减由 k 决定：k>0 时递增，k<0 时递减，k=0 时是常函数，不能称为严格递增。参数问题先把斜率表达式列出来，再解相应不等式；截距只改变上下位置，不改变单调方向。",
+          "version": "1",
+          "source": "自编演示资料 · 知序数学讲义 v1",
+          "score": 0.799427,
+          "scope": "public"
+        },
+        {
+          "chunk_id": "notes-monotonicity-000",
+          "document_id": "notes-monotonicity",
+          "title": "单调性的定义",
+          "chapter": "函数性质",
+          "page": null,
+          "knowledge_id": "monotonicity",
+          "content": "在同一个区间任取 x₁<x₂，若总有 f(x₁)<f(x₂)，函数在该区间严格递增。判断时必须指明区间；个别点的比较不足以证明整个区间单调。例如 f(x)=x² 在 [0,+∞) 递增，在 (−∞,0] 递减。",
+          "version": "1",
+          "source": "自编演示资料 · 知序数学讲义 v1",
+          "score": 0.696624,
+          "scope": "public"
+        },
+        {
+          "chunk_id": "notes-monotonicity-002",
+          "document_id": "notes-monotonicity",
+          "title": "多个单调区间不能随意合并",
+          "chapter": "函数性质",
+          "page": null,
+          "knowledge_id": "monotonicity",
+          "content": "函数在两个不相连区间分别递增，不表示在它们的并集上递增。例如 1/x 在 (−∞,0) 和 (0,+∞) 分别递减，但不能写成在整个定义域上递减。单调区间通常分别列出，跨越不连续点的比较必须额外检查。",
+          "version": "1",
+          "source": "自编演示资料 · 知序数学讲义 v1",
+          "score": 0.652714,
+          "scope": "public"
+        }
+      ],
+      "plan": {
+        "content": {
+          "goal": "把一次函数单调性的参数判断从 14% 提升到稳定通过，并迁移到含参单调性判断",
+          "days": [
+            {
+              "day": 1,
+              "tasks": [
+                {
+                  "knowledge_id": "monotonicity",
+                  "question_count": 5,
+                  "estimated_minutes": 20,
+                  "reason": "先修无缺口，可直接开始。针对错题暴露的同一漏洞：先写斜率 k 的表达式再解不等式，重点练临界值 k=0 的排除。",
+                  "question_ids": [
+                    4,
+                    18,
+                    32,
+                    46,
+                    60
+                  ],
+                  "conditional_on_pass": false
+                }
+              ]
+            },
+            {
+              "day": 2,
+              "tasks": [
+                {
+                  "knowledge_id": "monotonicity",
+                  "question_count": 5,
+                  "estimated_minutes": 20,
+                  "reason": "换新题（已曝光题不重复计分），检验第 1 天的方法是否真正内化；同时加入“递减”与“常函数”干扰项，防止只记递增结论。",
+                  "question_ids": [],
+                  "conditional_on_pass": false
+                }
+              ]
+            },
+            {
+              "day": 3,
+              "tasks": [
+                {
+                  "knowledge_id": "monotonicity",
+                  "question_count": 5,
+                  "estimated_minutes": 20,
+                  "reason": "综合巩固：混合递增/递减/区间限定三类表述，并回顾“多个单调区间不能随意合并”的易错点，形成稳定正确率。",
+                  "question_ids": [],
+                  "conditional_on_pass": false
+                }
+              ]
+            }
+          ],
+          "basis": [
+            "最近 5 道错题（题号 4、18、32、46、60）全部属于 monotonicity，错误模式一致",
+            "get_mastery：monotonicity 掌握度 14%，有效样本 5 条，状态学习中，未通过",
+            "get_prerequisites：先修 evaluation 无缺口，available=true，可直接开始",
+            "recommend_practice（rules-v1.0）将 monotonicity 列为第 1 优先，建议先巩固",
+            "时间为估算值；已曝光题不重复计分"
+          ]
+        },
+        "origin": "model",
+        "estimated_time": true
+      },
+      "metadata": {
+        "trace_id": "7f64338e-9ccf-4c25-a018-a39224eab69f",
+        "model": "deepseek-flash",
+        "provider_mode": "real",
+        "prompt_version": "math-assistant-v1.0",
+        "embedding": "BAAI/bge-small-zh-v1.5",
+        "usage": {
+          "input_tokens": 7654,
+          "output_tokens": 1784
+        },
+        "model_calls": 3,
+        "provider_attempts": 3,
+        "retrieval": {
+          "mode": "vector",
+          "index_version": "201623d292ae4b42b035e1d0efdca036",
+          "threshold": 0.65
+        },
+        "tools": 6,
+        "answer_origin": "model",
+        "latency_includes": "retrieval+tools+model+validation",
+        "tool_names": [
+          "get_learning_profile",
+          "get_mastery",
+          "get_prerequisites",
+          "get_wrong_questions",
+          "recommend_practice",
+          "search_knowledge"
+        ],
+        "plan_repaired": false,
+        "elapsed_ms": 13062
+      },
+      "tool_traces": [
+        {
+          "name": "get_learning_profile",
+          "status": "success",
+          "elapsed_ms": 16,
+          "args": {}
+        },
+        {
+          "name": "get_wrong_questions",
+          "status": "success",
+          "elapsed_ms": 0,
+          "args": {
+            "limit": 10
+          }
+        },
+        {
+          "name": "recommend_practice",
+          "status": "success",
+          "elapsed_ms": 16,
+          "args": {}
+        },
+        {
+          "name": "get_mastery",
+          "status": "success",
+          "elapsed_ms": 15,
+          "args": {
+            "knowledge_id": "monotonicity"
+          }
+        },
+        {
+          "name": "get_prerequisites",
+          "status": "success",
+          "elapsed_ms": 0,
+          "args": {
+            "knowledge_id": "monotonicity"
+          }
+        },
+        {
+          "name": "search_knowledge",
+          "status": "success",
+          "elapsed_ms": 16,
+          "args": {
+            "query": {
+              "redacted": true,
+              "characters": 20
+            },
+            "knowledge_id": "monotonicity"
+          }
+        }
+      ],
+      "tool_selection_success": 1,
+      "parameter_validity": 1.0,
+      "tool_execution_success": 1.0,
+      "citation_id_validity": 1,
+      "expected_refusal": null,
+      "assessment_guard": null,
+      "automated_plan_completion": 1,
+      "correctness_review": null,
+      "citation_support_review": null,
+      "task_completion_review": null,
+      "review_status": "pending_human_review",
+      "raw_model_outputs": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "                              ",
+            "tool_calls": [
+              {
+                "index": 0,
+                "id": "call_00_nEA02OoCII3k79g8Ig4V2112",
+                "type": "function",
+                "function": {
+                  "name": "get_learning_profile",
+                  "arguments": "{}"
+                }
+              },
+              {
+                "index": 1,
+                "id": "call_01_3d5twhRiaJwl9Sy2AhmO7042",
+                "type": "function",
+                "function": {
+                  "name": "get_wrong_questions",
+                  "arguments": "{\"limit\": 10}"
+                }
+              },
+              {
+                "index": 2,
+                "id": "call_02_921ZLc1tqCzgGPTWMGys4382",
+                "type": "function",
+                "function": {
+                  "name": "recommend_practice",
+                  "arguments": "{}"
+                }
+              }
+            ]
+          },
+          "usage": {
+            "prompt_tokens": 1126,
+            "completion_tokens": 87,
+            "total_tokens": 1213,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 230
+          },
+          "elapsed_ms": 1953,
+          "provider_attempts": 1
+        },
+        {
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "index": 0,
+                "id": "call_00_PTFAFbyl5LOCANxSBnrT5198",
+                "type": "function",
+                "function": {
+                  "name": "get_mastery",
+                  "arguments": "{\"knowledge_id\": \"monotonicity\"}"
+                }
+              },
+              {
+                "index": 1,
+                "id": "call_01_yDvXjPQkJ3BPTZiXszE94915",
+                "type": "function",
+                "function": {
+                  "name": "get_prerequisites",
+                  "arguments": "{\"knowledge_id\": \"monotonicity\"}"
+                }
+              },
+              {
+                "index": 2,
+                "id": "call_02_VjPfC8tMVDGxU3YWW3CT9864",
+                "type": "function",
+                "function": {
+                  "name": "search_knowledge",
+                  "arguments": "{\"query\": \"一次函数单调性 斜率 严格递增 参数范围\", \"knowledge_id\": \"monotonicity\"}"
+                }
+              }
+            ]
+          },
+          "usage": {
+            "prompt_tokens": 2822,
+            "completion_tokens": 137,
+            "total_tokens": 2959,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 1670
+          },
+          "elapsed_ms": 2203,
+          "provider_attempts": 1
+        },
+        {
+          "message": {
+            "role": "assistant",
+            "content": "{\"answer\":\"## 你的错题诊断\\n\\n最近 5 道错题全部集中在**函数单调性（monotonicity）**，而且都是同一类题：\\n\\n> 已知 $f(x)=(k-a)x+1$ 在 $\\\\mathbb{R}$ 上严格递增，问 $a$ 可以取哪个值。\\n\\n你的 5 次作答（题号 4、18、32、46、60）**全部选错**，且错误方式一致：没有先把斜率表达式列出来解不等式，而是凭感觉挑选项。例如第 4 题 $f(x)=(2-a)x+1$，正确做法是 $2-a>0\\\\Rightarrow a<2$，只有 1 符合，你选了 2（恰好是临界值，此时 $k=0$，是常函数，不是严格递增）。\\n\\n**关键结论**：一次函数 $f(x)=kx+b$ 的增减只由 $k$ 决定，$k>0$ 递增、$k<0$ 递减、$k=0$ 是常函数不能算严格递增；截距 $b$ 只改变图像上下位置，不影响单调方向。参数题的标准流程是：**先写斜率表达式 → 再解不等式 → 最后在选项中筛选**。\\n\\n**易错点**：① 把临界值（$k=0$）当成递增；② 不等式方向写反（$6-a>0$ 应得 $a<6$，不是 $a>6$）；③ 只看选项数字大小，不代回验证。\\n\\n## 当前学习状态\\n\\n- 函数单调性：掌握度约 **14%**，有效样本 5 条，状态“学习中”，尚未通过。\\n- 先修知识点“函数求值（evaluation）”：**无缺口**，可以直接开始。\\n- 推荐规则（rules-v1.0）也把单调性排在第 1 位，理由正是“掌握度低 + 是闭区间最值的先修”。\\n\\n## 三天复习计划（草稿，未保存）\\n\\n```json\\n{\\n  \\\"goal\\\": \\\"把一次函数单调性的参数判断从 14% 提升到稳定通过，并迁移到含参单调性判断\\\",\\n  \\\"days\\\": [\\n    {\\n      \\\"day\\\": 1,\\n      \\\"tasks\\\": [\\n        {\\n          \\\"knowledge_id\\\": \\\"monotonicity\\\",\\n          \\\"question_count\\\": 5,\\n          \\\"estimated_minutes\\\": 20,\\n          \\\"reason\\\": \\\"先修无缺口，可直接开始。针对错题暴露的同一漏洞：先写斜率 k 的表达式再解不等式，重点练临界值 k=0 的排除。\\\",\\n          \\\"question_ids\\\": [4, 18, 32, 46, 60],\\n          \\\"conditional_on_pass\\\": false\\n        }\\n      ]\\n    },\\n    {\\n      \\\"day\\\": 2,\\n      \\\"tasks\\\": [\\n        {\\n          \\\"knowledge_id\\\": \\\"monotonicity\\\",\\n          \\\"question_count\\\": 5,\\n          \\\"estimated_minutes\\\": 20,\\n          \\\"reason\\\": \\\"换新题（已曝光题不重复计分），检验第 1 天的方法是否真正内化；同时加入“递减”与“常函数”干扰项，防止只记递增结论。\\\",\\n          \\\"question_ids\\\": [],\\n          \\\"conditional_on_pass\\\": false\\n        }\\n      ]\\n    },\\n    {\\n      \\\"day\\\": 3,\\n      \\\"tasks\\\": [\\n        {\\n          \\\"knowledge_id\\\": \\\"monotonicity\\\",\\n          \\\"question_count\\\": 5,\\n          \\\"estimated_minutes\\\": 20,\\n          \\\"reason\\\": \\\"综合巩固：混合递增/递减/区间限定三类表述，并回顾“多个单调区间不能随意合并”的易错点，形成稳定正确率。\\\",\\n          \\\"question_ids\\\": [],\\n          \\\"conditional_on_pass\\\": false\\n        }\\n      ]\\n    }\\n  ],\\n  \\\"basis\\\": [\\n    \\\"最近 5 道错题（题号 4、18、32、46、60）全部属于 monotonicity，错误模式一致\\\",\\n    \\\"get_mastery：monotonicity 掌握度 14%，有效样本 5 条，状态学习中，未通过\\\",\\n    \\\"get_prerequisites：先修 evaluation 无缺口，available=true，可直接开始\\\",\\n    \\\"recommend_practice（rules-v1.0）将 monotonicity 列为第 1 优先，建议先巩固\\\",\\n    \\\"时间为估算值；已曝光题不重复计分\\\"\\n  ]\\n}\\n```\\n\\n**说明**：以上只是计划草稿，我没有保存，也没有改动你的任何学习数据。是否保存、是否调整题量，由你决定。\\n\\n需要我把第 1 天的 5 道错题逐题拆解成“斜率表达式 → 不等式 → 选项验证”的三步模板吗？\",\"citations\":[\"notes-monotonicity-001\",\"notes-monotonicity-000\",\"notes-monotonicity-002\"],\"plan\":{\"goal\":\"把一次函数单调性的参数判断从 14% 提升到稳定通过，并迁移到含参单调性判断\",\"days\":[{\"day\":1,\"tasks\":[{\"knowledge_id\":\"monotonicity\",\"question_count\":5,\"estimated_minutes\":20,\"reason\":\"先修无缺口，可直接开始。针对错题暴露的同一漏洞：先写斜率 k 的表达式再解不等式，重点练临界值 k=0 的排除。\",\"question_ids\":[4,18,32,46,60],\"conditional_on_pass\":false}]},{\"day\":2,\"tasks\":[{\"knowledge_id\":\"monotonicity\",\"question_count\":5,\"estimated_minutes\":20,\"reason\":\"换新题（已曝光题不重复计分），检验第 1 天的方法是否真正内化；同时加入“递减”与“常函数”干扰项，防止只记递增结论。\",\"question_ids\":[],\"conditional_on_pass\":false}]},{\"day\":3,\"tasks\":[{\"knowledge_id\":\"monotonicity\",\"question_count\":5,\"estimated_minutes\":20,\"reason\":\"综合巩固：混合递增/递减/区间限定三类表述，并回顾“多个单调区间不能随意合并”的易错点，形成稳定正确率。\",\"question_ids\":[],\"conditional_on_pass\":false}]}],\"basis\":[\"最近 5 道错题（题号 4、18、32、46、60）全部属于 monotonicity，错误模式一致\",\"get_mastery：monotonicity 掌握度 14%，有效样本 5 条，状态学习中，未通过\",\"get_prerequisites：先修 evaluation 无缺口，available=true，可直接开始\",\"recommend_practice（rules-v1.0）将 monotonicity 列为第 1 优先，建议先巩固\",\"时间为估算值；已曝光题不重复计分\"]}}"
+          },
+          "usage": {
+            "prompt_tokens": 3706,
+            "completion_tokens": 1560,
+            "total_tokens": 5266,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 762
+          },
+          "elapsed_ms": 8297,
+          "provider_attempts": 1
+        }
+      ],
+      "elapsed_ms": 13075.1
+    }
+  ]
+}
