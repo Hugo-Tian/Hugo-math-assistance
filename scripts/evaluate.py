@@ -73,7 +73,7 @@ def main():
                             if context.get('submitted_question'):
                                 q=db.get(Question,qid);submit_answer(db,user,s.id,AnswerInput(question_id=qid,selected=(q.answer+1)%4,idempotency_key=str(uuid.uuid4())))
                             db.commit()
-                        c=Conversation(id=str(uuid.uuid4()),user_id=user.id,title=case['id'],knowledge_id=context.get('knowledge_id'),question_id=qid);db.add(c);db.flush()
+                        c=Conversation(id=str(uuid.uuid4()),user_id=user.id,course_id=case.get('course_id','hs-math'),title=case['id'],knowledge_id=context.get('knowledge_id'),question_id=qid);db.add(c);db.flush()
                         turn=ChatTurn(id=str(uuid.uuid4()),conversation_id=c.id,request_key=str(uuid.uuid4()),question=case['input'],mode='agent' if variant=='agent' else 'rag',answer='',citations=[],metadata_json={});db.add(turn);db.commit()
                         data=SendMessage(message=case['input'],request_key=turn.request_key,mode=turn.mode)
                         asyncio.run(run_assistant(db,user,c,turn,data,config,Bounded(),direct=variant=='direct'));db.commit()

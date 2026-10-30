@@ -48,6 +48,20 @@ def test_first_question_names_untitled_conversation(ai):
     assert next(x['title'] for x in c.get('/api/assistant/conversations',headers=h).json() if x['id']==cid)==title
 
 
+def test_abandoned_practice_expires_for_guard_and_answers(ai):
+    from datetime import timedelta
+    from backend.models import PracticeSession, utcnow
+    c,f,h,config=ai
+    s=c.post('/api/sessions',headers=h,json={'mode':'custom','knowledge_id':'sets','count':2}).json()
+    assert c.get('/api/assistant/status',headers=h).json()['assessment_open']
+    with f() as db:
+        db.get(PracticeSession,s['id']).created_at=utcnow()-timedelta(minutes=121);db.commit()
+    assert not c.get('/api/assistant/status',headers=h).json()['assessment_open']
+    assert send(c,h,new(c,h)).json()['status']!='assessment_hint'
+    r=c.post(f"/api/sessions/{s['id']}/answers",headers=h,json={'question_id':s['question']['id'],'selected':0,'idempotency_key':'expired-answer-1'})
+    assert r.status_code==409 and '失效' in r.json()['detail']
+
+
 def test_malformed_json_repaired_once(ai,monkeypatch):
     c,f,h,config=ai
     replies=[]

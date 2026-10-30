@@ -1,13 +1,15 @@
 """Deterministic, auditable heuristics. No learned parameters or ML claims."""
 from datetime import datetime, timezone
 from sqlalchemy import select
-from .models import Knowledge, Prerequisite, Mastery, Attempt, Mistake, utcnow
-from .config import PASS_MASTERY, PASS_DISTINCT, WINDOW, VERSION
+from .models import Course, Knowledge, Prerequisite, Mastery, Attempt, Mistake, utcnow
+from .config import VERSION
+from .courses import DEFAULT_COURSE, Scope, rules_for, scope_for
 
-def graph(db):
-    nodes = list(db.scalars(select(Knowledge).order_by(Knowledge.position, Knowledge.id)))
+def graph(db, course_id=DEFAULT_COURSE):
+    nodes = list(db.scalars(select(Knowledge).where(Knowledge.course_id == course_id).order_by(Knowledge.position, Knowledge.id)))
     edges = {n.id: [] for n in nodes}
-    for e in db.scalars(select(Prerequisite)):
+    # Edges are kept within one course; validate_dag rejects any endpoint outside it.
+    for e in db.scalars(select(Prerequisite).where(Prerequisite.knowledge_id.in_(list(edges)))):
         edges[e.knowledge_id].append(e.prerequisite_id)
     for p in edges.values():
         p.sort()
@@ -30,18 +32,26 @@ def validate_dag(edges):
     for k in edges:
         visit(k)
 
-def own_pass(m):
-    return bool(m and m.samples >= PASS_DISTINCT and m.distinct_count >= PASS_DISTINCT and m.value >= PASS_MASTERY)
+def own_pass(m, rules):
+    return bool(m and m.samples >= rules.pass_distinct and m.distinct_count >= rules.pass_distinct and m.value >= rules.pass_mastery)
 
-def current_pass(k, states, edges, memo=None):
+def current_pass(k, states, edges, rules, memo=None):
     memo = {} if memo is None else memo
     if k not in memo:
-        memo[k] = own_pass(states.get(k)) and all(current_pass(p, states, edges, memo) for p in edges[k])
+        memo[k] = own_pass(states.get(k), rules) and all(current_pass(p, states, edges, rules, memo) for p in edges.get(k, []))
     return memo[k]
 
-def recompute(db, user_id):
-    """Rebuild caches AND historical achievements by replaying effective attempts."""
-    nodes, edges = graph(db)
+def recompute(db, user_id, scope=None):
+    """Rebuild caches AND historical achievements by replaying effective attempts.
+
+    Without a scope every course is rebuilt, each under its own rules."""
+    if scope is None:
+        states = {}
+        for course in db.scalars(select(Course).order_by(Course.id)):
+            states.update(recompute(db, user_id, Scope(course.id, rules_for(course))))
+        return states
+    rules = scope.rules
+    nodes, edges = graph(db, scope.course_id)
     states = {}
     for n in nodes:
         m = db.get(Mastery, (user_id, n.id))
@@ -54,13 +64,14 @@ def recompute(db, user_id):
         states[n.id] = m
     windows = {n.id: [] for n in nodes}
     totals = {n.id: 0 for n in nodes}
-    attempts = list(db.scalars(select(Attempt).where(Attempt.user_id == user_id).order_by(Attempt.created_at, Attempt.id)))
+    attempts = list(db.scalars(select(Attempt).where(Attempt.user_id == user_id, Attempt.knowledge_id.in_(list(windows)))
+                               .order_by(Attempt.created_at, Attempt.id)))
     for a in attempts:
         if a.effective_day is None:
             continue
         rows = windows[a.knowledge_id]
         rows.append(a)
-        del rows[:-WINDOW]
+        del rows[:-rules.window]
         totals[a.knowledge_id] += 1
         m = states[a.knowledge_id]
         m.samples = len(rows)
@@ -76,22 +87,24 @@ def recompute(db, user_id):
             m.last_adjusted_count = total
         # Multi-prerequisite nodes may earn their award when another prerequisite passes.
         for n in nodes:
-            if states[n.id].passed_at is None and current_pass(n.id, states, edges):
+            if states[n.id].passed_at is None and current_pass(n.id, states, edges, rules):
                 states[n.id].passed_at = a.created_at
     db.flush()
     return states
 
-def knowledge_view(db, user_id):
-    nodes, edges = graph(db)
+def knowledge_view(db, user_id, scope=None):
+    scope = scope or scope_for(db, user_id)
+    rules = scope.rules
+    nodes, edges = graph(db, scope.course_id)
     states = {m.knowledge_id: m for m in db.scalars(select(Mastery).where(Mastery.user_id == user_id))}
     result = []
     for n in nodes:
         m = states.get(n.id)
-        missing = [p for p in edges[n.id] if not current_pass(p, states, edges)]
+        missing = [p for p in edges[n.id] if not current_pass(p, states, edges, rules)]
         passed = bool(m and m.passed_at)
         status = '未评估' if not m or not m.samples else '学习中'
         if passed:
-            status = '已通过' if current_pass(n.id, states, edges) else '建议复习'
+            status = '已通过' if current_pass(n.id, states, edges, rules) else '建议复习'
         result.append(dict(id=n.id, name=n.name, chapter=n.chapter, subject=n.subject, description=n.description,
                            position=n.position, prerequisites=edges[n.id], missing_prerequisites=missing,
                            mastery=m.value if m else None, samples=m.samples if m else 0,
@@ -101,11 +114,12 @@ def knowledge_view(db, user_id):
                            last_effective_at=m.last_effective_at.isoformat() if m and m.last_effective_at else None))
     return result
 
-def recommend(db, user, now=None):
+def recommend(db, user, scope=None, now=None):
     now = now or utcnow()
-    nodes = knowledge_view(db, user.id)
+    scope = scope or scope_for(db, user.id)
+    nodes = knowledge_view(db, user.id, scope)
     by_id = {n['id']: n for n in nodes}
-    goal = user.goal_id
+    goal = scope.goal_id
     ancestors = set()
     def collect(k):
         for p in by_id[k]['prerequisites']:

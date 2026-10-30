@@ -18,9 +18,9 @@ class AnswerInput(BaseModel):
     idempotency_key: str = Field(min_length=8, max_length=100)
 
 class KnowledgeInput(BaseModel):
-    id: str = Field(pattern=r'^[a-z0-9_-]{2,50}$')
+    # New courses namespace ids as "<course>.<slug>"; subject always comes from the course.
+    id: str = Field(pattern=r'^[a-z0-9_.-]{2,50}$')
     name: str = Field(min_length=1, max_length=100)
-    subject: Literal['math'] = 'math'
     chapter: str = Field(min_length=1, max_length=100)
     description: str = Field(min_length=1, max_length=3000)
     position: int = Field(ge=0, le=10000)
@@ -45,3 +45,15 @@ class QuestionInput(BaseModel):
 
 class GoalInput(BaseModel):
     knowledge_id: str | None = None
+
+class CourseInput(BaseModel):
+    id: str = Field(pattern=r'^[a-z0-9-]{2,40}$')
+    name: str = Field(min_length=2, max_length=100)
+    subject: str = Field(pattern=r'^[a-z_]{2,30}$')
+    level: Literal['middle', 'high', 'university']
+    language: str = Field(default='zh', pattern=r'^[a-z]{2}(-[A-Z]{2})?$')
+    settings: dict = Field(default_factory=dict)
+
+class MemberInput(BaseModel):
+    username: str = Field(min_length=3, max_length=60)
+    role: Literal['teacher', 'ta', 'student'] = 'student'

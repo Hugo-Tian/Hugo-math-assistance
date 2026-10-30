@@ -14,7 +14,40 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255))
     role: Mapped[str] = mapped_column(String(20), default='student')
     is_demo: Mapped[bool] = mapped_column(Boolean, default=False)
+
+class Course(Base):
+    __tablename__ = 'courses'
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    name: Mapped[str] = mapped_column(String(100))
+    subject: Mapped[str] = mapped_column(String(30))
+    level: Mapped[str] = mapped_column(String(20))
+    language: Mapped[str] = mapped_column(String(10), default='zh')
+    # Per-course overrides of pass rules and assistant policy; unset keys fall back to environment defaults.
+    settings: Mapped[dict] = mapped_column(JSON, default=dict)
+    status: Mapped[str] = mapped_column(String(20), default='active')
+    created_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+class Enrollment(Base):
+    __tablename__ = 'enrollments'
+    course_id: Mapped[str] = mapped_column(ForeignKey('courses.id'), primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), primary_key=True, index=True)
+    role: Mapped[str] = mapped_column(String(20), default='student')
     goal_id: Mapped[str | None] = mapped_column(ForeignKey('knowledge.id'), nullable=True)
+    joined_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+class KnowledgeDraft(Base):
+    __tablename__ = 'knowledge_drafts'
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    course_id: Mapped[str] = mapped_column(ForeignKey('courses.id'), index=True)
+    status: Mapped[str] = mapped_column(String(20), default='pending')
+    payload: Mapped[dict] = mapped_column(JSON)
+    source_documents: Mapped[list] = mapped_column(JSON, default=list)
+    model_meta: Mapped[dict] = mapped_column(JSON, default=dict)
+    created_by: Mapped[int] = mapped_column(ForeignKey('users.id'))
+    reviewed_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    reviewed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
 class AuthToken(Base):
     __tablename__ = 'auth_tokens'
@@ -25,6 +58,7 @@ class AuthToken(Base):
 class Knowledge(Base):
     __tablename__ = 'knowledge'
     id: Mapped[str] = mapped_column(String(50), primary_key=True)
+    course_id: Mapped[str] = mapped_column(ForeignKey('courses.id'), index=True)
     subject: Mapped[str] = mapped_column(String(30), default='math')
     chapter: Mapped[str] = mapped_column(String(100))
     name: Mapped[str] = mapped_column(String(100))
@@ -53,6 +87,7 @@ class PracticeSession(Base):
     __tablename__ = 'practice_sessions'
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
+    course_id: Mapped[str] = mapped_column(ForeignKey('courses.id'), index=True)
     mode: Mapped[str] = mapped_column(String(20))
     knowledge_id: Mapped[str | None] = mapped_column(ForeignKey('knowledge.id'), nullable=True)
     difficulty: Mapped[int | None] = mapped_column(Integer, nullable=True)

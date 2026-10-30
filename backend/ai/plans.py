@@ -2,11 +2,13 @@ from sqlalchemy import select
 from .schemas import StudyPlan
 from ..algorithms import knowledge_view, recommend
 from ..models import Question
+from ..courses import scope_for
 
-def validate_plan(db,user,raw):
+def validate_plan(db,user,raw,scope=None):
     plan=StudyPlan.model_validate(raw)
     if [d.day for d in plan.days]!=[1,2,3]:raise ValueError('计划必须按第 1、2、3 天顺序排列')
-    nodes={n['id']:n for n in knowledge_view(db,user.id)}
+    # Only this course's knowledge points are valid plan targets.
+    nodes={n['id']:n for n in knowledge_view(db,user.id,scope or scope_for(db,user.id))}
     earlier=set()
     for day in plan.days:
         if sum(t.estimated_minutes for t in day.tasks)>180:raise ValueError('每日估算总时间不能超过 180 分钟')
@@ -24,8 +26,8 @@ def validate_plan(db,user,raw):
             earlier.add(task.knowledge_id)
     return plan.model_dump()
 
-def fallback_plan(db,user):
-    recs=recommend(db,user)['recommendations']
+def fallback_plan(db,user,scope=None):
+    recs=recommend(db,user,scope)['recommendations']
     for rec in recs:
         ids=list(db.scalars(select(Question.id).where(Question.active.is_(True),Question.knowledge_id==rec['knowledge_id'])))
         if ids:

@@ -13,13 +13,26 @@ from pypdf import PdfReader
 from .models import Document, Chunk
 from ..models import Knowledge, Attempt, Question, PracticeSession
 from .provider import ModelError
+from ..service import session_expired
+from ..courses import DEFAULT_COURSE, rules_for
+from ..models import Course
 
 MAX_FILE_BYTES=5*1024*1024
 
-def assessment_open(db,user_id):
-    answered=set((a.session_id,a.question_id) for a in db.scalars(select(Attempt).where(Attempt.user_id==user_id)))
-    return [s.id for s in db.scalars(select(PracticeSession).where(PracticeSession.user_id==user_id,PracticeSession.ended.is_(False)))
-            if any((s.id,q) not in answered for q in s.question_ids)]
+def assessment_open(db,user_id,course_id=None):
+    """Unfinished, unexpired practices of this course (or of every course when course_id is None)."""
+    attempts=list(db.scalars(select(Attempt).where(Attempt.user_id==user_id)))
+    answered=set((a.session_id,a.question_id) for a in attempts);last={}
+    for a in attempts:last[a.session_id]=max(last.get(a.session_id,a.created_at),a.created_at)
+    query=select(PracticeSession).where(PracticeSession.user_id==user_id,PracticeSession.ended.is_(False))
+    if course_id:query=query.where(PracticeSession.course_id==course_id)
+    timeouts={}
+    def timeout(cid):
+        if cid not in timeouts:timeouts[cid]=rules_for(db.get(Course,cid)).assessment_timeout_minutes
+        return timeouts[cid]
+    # Abandoned practices expire, so they no longer block tutoring indefinitely.
+    return [s.id for s in db.scalars(query)
+            if any((s.id,q) not in answered for q in s.question_ids) and not session_expired(s,last.get(s.id),minutes=timeout(s.course_id))]
 
 def permitted_question(db,user_id,qid):
     return bool(db.scalar(select(Attempt.id).where(Attempt.user_id==user_id,Attempt.question_id==qid).limit(1)))
@@ -50,17 +63,22 @@ def split_text(text,title,max_chars=1100):
     flush_section()
     return sections
 
-def import_document(db,filename,data,kid,source,question_id=None,title=None,document_id=None):
+def import_document(db,filename,data,kid,source,question_id=None,title=None,document_id=None,course_id=None):
     if len(data)>MAX_FILE_BYTES:raise ValueError('文件不能超过 5 MB')
     extension=Path(filename).suffix.lower()
     if extension not in ('.md','.txt','.pdf'):raise ValueError('仅支持 Markdown、TXT 和文本型 PDF')
-    knowledge=db.get(Knowledge,kid)
-    if not knowledge:raise ValueError('知识点不存在')
-    if question_id and not db.get(Question,question_id):raise ValueError('受限题目不存在')
+    knowledge=db.get(Knowledge,kid) if kid else None
+    if kid and not knowledge:raise ValueError('知识点不存在')
+    # Course-wide documents carry no knowledge point; otherwise the course follows the knowledge point.
+    course_id=course_id or (knowledge.course_id if knowledge else None)
+    if not course_id or not db.get(Course,course_id):raise ValueError('请指定资料所属课程')
+    if knowledge and knowledge.course_id!=course_id:raise ValueError('知识点不属于本课程')
+    question=db.get(Question,question_id) if question_id else None
+    if question_id and (not question or db.get(Knowledge,question.knowledge_id).course_id!=course_id):raise ValueError('受限题目不存在')
     checksum=hashlib.sha256(data).hexdigest()
     if db.scalar(select(Document.id).where(Document.checksum==checksum)):raise ValueError('此文件已经导入，请勿重复上传')
     doc=Document(id=document_id or str(uuid.uuid4()),title=title or Path(filename).stem,filename=Path(filename).name[:200],checksum=checksum,
-        source=source,knowledge_id=kid,scope='question' if question_id else 'public',question_id=question_id,status='processing')
+        source=source,course_id=course_id,knowledge_id=kid,scope='question' if question_id else 'public',question_id=question_id,status='processing')
     db.add(doc);db.flush()
     try:
         if extension=='.pdf':
@@ -82,9 +100,10 @@ def import_document(db,filename,data,kid,source,question_id=None,title=None,docu
     db.flush()
     return doc
 
-def allowed_chunks(db,user_id,knowledge_id=None,guard=True):
-    if guard and assessment_open(db,user_id):return []
-    rows=db.execute(select(Chunk,Document).join(Document,Document.id==Chunk.document_id).where(Document.active.is_(True),Document.status.in_(['parsed','indexed'])).execution_options(populate_existing=True)).all()
+def allowed_chunks(db,user_id,knowledge_id=None,guard=True,course_id=DEFAULT_COURSE):
+    if guard and assessment_open(db,user_id,course_id):return []
+    rows=db.execute(select(Chunk,Document).join(Document,Document.id==Chunk.document_id).where(Document.course_id==course_id,Document.active.is_(True),
+        Document.status.in_(['parsed','indexed'])).execution_options(populate_existing=True)).all()
     allowed_questions=set(db.scalars(select(Attempt.question_id).where(Attempt.user_id==user_id)))
     return [(c,d) for c,d in rows if (not knowledge_id or d.knowledge_id==knowledge_id) and (d.scope=='public' or d.question_id in allowed_questions)]
 
@@ -184,8 +203,8 @@ def hybrid_scores(rows,query,config,rrf_k=60):
             scores.append((1/(rrf_k+vector_rank[c.id]+1)+1/(rrf_k+keyword_rank[c.id]+1),c,d))
     return scores,version
 
-def retrieve(db,user_id,query,config,knowledge_id=None,mode=None,top_k=None):
-    rows=allowed_chunks(db,user_id,knowledge_id)
+def retrieve(db,user_id,query,config,knowledge_id=None,mode=None,top_k=None,course_id=DEFAULT_COURSE):
+    rows=allowed_chunks(db,user_id,knowledge_id,course_id=course_id)
     if not rows:return {'evidence':[],'mode':mode or config.retrieval_mode,'index_version':None}
     mode=mode or config.retrieval_mode;top_k=top_k or config.top_k
     if mode=='keyword':

@@ -11,7 +11,9 @@ class Document(Base):
     filename: Mapped[str]=mapped_column(String(200))
     checksum: Mapped[str]=mapped_column(String(64),unique=True)
     source: Mapped[str]=mapped_column(String(255))
-    knowledge_id: Mapped[str]=mapped_column(ForeignKey('knowledge.id'))
+    course_id: Mapped[str]=mapped_column(ForeignKey('courses.id'),index=True)
+    # Course-wide material may not belong to a single knowledge point.
+    knowledge_id: Mapped[str|None]=mapped_column(ForeignKey('knowledge.id'),nullable=True)
     version: Mapped[str]=mapped_column(String(30),default='1')
     scope: Mapped[str]=mapped_column(String(20),default='public')
     question_id: Mapped[int|None]=mapped_column(ForeignKey('questions.id'),nullable=True)
@@ -34,6 +36,7 @@ class Conversation(Base):
     __tablename__='ai_conversations'
     id: Mapped[str]=mapped_column(String(36),primary_key=True)
     user_id: Mapped[int]=mapped_column(ForeignKey('users.id'),index=True)
+    course_id: Mapped[str]=mapped_column(ForeignKey('courses.id'),index=True)
     title: Mapped[str]=mapped_column(String(120))
     knowledge_id: Mapped[str|None]=mapped_column(ForeignKey('knowledge.id'),nullable=True)
     question_id: Mapped[int|None]=mapped_column(ForeignKey('questions.id'),nullable=True)

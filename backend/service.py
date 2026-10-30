@@ -1,10 +1,16 @@
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException
-from sqlalchemy import select, update
+from sqlalchemy import select, update, func
 from .models import User, Question, PracticeSession, Attempt, Exposure, Recommendation, Knowledge, utcnow
 from .algorithms import recompute, rebuild_mistakes, recommend
-from .config import TIMEZONE, VERSION
+from .config import TIMEZONE, VERSION, ASSESSMENT_TIMEOUT_MINUTES
+from .courses import scope_for, course_knowledge_ids, in_course
+
+def session_expired(s, last_attempt_at=None, now=None, minutes=ASSESSMENT_TIMEOUT_MINUTES):
+    # Activity = creation or the latest submitted answer; real wall-clock time, never a simulated `at`.
+    last = max(t for t in (s.created_at, last_attempt_at) if t)
+    return last < (now or utcnow()) - timedelta(minutes=minutes)
 
 def lock_user(db, user_id):
     # A write lock serializes all mutations for one learner on MySQL; SQLite serializes writes.
@@ -14,13 +20,13 @@ def public_question(q):
     return dict(id=q.id, knowledge_id=q.knowledge_id, auxiliary_ids=q.auxiliary_ids, stem=q.stem,
                 options=q.options, difficulty=q.difficulty, source=q.source)
 
-def record_recommendation(db, user):
-    payload = recommend(db, user)
+def record_recommendation(db, user, scope=None):
+    payload = recommend(db, user, scope)
     db.add(Recommendation(user_id=user.id, version=VERSION, payload=payload))
     return payload
 
 def choose_next(db, user, session):
-    recommendations = record_recommendation(db, user)['recommendations']
+    recommendations = record_recommendation(db, user, scope_for(db, user.id, session.course_id))['recommendations']
     used = set(session.question_ids)
     for rec in recommendations:
         qs = list(db.scalars(select(Question).where(Question.active.is_(True), Question.knowledge_id == rec['knowledge_id']).order_by(Question.id)))
@@ -38,17 +44,18 @@ def choose_next(db, user, session):
     session.ended = True
     session.notice = '当前可学习知识点的题量不足，已结束；没有重复填充题目。'
 
-def start_session(db, user, data):
-    if data.knowledge_id and not db.get(Knowledge, data.knowledge_id):
+def start_session(db, user, data, scope=None):
+    scope = scope or scope_for(db, user.id)
+    if data.knowledge_id and not in_course(db, data.knowledge_id, scope.course_id):
         raise HTTPException(422, '知识点不存在')
     lock_user(db, user.id)
-    s = PracticeSession(id=str(uuid.uuid4()), user_id=user.id, mode=data.mode, knowledge_id=data.knowledge_id,
+    s = PracticeSession(id=str(uuid.uuid4()), user_id=user.id, course_id=scope.course_id, mode=data.mode, knowledge_id=data.knowledge_id,
                         difficulty=data.difficulty, requested_count=data.count, question_ids=[], notice='', ended=False)
     db.add(s)
     if data.mode == 'adaptive':
         choose_next(db, user, s)
     else:
-        query = select(Question).where(Question.active.is_(True))
+        query = select(Question).where(Question.active.is_(True), Question.knowledge_id.in_(course_knowledge_ids(db, scope.course_id)))
         if data.mode == 'review' and data.question_id is None:
             raise HTTPException(422, '请选择要复习的题目')
         if data.question_id:
@@ -101,6 +108,10 @@ def submit_answer(db, user, sid, data, at=None, simulated=False):
     pending = session_view(db, s)['question']
     if s.ended or not pending or pending['id'] != data.question_id:
         raise HTTPException(409, '请按练习顺序提交当前题目')
+    scope = scope_for(db, user.id, s.course_id)
+    timeout = scope.rules.assessment_timeout_minutes
+    if session_expired(s, db.scalar(select(func.max(Attempt.created_at)).where(Attempt.session_id == s.id)), minutes=timeout):
+        raise HTTPException(409, f'本次练习超过 {timeout} 分钟未作答，已失效，请重新开始练习')
     q = db.get(Question, data.question_id)
     now = at or utcnow()
     day = now.replace(tzinfo=timezone.utc).astimezone(TIMEZONE).date()
@@ -114,7 +125,7 @@ def submit_answer(db, user, sid, data, at=None, simulated=False):
     if not exposure:
         db.add(Exposure(user_id=user.id, question_id=q.id, first_shown_at=now))
     db.flush()
-    states = recompute(db, user.id)
+    states = recompute(db, user.id, scope)
     rebuild_mistakes(db, user.id)
     answered = list(db.scalars(select(Attempt).where(Attempt.session_id == sid)))
     if len(answered) >= s.requested_count or (s.mode != 'adaptive' and len(answered) >= len(s.question_ids)):
@@ -122,7 +133,7 @@ def submit_answer(db, user, sid, data, at=None, simulated=False):
     elif s.mode == 'adaptive':
         choose_next(db, user, s)
     m = states[q.knowledge_id]
-    rec = record_recommendation(db, user)
+    rec = record_recommendation(db, user, scope)
     a.result = dict(attempt_id=a.id, question_id=q.id, selected=a.selected, correct=a.correct, answer=q.answer,
                     explanation=q.explanation, effective=a.effective_day is not None, exclusion_reason=reason,
                     mastery=m.value, samples=m.samples, knowledge_id=q.knowledge_id,

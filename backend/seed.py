@@ -5,18 +5,30 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from sqlalchemy import select, func
 from .db import SessionLocal
-from .models import Knowledge, Prerequisite, Question, User, utcnow
+from .models import Course, Knowledge, Prerequisite, Question, User, utcnow
+from .courses import DEFAULT_COURSE, enroll
 from .question_bank import KNOWLEDGE, items
 from .schemas import SessionInput, AnswerInput
 from .security import passwords
 from .service import start_session, submit_answer
 from .config import PASS_DISTINCT, PASS_MASTERY, WINDOW
 
+# Kept in sync with the course row the courses migration inserts for pre-existing databases.
+DEFAULT_COURSE_ROW = dict(id=DEFAULT_COURSE, name='高中数学（函数与导数）', subject='math', level='high', language='zh',
+                          settings={'open_enrollment': True, 'assistant': {'persona': '高中数学智能学习助手', 'formula': 'katex',
+                                    'scope_note': '本库目前仅覆盖高中数学函数与导数路径'}})
+
+def ensure_default_course(db):
+    if not db.get(Course, DEFAULT_COURSE):
+        db.add(Course(**DEFAULT_COURSE_ROW))
+        db.flush()
+
 def seed(db, demos=True):
     if db.scalar(select(func.count()).select_from(Knowledge)):
         return False
+    ensure_default_course(db)
     for pos, (kid, chapter, name, prerequisites, description) in enumerate(KNOWLEDGE):
-        db.add(Knowledge(id=kid, subject='math', chapter=chapter, name=name, description=description, position=pos))
+        db.add(Knowledge(id=kid, course_id=DEFAULT_COURSE, subject='math', chapter=chapter, name=name, description=description, position=pos))
     db.flush()
     for kid, _, _, prerequisites, _ in KNOWLEDGE:
         for p in prerequisites:
@@ -33,7 +45,11 @@ def seed(db, demos=True):
     if demos:
         password = os.getenv('DEMO_PASSWORD', 'DemoMath2026!')
         for username, role in [('demo_foundation', 'student'), ('demo_advanced', 'student'), ('demo_admin', 'admin')]:
-            db.add(User(username=username, password_hash=passwords.hash(password), role=role, is_demo=True, goal_id='optimization'))
+            u = User(username=username, password_hash=passwords.hash(password), role=role, is_demo=True)
+            db.add(u)
+            db.flush()
+            e = enroll(db, u.id, DEFAULT_COURSE, 'teacher' if role == 'admin' else 'student')
+            e.goal_id = 'optimization' if role == 'student' else None
         db.flush()
         # All synthetic histories pass through the same service as real submissions.
         for username, strong_nodes, weak in [('demo_foundation', ['sets','domain','evaluation'], 'monotonicity'),
