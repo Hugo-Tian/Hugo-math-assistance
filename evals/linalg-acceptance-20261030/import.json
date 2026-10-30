@@ -1,0 +1,1141 @@
+{
+ "course": "linalg",
+ "course_created": true,
+ "notes_uploaded": [
+  "01-vectors.md",
+  "02-matrices.md",
+  "03-determinants.md",
+  "04-linear-systems.md",
+  "05-vector-spaces.md",
+  "06-eigenvalues.md"
+ ],
+ "index": {
+  "version": "3b34463fccb04906a751510f1c29d597",
+  "chunks": 65,
+  "dimension": 512,
+  "model": "BAAI/bge-small-zh-v1.5"
+ },
+ "drafts": [
+  {
+   "draft_id": "5eea2e17-decc-444d-af67-7c6070454112",
+   "meta": {
+    "prompt_version": "graph-draft-v1.1",
+    "model": "deepseek-flash",
+    "provider_mode": "real",
+    "model_calls": 1,
+    "usage": {
+     "input_tokens": 4316,
+     "output_tokens": 2481
+    },
+    "repaired": false,
+    "trace_id": "8f1ff903-04fa-42ec-b9ca-2efa64dc84d2",
+    "elapsed_ms": 11140,
+    "chunks_used": 23,
+    "truncated": false
+   },
+   "payload": {
+    "nodes": [
+     {
+      "slug": "vector_linear_ops",
+      "name": "n维向量与线性运算",
+      "chapter": "01-vectors",
+      "description": "n维向量的定义，向量加法与数乘的逐分量运算及线性运算律。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-000"
+      ]
+     },
+     {
+      "slug": "vector_geometry",
+      "name": "向量的几何意义与零向量",
+      "chapter": "01-vectors",
+      "description": "二维三维向量的有向线段表示、平行四边形法则、数乘的伸缩与零向量作为加法单位元。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-001"
+      ]
+     },
+     {
+      "slug": "inner_product_norm",
+      "name": "内积与向量长度",
+      "chapter": "01-vectors",
+      "description": "内积（点积）的定义与性质，向量模由内积导出。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-002"
+      ]
+     },
+     {
+      "slug": "orthogonality_angle",
+      "name": "正交与夹角",
+      "chapter": "01-vectors",
+      "description": "用内积与模表示两向量夹角余弦，内积为零即正交，并会求参数使向量正交。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-003"
+      ]
+     },
+     {
+      "slug": "matrix_add_scalar",
+      "name": "矩阵的加法与数乘",
+      "chapter": "02-matrices",
+      "description": "矩阵概念，同型矩阵相加与数乘的逐元素运算。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-000"
+      ]
+     },
+     {
+      "slug": "matrix_multiplication",
+      "name": "矩阵乘法",
+      "chapter": "02-matrices",
+      "description": "矩阵乘法的定义、可乘条件、元素求和公式及不满足交换律等性质。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-001"
+      ]
+     },
+     {
+      "slug": "matrix_transpose",
+      "name": "矩阵转置",
+      "chapter": "02-matrices",
+      "description": "转置的定义与运算律，包括乘积转置顺序相反及对称矩阵概念。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-002"
+      ]
+     },
+     {
+      "slug": "inverse_matrix",
+      "name": "逆矩阵的定义与性质",
+      "chapter": "02-matrices",
+      "description": "逆矩阵的定义、唯一性、可逆的充要条件及逆与转置、乘积的运算律。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-003"
+      ]
+     },
+     {
+      "slug": "inverse_2x2",
+      "name": "二阶矩阵求逆公式",
+      "chapter": "02-matrices",
+      "description": "用行列式与伴随形式写出二阶矩阵的逆矩阵公式并计算。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-004"
+      ]
+     },
+     {
+      "slug": "det_2_3",
+      "name": "二阶与三阶行列式",
+      "chapter": "03-determinants",
+      "description": "二阶行列式的对角线公式与三阶行列式的对角线法则计算。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-000"
+      ]
+     },
+     {
+      "slug": "det_properties",
+      "name": "行列式的性质",
+      "chapter": "03-determinants",
+      "description": "行列式在行变换下的变化规律、转置不变性、乘积法则及三角矩阵行列式。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-001"
+      ]
+     },
+     {
+      "slug": "cofactor_expansion",
+      "name": "余子式与按行展开",
+      "chapter": "03-determinants",
+      "description": "余子式与代数余子式的定义，行列式按行（列）展开公式及符号规律。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-002"
+      ]
+     },
+     {
+      "slug": "gaussian_elimination",
+      "name": "高斯消元法",
+      "chapter": "04-linear-systems",
+      "description": "用初等行变换把增广矩阵化为行阶梯形并回代求解线性方程组。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-000"
+      ]
+     },
+     {
+      "slug": "matrix_rank",
+      "name": "矩阵的秩",
+      "chapter": "04-linear-systems",
+      "description": "秩的定义（行阶梯形非零行数）、初等变换不变性、与可逆性的关系。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-001"
+      ]
+     },
+     {
+      "slug": "solution_existence",
+      "name": "线性方程组解的存在性",
+      "chapter": "04-linear-systems",
+      "description": "用系数矩阵与增广矩阵的秩判定无解、唯一解、无穷多解。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-002"
+      ]
+     },
+     {
+      "slug": "homogeneous_solution",
+      "name": "齐次方程组解的结构",
+      "chapter": "04-linear-systems",
+      "description": "齐次方程组解空间维数、基础解系，以及非齐次通解=特解+齐次通解。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-003"
+      ]
+     },
+     {
+      "slug": "linear_dependence",
+      "name": "线性相关与线性无关",
+      "chapter": "05-vector-spaces",
+      "description": "线性相关与无关的定义及用矩阵的秩判定向量组相关性的方法。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-000"
+      ]
+     },
+     {
+      "slug": "basis_dimension",
+      "name": "基与维数",
+      "chapter": "05-vector-spaces",
+      "description": "张成空间、基与维数的概念，张成空间维数等于矩阵的秩。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-001"
+      ]
+     },
+     {
+      "slug": "coordinates",
+      "name": "坐标",
+      "chapter": "05-vector-spaces",
+      "description": "向量在给定基下坐标的唯一表示及基不同坐标不同的性质。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-002"
+      ]
+     },
+     {
+      "slug": "eigenvalues",
+      "name": "特征值与特征向量",
+      "chapter": "06-eigenvalues",
+      "description": "特征值与特征向量的定义及由特征方程求特征值。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-000"
+      ]
+     },
+     {
+      "slug": "eigenvectors_compute",
+      "name": "求特征向量",
+      "chapter": "06-eigenvalues",
+      "description": "解齐次方程组(λI-A)x=0求特征向量及基础解系个数。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-001"
+      ]
+     },
+     {
+      "slug": "similar_diagonalization",
+      "name": "相似与对角化",
+      "chapter": "06-eigenvalues",
+      "description": "相似矩阵的定义与不变量，矩阵可对角化的充要条件及构造P与Λ。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-002"
+      ]
+     },
+     {
+      "slug": "diagonalization_application",
+      "name": "对角化的应用",
+      "chapter": "06-eigenvalues",
+      "description": "利用对角化计算矩阵高次幂及特征值在幂与逆中的传递规律。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-003"
+      ]
+     }
+    ],
+    "edges": [
+     {
+      "from": "vector_linear_ops",
+      "to": "vector_geometry",
+      "reason": "先掌握向量的分量运算才能理解其几何表示与平行四边形法则。"
+     },
+     {
+      "from": "vector_linear_ops",
+      "to": "inner_product_norm",
+      "reason": "内积按分量乘积求和定义，依赖向量的分量表示。"
+     },
+     {
+      "from": "inner_product_norm",
+      "to": "orthogonality_angle",
+      "reason": "正交与夹角由内积和模定义，必须先会算内积与长度。"
+     },
+     {
+      "from": "vector_linear_ops",
+      "to": "matrix_add_scalar",
+      "reason": "矩阵加法与数乘的规律与向量线性运算相同，需先熟悉向量运算。"
+     },
+     {
+      "from": "matrix_add_scalar",
+      "to": "matrix_multiplication",
+      "reason": "矩阵乘法建立在矩阵元素与加法数乘之上。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "matrix_transpose",
+      "reason": "转置的运算律(AB)^T=B^TA^T需要先理解矩阵乘法。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "inverse_matrix",
+      "reason": "逆矩阵定义AB=BA=I依赖矩阵乘法。"
+     },
+     {
+      "from": "inverse_matrix",
+      "to": "inverse_2x2",
+      "reason": "二阶求逆公式是可逆定义与判定的具体计算形式。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "inverse_2x2",
+      "reason": "二阶求逆公式中的分母ad-bc即二阶行列式。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "det_properties",
+      "reason": "先会计算低阶行列式，才能验证和理解行列式的性质。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "cofactor_expansion",
+      "reason": "按行展开以余子式（低阶行列式）为基础。"
+     },
+     {
+      "from": "det_properties",
+      "to": "cofactor_expansion",
+      "reason": "展开公式的符号与性质需结合行列式基本性质理解。"
+     },
+     {
+      "from": "gaussian_elimination",
+      "to": "matrix_rank",
+      "reason": "秩通过初等行变换化为行阶梯形后计数非零行得到。"
+     },
+     {
+      "from": "gaussian_elimination",
+      "to": "solution_existence",
+      "reason": "解的存在性判定需先会用消元得到行阶梯形并比较秩。"
+     },
+     {
+      "from": "matrix_rank",
+      "to": "solution_existence",
+      "reason": "存在性判据用r(A)与r([A|b])比较，必须先掌握秩。"
+     },
+     {
+      "from": "solution_existence",
+      "to": "homogeneous_solution",
+      "reason": "齐次解结构是存在性结论在b=0时的细化。"
+     },
+     {
+      "from": "matrix_rank",
+      "to": "linear_dependence",
+      "reason": "线性相关性用向量组构成矩阵的秩来判定。"
+     },
+     {
+      "from": "linear_dependence",
+      "to": "basis_dimension",
+      "reason": "基要求线性无关且张成，需先掌握线性无关概念。"
+     },
+     {
+      "from": "basis_dimension",
+      "to": "coordinates",
+      "reason": "坐标是向量在取定基下的唯一线性组合系数。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "eigenvalues",
+      "reason": "特征方程det(λI-A)=0需要会计算行列式。"
+     },
+     {
+      "from": "homogeneous_solution",
+      "to": "eigenvectors_compute",
+      "reason": "求特征向量即解齐次方程组(λI-A)x=0，依赖齐次解的结构。"
+     },
+     {
+      "from": "eigenvalues",
+      "to": "eigenvectors_compute",
+      "reason": "先求出特征值，再代回求对应特征向量。"
+     },
+     {
+      "from": "eigenvectors_compute",
+      "to": "similar_diagonalization",
+      "reason": "可对角化等价于有n个线性无关特征向量，需先会求特征向量。"
+     },
+     {
+      "from": "similar_diagonalization",
+      "to": "diagonalization_application",
+      "reason": "高次幂计算A^k=PΛ^kP^{-1}以对角化分解为前提。"
+     }
+    ]
+   },
+   "quality": {
+    "draft_nodes": 23,
+    "draft_edges": 24,
+    "reference_nodes": 12,
+    "reference_edges": 16,
+    "node_recall": 1.0,
+    "node_precision": 1.0,
+    "edge_precision": 0.917,
+    "edge_recall": 0.688,
+    "edge_reachability_recall": 0.688,
+    "reversed_edges": 0
+   }
+  },
+  {
+   "draft_id": "4741e27b-eda6-41c9-85aa-6c90a7d0dbd8",
+   "meta": {
+    "prompt_version": "graph-draft-v1.1",
+    "model": "deepseek-flash",
+    "provider_mode": "real",
+    "model_calls": 1,
+    "usage": {
+     "input_tokens": 4316,
+     "output_tokens": 2575
+    },
+    "repaired": false,
+    "trace_id": "2c67aa72-d833-4f8d-9a06-a05b494491b7",
+    "elapsed_ms": 11750,
+    "chunks_used": 23,
+    "truncated": false
+   },
+   "payload": {
+    "nodes": [
+     {
+      "slug": "vectors_linear_ops",
+      "name": "n维向量与线性运算",
+      "chapter": "01-vectors",
+      "description": "n维向量的定义，向量加法与数乘的逐分量运算及线性运算的运算律。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-000"
+      ]
+     },
+     {
+      "slug": "vector_geometry",
+      "name": "向量的几何意义与零向量",
+      "chapter": "01-vectors",
+      "description": "二维三维向量的有向线段表示、平行四边形法则、数乘的伸缩与反向，以及零向量作为加法单位元。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-001"
+      ]
+     },
+     {
+      "slug": "inner_product_norm",
+      "name": "内积与向量长度",
+      "chapter": "01-vectors",
+      "description": "内积（点积）的定义与对称性、线性性，以及由内积导出的向量长度（模）。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-002"
+      ]
+     },
+     {
+      "slug": "orthogonality_angle",
+      "name": "正交与夹角",
+      "chapter": "01-vectors",
+      "description": "用内积与长度表示两向量夹角余弦，内积为零即正交，并会求参数使两向量正交。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-003"
+      ]
+     },
+     {
+      "slug": "matrix_add_scalar",
+      "name": "矩阵的加法与数乘",
+      "chapter": "02-matrices",
+      "description": "矩阵的定义，同型矩阵的加法与数乘运算及其与向量线性运算相同的规律。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-000"
+      ]
+     },
+     {
+      "slug": "matrix_multiplication",
+      "name": "矩阵乘法",
+      "chapter": "02-matrices",
+      "description": "矩阵乘法的定义与可乘条件，元素由行乘列求和得到，满足结合律与分配律但不满足交换律。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-001"
+      ]
+     },
+     {
+      "slug": "matrix_transpose",
+      "name": "矩阵转置",
+      "chapter": "02-matrices",
+      "description": "转置矩阵的定义与性质，包括乘积转置顺序相反，以及对称矩阵的概念。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-002"
+      ]
+     },
+     {
+      "slug": "inverse_matrix",
+      "name": "逆矩阵的定义与性质",
+      "chapter": "02-matrices",
+      "description": "逆矩阵的定义与唯一性，可逆的充要条件det A≠0，以及乘积与转置的求逆公式。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-003"
+      ]
+     },
+     {
+      "slug": "inverse_2x2",
+      "name": "二阶矩阵求逆公式",
+      "chapter": "02-matrices",
+      "description": "二阶矩阵求逆的伴随形式公式：主对角交换、副对角变号再除以行列式。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-004"
+      ]
+     },
+     {
+      "slug": "det_2_3",
+      "name": "二阶与三阶行列式",
+      "chapter": "03-determinants",
+      "description": "二阶行列式的主副对角线之差与三阶行列式的对角线法则计算。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-000"
+      ]
+     },
+     {
+      "slug": "det_properties",
+      "name": "行列式的性质",
+      "chapter": "03-determinants",
+      "description": "行列式在行变换下的变化规律、转置不变性、乘积法则及三角矩阵的行列式，注意det(kA)=k^n det A。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-001"
+      ]
+     },
+     {
+      "slug": "cofactor_expansion",
+      "name": "余子式与按行展开",
+      "chapter": "03-determinants",
+      "description": "余子式与代数余子式的定义，行列式按一行或一列展开计算及符号交替规律。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-002"
+      ]
+     },
+     {
+      "slug": "gaussian_elimination",
+      "name": "高斯消元法",
+      "chapter": "04-linear-systems",
+      "description": "用初等行变换把增广矩阵化为行阶梯形再回代求解线性方程组。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-000"
+      ]
+     },
+     {
+      "slug": "matrix_rank",
+      "name": "矩阵的秩",
+      "chapter": "04-linear-systems",
+      "description": "矩阵秩的定义（行阶梯形非零行数）、初等变换不变性、与可逆性的关系。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-001"
+      ]
+     },
+     {
+      "slug": "solution_existence",
+      "name": "线性方程组解的存在性",
+      "chapter": "04-linear-systems",
+      "description": "用系数矩阵与增广矩阵的秩判定无解、唯一解或无穷多解。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-002"
+      ]
+     },
+     {
+      "slug": "homogeneous_solution",
+      "name": "齐次方程组解的结构",
+      "chapter": "04-linear-systems",
+      "description": "齐次方程组解空间维数为n-r，基础解系含n-r个解向量，非齐次通解为特解加齐次通解。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-003"
+      ]
+     },
+     {
+      "slug": "linear_dependence",
+      "name": "线性相关与线性无关",
+      "chapter": "05-vector-spaces",
+      "description": "线性相关与线性无关的定义，用矩阵的秩判定，以及含零向量、成比例向量等常用结论。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-000"
+      ]
+     },
+     {
+      "slug": "basis_dimension",
+      "name": "基与维数",
+      "chapter": "05-vector-spaces",
+      "description": "张成空间、基与维数的概念，R^n的标准基，张成空间维数等于矩阵的秩。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-001"
+      ]
+     },
+     {
+      "slug": "coordinates",
+      "name": "坐标",
+      "chapter": "05-vector-spaces",
+      "description": "取定基后向量坐标的唯一表示，以及不同基下坐标一般不同。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-002"
+      ]
+     },
+     {
+      "slug": "eigenvalues",
+      "name": "特征值与特征向量",
+      "chapter": "06-eigenvalues",
+      "description": "特征值与特征向量的定义，特征方程det(λI-A)=0及二阶矩阵特征方程的写法。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-000"
+      ]
+     },
+     {
+      "slug": "eigenvectors_compute",
+      "name": "求特征向量",
+      "chapter": "06-eigenvalues",
+      "description": "解齐次方程组(λI-A)x=0求属于特征值的特征向量，基础解系个数为n-r(λI-A)。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-001"
+      ]
+     },
+     {
+      "slug": "similar_diagonalization",
+      "name": "相似与对角化",
+      "chapter": "06-eigenvalues",
+      "description": "相似矩阵的定义与不变量，矩阵可对角化的充要条件及用特征向量构造P的方法。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-002"
+      ]
+     },
+     {
+      "slug": "diagonalization_application",
+      "name": "对角化的应用",
+      "chapter": "06-eigenvalues",
+      "description": "利用A=PΛP^{-1}计算矩阵高次幂，以及特征值在幂与逆矩阵下的变化规律。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-003"
+      ]
+     }
+    ],
+    "edges": [
+     {
+      "from": "vectors_linear_ops",
+      "to": "vector_geometry",
+      "reason": "先掌握向量的分量运算，才能理解其几何表示与平行四边形法则。"
+     },
+     {
+      "from": "vectors_linear_ops",
+      "to": "inner_product_norm",
+      "reason": "内积按分量定义，需先熟悉向量的分量表示。"
+     },
+     {
+      "from": "inner_product_norm",
+      "to": "orthogonality_angle",
+      "reason": "正交与夹角由内积和长度定义，必须先学内积与模。"
+     },
+     {
+      "from": "vectors_linear_ops",
+      "to": "matrix_add_scalar",
+      "reason": "矩阵加法与数乘的规律与向量线性运算相同，需先学向量运算。"
+     },
+     {
+      "from": "matrix_add_scalar",
+      "to": "matrix_multiplication",
+      "reason": "矩阵乘法建立在矩阵元素与加法数乘之上。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "matrix_transpose",
+      "reason": "转置性质(AB)^T=B^T A^T涉及矩阵乘法。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "inverse_matrix",
+      "reason": "逆矩阵定义AB=BA=I依赖矩阵乘法。"
+     },
+     {
+      "from": "inverse_matrix",
+      "to": "inverse_2x2",
+      "reason": "二阶求逆公式是逆矩阵定义与判定的具体计算。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "inverse_2x2",
+      "reason": "二阶求逆公式中的分母ad-bc即二阶行列式。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "det_properties",
+      "reason": "先会计算低阶行列式，才能验证和理解行列式性质。"
+     },
+     {
+      "from": "det_2_3",
+      "to": "cofactor_expansion",
+      "reason": "余子式本身是低阶行列式，按行展开需先会算行列式。"
+     },
+     {
+      "from": "det_properties",
+      "to": "cofactor_expansion",
+      "reason": "按行展开的符号规律与性质结合使用，需先了解行列式性质。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "gaussian_elimination",
+      "reason": "增广矩阵与初等行变换以矩阵运算为基础。"
+     },
+     {
+      "from": "gaussian_elimination",
+      "to": "matrix_rank",
+      "reason": "秩通过初等行变换化为行阶梯形后计数非零行得到。"
+     },
+     {
+      "from": "matrix_rank",
+      "to": "solution_existence",
+      "reason": "解的存在性判定直接使用系数矩阵与增广矩阵的秩。"
+     },
+     {
+      "from": "solution_existence",
+      "to": "homogeneous_solution",
+      "reason": "齐次解结构是解的存在性结论在b=0时的细化。"
+     },
+     {
+      "from": "matrix_rank",
+      "to": "linear_dependence",
+      "reason": "线性相关的判定等价于以向量为列的矩阵秩小于向量个数。"
+     },
+     {
+      "from": "linear_dependence",
+      "to": "basis_dimension",
+      "reason": "基要求线性无关且张成，需先掌握线性无关概念。"
+     },
+     {
+      "from": "basis_dimension",
+      "to": "coordinates",
+      "reason": "坐标是向量在取定基下的唯一线性组合系数。"
+     },
+     {
+      "from": "det_properties",
+      "to": "eigenvalues",
+      "reason": "特征方程det(λI-A)=0需要会计算行列式。"
+     },
+     {
+      "from": "homogeneous_solution",
+      "to": "eigenvectors_compute",
+      "reason": "求特征向量即解齐次方程组(λI-A)x=0。"
+     },
+     {
+      "from": "eigenvalues",
+      "to": "eigenvectors_compute",
+      "reason": "先求出特征值，才能解对应齐次方程组求特征向量。"
+     },
+     {
+      "from": "eigenvectors_compute",
+      "to": "similar_diagonalization",
+      "reason": "可对角化等价于有n个线性无关的特征向量，需会求特征向量。"
+     },
+     {
+      "from": "similar_diagonalization",
+      "to": "diagonalization_application",
+      "reason": "高次幂计算依赖对角化分解A=PΛP^{-1}。"
+     }
+    ]
+   },
+   "quality": {
+    "draft_nodes": 23,
+    "draft_edges": 24,
+    "reference_nodes": 12,
+    "reference_edges": 16,
+    "node_recall": 1.0,
+    "node_precision": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.75,
+    "edge_reachability_recall": 0.812,
+    "reversed_edges": 0
+   }
+  },
+  {
+   "draft_id": "4ffdb2a9-9c0e-4c99-9cf6-cf89d8c8988b",
+   "meta": {
+    "prompt_version": "graph-draft-v1.1",
+    "model": "deepseek-flash",
+    "provider_mode": "real",
+    "model_calls": 1,
+    "usage": {
+     "input_tokens": 4316,
+     "output_tokens": 2417
+    },
+    "repaired": false,
+    "trace_id": "9141c2d7-e615-4bae-ac24-6e500b2b1117",
+    "elapsed_ms": 10859,
+    "chunks_used": 23,
+    "truncated": false
+   },
+   "payload": {
+    "nodes": [
+     {
+      "slug": "vector_linear_ops",
+      "name": "向量与线性运算",
+      "chapter": "01-vectors",
+      "description": "n维向量的定义，加法与数乘的逐分量运算及线性运算律。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-000"
+      ]
+     },
+     {
+      "slug": "vector_geometry",
+      "name": "向量的几何意义与零向量",
+      "chapter": "01-vectors",
+      "description": "二维三维向量的有向线段表示、平行四边形法则、数乘伸缩及零向量作为加法单位元。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-001"
+      ]
+     },
+     {
+      "slug": "inner_product_norm",
+      "name": "内积与向量长度",
+      "chapter": "01-vectors",
+      "description": "内积（点积）的定义与对称性、线性性，以及由内积导出的向量模。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-002"
+      ]
+     },
+     {
+      "slug": "orthogonality_angle",
+      "name": "正交与夹角",
+      "chapter": "01-vectors",
+      "description": "用内积与模表示两向量夹角余弦，内积为零即正交，并会求正交参数。",
+      "evidence": [
+       "0e737917-31e9-4684-9c45-d1a658f21e95-003"
+      ]
+     },
+     {
+      "slug": "matrix_add_scalar",
+      "name": "矩阵的加法与数乘",
+      "chapter": "02-matrices",
+      "description": "矩阵概念，同型矩阵逐元素相加与数乘，运算规律与向量线性运算一致。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-000"
+      ]
+     },
+     {
+      "slug": "matrix_multiplication",
+      "name": "矩阵乘法",
+      "chapter": "02-matrices",
+      "description": "矩阵乘法的定义、可乘条件、元素求和公式及结合律分配律但不满足交换律。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-001"
+      ]
+     },
+     {
+      "slug": "matrix_transpose",
+      "name": "矩阵转置",
+      "chapter": "02-matrices",
+      "description": "转置的定义与性质，包括乘积转置顺序相反及对称矩阵概念。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-002"
+      ]
+     },
+     {
+      "slug": "inverse_matrix",
+      "name": "逆矩阵",
+      "chapter": "02-matrices",
+      "description": "逆矩阵的定义与唯一性、可逆的充要条件及逆与转置、乘积的运算性质。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-003"
+      ]
+     },
+     {
+      "slug": "inverse_2x2",
+      "name": "二阶矩阵求逆公式",
+      "chapter": "02-matrices",
+      "description": "用行列式与伴随形式写出二阶矩阵的逆矩阵公式并计算。",
+      "evidence": [
+       "a6faac97-cbf3-43ea-99d6-c7bb7090b303-004"
+      ]
+     },
+     {
+      "slug": "determinant_2_3",
+      "name": "二阶与三阶行列式",
+      "chapter": "03-determinants",
+      "description": "二阶行列式对角线相减与三阶行列式的对角线法则计算。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-000"
+      ]
+     },
+     {
+      "slug": "determinant_properties",
+      "name": "行列式的性质",
+      "chapter": "03-determinants",
+      "description": "行列式在行变换、转置、乘积下的性质，三角化计算及det(kA)易错点。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-001"
+      ]
+     },
+     {
+      "slug": "cofactor_expansion",
+      "name": "余子式与按行展开",
+      "chapter": "03-determinants",
+      "description": "余子式与代数余子式定义，按行或列展开计算行列式及符号规律。",
+      "evidence": [
+       "8430f9f1-b0c9-4b31-930c-753fea79c89f-002"
+      ]
+     },
+     {
+      "slug": "gaussian_elimination",
+      "name": "高斯消元法",
+      "chapter": "04-linear-systems",
+      "description": "用初等行变换把增广矩阵化为行阶梯形并回代求解线性方程组。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-000"
+      ]
+     },
+     {
+      "slug": "matrix_rank",
+      "name": "矩阵的秩",
+      "chapter": "04-linear-systems",
+      "description": "秩的定义、初等变换不变性、与可逆性的关系及基本不等式。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-001"
+      ]
+     },
+     {
+      "slug": "solution_existence",
+      "name": "线性方程组解的存在性",
+      "chapter": "04-linear-systems",
+      "description": "用系数矩阵与增广矩阵的秩判定无解、唯一解、无穷多解。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-002"
+      ]
+     },
+     {
+      "slug": "homogeneous_solution",
+      "name": "齐次方程组解的结构",
+      "chapter": "04-linear-systems",
+      "description": "齐次方程组解空间维数n-r、基础解系，以及非齐次通解=特解+齐次通解。",
+      "evidence": [
+       "9574e603-c839-4735-bbdb-51030ba39e1e-003"
+      ]
+     },
+     {
+      "slug": "linear_dependence",
+      "name": "线性相关与线性无关",
+      "chapter": "05-vector-spaces",
+      "description": "线性相关与无关的定义、用矩阵秩判定及常见结论。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-000"
+      ]
+     },
+     {
+      "slug": "basis_dimension",
+      "name": "基与维数",
+      "chapter": "05-vector-spaces",
+      "description": "张成空间、基与维数的概念，张成空间维数等于矩阵的秩。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-001"
+      ]
+     },
+     {
+      "slug": "coordinates",
+      "name": "坐标",
+      "chapter": "05-vector-spaces",
+      "description": "取定基后向量坐标的唯一表示，以及坐标随基变化。",
+      "evidence": [
+       "80861443-f8c1-4b1e-aca4-1380c881f83f-002"
+      ]
+     },
+     {
+      "slug": "eigenvalues",
+      "name": "特征值与特征向量",
+      "chapter": "06-eigenvalues",
+      "description": "特征值与特征向量的定义，特征方程及二阶矩阵特征方程形式。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-000"
+      ]
+     },
+     {
+      "slug": "eigenvectors_compute",
+      "name": "求特征向量",
+      "chapter": "06-eigenvalues",
+      "description": "解齐次方程组(λI-A)x=0求特征向量，基础解系个数为n-r(λI-A)。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-001"
+      ]
+     },
+     {
+      "slug": "similar_diagonalization",
+      "name": "相似与对角化",
+      "chapter": "06-eigenvalues",
+      "description": "相似矩阵的性质，可对角化的充要条件及构造P与Λ。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-002"
+      ]
+     },
+     {
+      "slug": "diagonalization_application",
+      "name": "对角化的应用",
+      "chapter": "06-eigenvalues",
+      "description": "利用对角化计算矩阵高次幂及特征值在幂与逆下的变化。",
+      "evidence": [
+       "3a7db32f-9391-46c0-9557-a3fab3af9fb1-003"
+      ]
+     }
+    ],
+    "edges": [
+     {
+      "from": "vector_linear_ops",
+      "to": "vector_geometry",
+      "reason": "先掌握向量加法与数乘的代数运算，才能理解其几何表示。"
+     },
+     {
+      "from": "vector_linear_ops",
+      "to": "inner_product_norm",
+      "reason": "内积按分量定义，需要先熟悉向量的分量表示。"
+     },
+     {
+      "from": "inner_product_norm",
+      "to": "orthogonality_angle",
+      "reason": "正交与夹角由内积和模定义。"
+     },
+     {
+      "from": "vector_linear_ops",
+      "to": "matrix_add_scalar",
+      "reason": "矩阵加法与数乘的规律与向量线性运算相同。"
+     },
+     {
+      "from": "matrix_add_scalar",
+      "to": "matrix_multiplication",
+      "reason": "矩阵乘法建立在矩阵元素与线性运算之上。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "matrix_transpose",
+      "reason": "转置性质涉及乘积转置，需先学矩阵乘法。"
+     },
+     {
+      "from": "matrix_multiplication",
+      "to": "inverse_matrix",
+      "reason": "逆矩阵定义用矩阵乘积AB=BA=I表述。"
+     },
+     {
+      "from": "determinant_2_3",
+      "to": "inverse_matrix",
+      "reason": "可逆的充要条件det A≠0需要行列式概念。"
+     },
+     {
+      "from": "inverse_2x2",
+      "to": "inverse_matrix",
+      "reason": "二阶公式是逆矩阵定义的具体计算实例。"
+     },
+     {
+      "from": "determinant_2_3",
+      "to": "inverse_2x2",
+      "reason": "二阶求逆公式需要计算二阶行列式。"
+     },
+     {
+      "from": "determinant_2_3",
+      "to": "determinant_properties",
+      "reason": "先会计算行列式，再讨论其性质。"
+     },
+     {
+      "from": "determinant_properties",
+      "to": "cofactor_expansion",
+      "reason": "按行展开的化简依赖行列式性质。"
+     },
+     {
+      "from": "gaussian_elimination",
+      "to": "matrix_rank",
+      "reason": "秩通过初等行变换化为行阶梯形后确定。"
+     },
+     {
+      "from": "gaussian_elimination",
+      "to": "solution_existence",
+      "reason": "解的存在性判定基于消元后的阶梯形。"
+     },
+     {
+      "from": "matrix_rank",
+      "to": "solution_existence",
+      "reason": "用r(A)与r([A|b])比较判定解的情况。"
+     },
+     {
+      "from": "solution_existence",
+      "to": "homogeneous_solution",
+      "reason": "齐次解结构是理解非齐次通解的基础。"
+     },
+     {
+      "from": "matrix_rank",
+      "to": "linear_dependence",
+      "reason": "线性相关性用向量组矩阵的秩判定。"
+     },
+     {
+      "from": "linear_dependence",
+      "to": "basis_dimension",
+      "reason": "基要求线性无关且张成，需先掌握线性无关。"
+     },
+     {
+      "from": "basis_dimension",
+      "to": "coordinates",
+      "reason": "坐标是相对于一组基定义的。"
+     },
+     {
+      "from": "determinant_properties",
+      "to": "eigenvalues",
+      "reason": "特征方程det(λI-A)=0需要行列式计算。"
+     },
+     {
+      "from": "homogeneous_solution",
+      "to": "eigenvectors_compute",
+      "reason": "求特征向量即解齐次方程组(λI-A)x=0。"
+     },
+     {
+      "from": "eigenvalues",
+      "to": "eigenvectors_compute",
+      "reason": "先求特征值，再求对应特征向量。"
+     },
+     {
+      "from": "eigenvectors_compute",
+      "to": "similar_diagonalization",
+      "reason": "可对角化需要n个线性无关的特征向量。"
+     },
+     {
+      "from": "similar_diagonalization",
+      "to": "diagonalization_application",
+      "reason": "高次幂计算依赖A=PΛP^{-1}的对角化。"
+     }
+    ]
+   },
+   "quality": {
+    "draft_nodes": 23,
+    "draft_edges": 24,
+    "reference_nodes": 12,
+    "reference_edges": 16,
+    "node_recall": 1.0,
+    "node_precision": 1.0,
+    "edge_precision": 0.917,
+    "edge_recall": 0.688,
+    "edge_reachability_recall": 0.688,
+    "reversed_edges": 0
+   }
+  }
+ ],
+ "review_diff": {
+  "nodes_original": 23,
+  "nodes_final": 12,
+  "nodes_added": 10,
+  "nodes_removed": 21,
+  "nodes_edited": 2,
+  "edges_original": 24,
+  "edges_final": 16,
+  "edges_added": 16,
+  "edges_removed": 24,
+  "node_change_ratio": 1.4348,
+  "edge_change_ratio": 1.6667
+ },
+ "knowledge_ids": {
+  "vectors": "linalg.vectors",
+  "dot_product": "linalg.dot_product",
+  "matrix_ops": "linalg.matrix_ops",
+  "determinant": "linalg.determinant",
+  "matrix_inverse": "linalg.matrix_inverse",
+  "gaussian_elimination": "linalg.gaussian_elimination",
+  "rank": "linalg.rank",
+  "solution_structure": "linalg.solution_structure",
+  "linear_independence": "linalg.linear_independence",
+  "basis_dimension": "linalg.basis_dimension",
+  "eigen": "linalg.eigen",
+  "diagonalization": "linalg.diagonalization"
+ },
+ "questions_imported": 96,
+ "students": [
+  "la_alice",
+  "la_bob"
+ ]
+}

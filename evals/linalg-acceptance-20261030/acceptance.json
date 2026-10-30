@@ -1,0 +1,207 @@
+{
+ "passed": 16,
+ "total": 16,
+ "checks": [
+  {
+   "name": "student sees both courses",
+   "ok": true,
+   "detail": [
+    "hs-math",
+    "linalg"
+   ]
+  },
+  {
+   "name": "course graph is the reviewed one",
+   "ok": true,
+   "detail": 12
+  },
+  {
+   "name": "cold start recommends a course starting point",
+   "ok": true,
+   "detail": "linalg.vectors"
+  },
+  {
+   "name": "answers are judged by the backend",
+   "ok": true,
+   "detail": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ]
+  },
+  {
+   "name": "practice stays inside the course",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "course report counts the course attempts",
+   "ok": true,
+   "detail": 5
+  },
+  {
+   "name": "other course report unaffected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "mastery updated from attempts",
+   "ok": true,
+   "detail": {
+    "linalg.vectors": 0.7142857142857143
+   }
+  },
+  {
+   "name": "mistake book is course scoped",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "real-model RAG answer cites only this course",
+   "ok": true,
+   "detail": [
+    "completed",
+    null
+   ]
+  },
+  {
+   "name": "high-school question in this course gets no high-school evidence",
+   "ok": true,
+   "detail": "insufficient_evidence"
+  },
+  {
+   "name": "conversation invisible from the other course",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "real-model Agent plan uses only this course",
+   "ok": true,
+   "detail": [
+    "completed",
+    null,
+    [
+     "linalg.vectors",
+     "linalg.vectors",
+     "linalg.vectors"
+    ]
+   ]
+  },
+  {
+   "name": "teacher dashboard shows both students",
+   "ok": true,
+   "detail": [
+    "la_alice",
+    "la_bob"
+   ]
+  },
+  {
+   "name": "dashboard attempts match",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "other course dashboard has no new-course activity",
+   "ok": true,
+   "detail": null
+  }
+ ],
+ "notes": {
+  "alice_mastery": {
+   "linalg.vectors": 0.7142857142857143
+  },
+  "rag_in_course": {
+   "status": "completed",
+   "citations": [
+    "a6faac97-cbf3-43ea-99d6-c7bb7090b303-003"
+   ],
+   "answer": "判断 $n$ 阶方阵 $A$ 是否可逆，核心结论是：**$A$ 可逆当且仅当 $\\det A\\ne 0$**。\n\n**思路**\n\n按定义，若存在同阶方阵 $B$ 使 $AB=BA=I$，则 $A$ 可逆，且逆矩阵唯一。实际判断时不必去找 $B$，直接看行列式即可。\n\n**关键步骤**\n\n1. 计算 $A$ 的行列式 $\\det A$；\n2. 若 $\\det A\\ne 0$，则 $A$ 可逆；若 $\\det A=0$，则 $A$ 不可逆（奇异矩阵）。\n\n**易错点**\n\n- 该判据只适用于**方阵**，非方阵不谈可逆；\n- 可逆时求逆要注意顺序：$(AB)^{-1}=B^{-1}A^{-1}$，不能写成 $A^{-1}B^{-1}$；\n- 转置与求逆可交换：$(A^{T})^{-1}=(A^{-1})^{T}$。\n\n以上依据本次资料包中“逆矩阵的定义”一节。",
+   "diagnostics": {
+    "elapsed_ms": 3875,
+    "model_calls": 1,
+    "provider_attempts": 1,
+    "usage": {
+     "input_tokens": 753,
+     "output_tokens": 318
+    }
+   }
+  },
+  "other_subject_question": {
+   "status": "insufficient_evidence",
+   "citations": [],
+   "answer": "当前知识库没有达到证据阈值的资料。请补充具体知识点、公式或解题步骤；本库仅覆盖线性代数前六章（向量、矩阵、行列式、线性方程组、向量空间、特征值），不能据此回答其他领域问题。"
+  },
+  "agent_plan": {
+   "status": "completed",
+   "error": null,
+   "tools": [
+    "get_learning_profile",
+    "get_wrong_questions",
+    "recommend_practice",
+    "get_mastery",
+    "get_prerequisites",
+    "search_knowledge"
+   ],
+   "tasks": [
+    "linalg.vectors",
+    "linalg.vectors",
+    "linalg.vectors"
+   ],
+   "origin": "model",
+   "diagnostics": {
+    "elapsed_ms": 14453,
+    "model_calls": 4,
+    "provider_attempts": 4,
+    "usage": {
+     "input_tokens": 10620,
+     "output_tokens": 2326
+    }
+   },
+   "answer": "**诊断（基于服务器记录）**\n\n- 你最近 4 道错题全部属于「向量与线性运算」（linalg.vectors），都是形如 $a\\mathbf{u}+\\mathbf{v}$ 求某个分量的线性运算题。\n- 该知识点当前掌握度约 29%（5 条有效样本，状态“学习中”，尚未通过），没有先修缺口，可以直接开始复习。\n- 错题记录只显示所选选项与正确答案不同，不包含你的思考过程，因此无法判断原因；从题型看，值得重点检查的易错点是：**数乘时是否把系数乘到了两个分量上**，以及**求“第 2 个分量”时是否误用了第 1 个分量**。\n\n**思路与关键步骤**\n\n对 $\\mathbf{u}=(u_1,u_2)$、$\\mathbf{v}=(v_1,v_2)$，有\n$$a\\mathbf{u}+\\mathbf{v}=(a u_1+v_1,\\; a u_2+v_2).$$\n\n1. 先做数乘：$a\\mathbf{u}=(a u_1, a u_2)$，系数要乘到**每一个**分量上。\n2. 再做加法：对应分量相加，第 1 个分量只与第 1 个分量相加。\n3. 最后按题目要求只取指定分量，并回代检验。\n\n以错题 145 为例：$\\mathbf{u}=(5,-2)$，$\\mathbf{v}=(3,3)$，$2\\mathbf{u}+\\mathbf{v}=(10+3,\\,-4+3)=(13,-1)$，第 1 个"
+  },
+  "sticking_points": [
+   {
+    "knowledge_id": "linalg.vectors",
+    "name": "向量与线性运算",
+    "count": 2,
+    "students": [
+     "la_alice",
+     "la_bob"
+    ],
+    "blocks": [
+     "内积与正交",
+     "线性相关性",
+     "矩阵运算"
+    ]
+   }
+  ],
+  "frequent_mistakes": [
+   {
+    "question_id": 145,
+    "knowledge_id": "linalg.vectors",
+    "knowledge": "向量与线性运算",
+    "stem": "设 $\\mathbf{u}=(5,-2)$，$\\mathbf{v}=(3,3)$，求 $2\\mathbf{u}+\\mathbf{v}$ 的第 1 个分量。",
+    "errors": 2,
+    "students": 2
+   },
+   {
+    "question_id": 141,
+    "knowledge_id": "linalg.vectors",
+    "knowledge": "向量与线性运算",
+    "stem": "设 $\\mathbf{u}=(1,2)$，$\\mathbf{v}=(3,-1)$，求 $2\\mathbf{u}+\\mathbf{v}$ 的第 1 个分量。",
+    "errors": 1,
+    "students": 1
+   },
+   {
+    "question_id": 142,
+    "knowledge_id": "linalg.vectors",
+    "knowledge": "向量与线性运算",
+    "stem": "设 $\\mathbf{u}=(2,1)$，$\\mathbf{v}=(3,0)$，求 $3\\mathbf{u}+\\mathbf{v}$ 的第 2 个分量。",
+    "errors": 1,
+    "students": 1
+   }
+  ]
+ }
+}

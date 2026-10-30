@@ -1,0 +1,35 @@
+{
+  "_note": "Teacher-reviewed reference graph. evidence lists the note headings that teach each node; the import script maps them to chunk ids. Also used as the yardstick for scoring model drafts.",
+  "nodes": [
+    {"slug": "vectors", "name": "向量与线性运算", "chapter": "第一章 向量", "description": "向量的加法、数乘与线性组合，以及二三维向量的几何意义。", "evidence": ["向量与线性运算", "向量的几何意义"]},
+    {"slug": "dot_product", "name": "内积与正交", "chapter": "第一章 向量", "description": "内积、长度、夹角与正交的判定。", "evidence": ["内积与长度", "正交与夹角"]},
+    {"slug": "matrix_ops", "name": "矩阵运算", "chapter": "第二章 矩阵", "description": "矩阵的加法、数乘、乘法与转置，乘法不满足交换律。", "evidence": ["矩阵的加法与数乘", "矩阵乘法", "转置"]},
+    {"slug": "determinant", "name": "行列式", "chapter": "第三章 行列式", "description": "二三阶行列式的计算、行列式的性质与按行展开。", "evidence": ["二阶与三阶行列式", "行列式的性质", "按行展开"]},
+    {"slug": "matrix_inverse", "name": "逆矩阵", "chapter": "第二章 矩阵", "description": "逆矩阵的定义、可逆条件与二阶矩阵求逆公式。", "evidence": ["逆矩阵的定义", "二阶矩阵求逆公式"]},
+    {"slug": "gaussian_elimination", "name": "高斯消元", "chapter": "第四章 线性方程组", "description": "用初等行变换化行阶梯形并回代求解线性方程组。", "evidence": ["高斯消元法"]},
+    {"slug": "rank", "name": "矩阵的秩", "chapter": "第四章 线性方程组", "description": "行阶梯形非零行数，秩与可逆的关系。", "evidence": ["矩阵的秩"]},
+    {"slug": "solution_structure", "name": "解的存在性与结构", "chapter": "第四章 线性方程组", "description": "用秩判断解的个数，齐次方程组基础解系的个数。", "evidence": ["解的存在性", "齐次方程组解的结构"]},
+    {"slug": "linear_independence", "name": "线性相关性", "chapter": "第五章 向量空间", "description": "线性相关与线性无关的定义和用秩判定。", "evidence": ["线性相关与线性无关"]},
+    {"slug": "basis_dimension", "name": "基与维数", "chapter": "第五章 向量空间", "description": "张成空间、基、维数与坐标。", "evidence": ["基与维数", "坐标"]},
+    {"slug": "eigen", "name": "特征值与特征向量", "chapter": "第六章 特征值", "description": "特征方程、迹与行列式关系，以及特征向量的求法。", "evidence": ["特征值与特征向量", "求特征向量"]},
+    {"slug": "diagonalization", "name": "相似对角化", "chapter": "第六章 特征值", "description": "相似矩阵、可对角化条件与矩阵幂的计算。", "evidence": ["相似与对角化", "对角化的应用"]}
+  ],
+  "edges": [
+    {"from": "vectors", "to": "dot_product", "reason": "内积建立在向量运算之上"},
+    {"from": "vectors", "to": "matrix_ops", "reason": "矩阵乘法按行列向量的内积式组合计算"},
+    {"from": "matrix_ops", "to": "determinant", "reason": "行列式性质涉及矩阵乘积与转置"},
+    {"from": "matrix_ops", "to": "matrix_inverse", "reason": "逆矩阵由矩阵乘法定义"},
+    {"from": "determinant", "to": "matrix_inverse", "reason": "可逆条件与求逆公式都依赖行列式"},
+    {"from": "matrix_ops", "to": "gaussian_elimination", "reason": "方程组写成增广矩阵进行行变换"},
+    {"from": "gaussian_elimination", "to": "rank", "reason": "秩由行阶梯形的非零行数确定"},
+    {"from": "rank", "to": "solution_structure", "reason": "解的个数与基础解系个数由秩判断"},
+    {"from": "vectors", "to": "linear_independence", "reason": "线性相关由向量的线性组合定义"},
+    {"from": "rank", "to": "linear_independence", "reason": "用矩阵的秩判定线性相关性"},
+    {"from": "linear_independence", "to": "basis_dimension", "reason": "基要求线性无关"},
+    {"from": "determinant", "to": "eigen", "reason": "特征值是特征方程行列式的根"},
+    {"from": "solution_structure", "to": "eigen", "reason": "特征向量是齐次方程组的非零解"},
+    {"from": "eigen", "to": "diagonalization", "reason": "对角化由特征值和特征向量构成"},
+    {"from": "matrix_inverse", "to": "diagonalization", "reason": "相似变换需要可逆矩阵 P"},
+    {"from": "linear_independence", "to": "diagonalization", "reason": "可对角化当且仅当有 n 个线性无关的特征向量"}
+  ]
+}

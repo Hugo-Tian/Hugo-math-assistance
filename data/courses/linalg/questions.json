@@ -1,0 +1,1346 @@
+[
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(1,2)$，$\\mathbf{v}=(3,-1)$，求 $2\\mathbf{u}+\\mathbf{v}$ 的第 1 个分量。",
+  "options": [
+   "5",
+   "7",
+   "-1",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "线性运算逐分量进行：第 1 个分量为 $2\\times(1)+(3)=5$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(2,1)$，$\\mathbf{v}=(3,0)$，求 $3\\mathbf{u}+\\mathbf{v}$ 的第 2 个分量。",
+  "options": [
+   "1",
+   "3",
+   "9",
+   "4"
+  ],
+  "answer": 1,
+  "explanation": "线性运算逐分量进行：第 2 个分量为 $3\\times(1)+(0)=3$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(3,0)$，$\\mathbf{v}=(3,1)$，求 $2\\mathbf{u}+\\mathbf{v}$ 的第 1 个分量。",
+  "options": [
+   "3",
+   "1",
+   "9",
+   "10"
+  ],
+  "answer": 2,
+  "explanation": "线性运算逐分量进行：第 1 个分量为 $2\\times(3)+(3)=9$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(4,-1)$，$\\mathbf{v}=(3,2)$，求 $3\\mathbf{u}+\\mathbf{v}$ 的第 2 个分量。",
+  "options": [
+   "5",
+   "-5",
+   "15",
+   "-1"
+  ],
+  "answer": 3,
+  "explanation": "线性运算逐分量进行：第 2 个分量为 $3\\times(-1)+(2)=-1$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(5,-2)$，$\\mathbf{v}=(3,3)$，求 $2\\mathbf{u}+\\mathbf{v}$ 的第 1 个分量。",
+  "options": [
+   "13",
+   "11",
+   "7",
+   "-1"
+  ],
+  "answer": 0,
+  "explanation": "线性运算逐分量进行：第 1 个分量为 $2\\times(5)+(3)=13$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(6,-3)$，$\\mathbf{v}=(3,4)$，求 $3\\mathbf{u}+\\mathbf{v}$ 的第 2 个分量。",
+  "options": [
+   "9",
+   "-5",
+   "-13",
+   "21"
+  ],
+  "answer": 1,
+  "explanation": "线性运算逐分量进行：第 2 个分量为 $3\\times(-3)+(4)=-5$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(7,-4)$，$\\mathbf{v}=(3,5)$，求 $2\\mathbf{u}+\\mathbf{v}$ 的第 1 个分量。",
+  "options": [
+   "13",
+   "11",
+   "17",
+   "-3"
+  ],
+  "answer": 2,
+  "explanation": "线性运算逐分量进行：第 1 个分量为 $2\\times(7)+(3)=17$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "vectors",
+  "stem": "设 $\\mathbf{u}=(8,-5)$，$\\mathbf{v}=(3,6)$，求 $3\\mathbf{u}+\\mathbf{v}$ 的第 2 个分量。",
+  "options": [
+   "13",
+   "-21",
+   "27",
+   "-9"
+  ],
+  "answer": 3,
+  "explanation": "线性运算逐分量进行：第 2 个分量为 $3\\times(-5)+(6)=-9$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "计算内积 $(1,-1,2)\\cdot(2,3,1)$。",
+  "options": [
+   "1",
+   "2",
+   "8",
+   "-1"
+  ],
+  "answer": 0,
+  "explanation": "对应分量相乘再相加：$1\\cdot2+(-1)\\cdot3+2\\cdot1=1$。结果是数，不是向量。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "当 $k$ 为何值时，$(1,k,2)$ 与 $(2,2,-1)$ 正交？",
+  "options": [
+   "1",
+   "0",
+   "-1",
+   "2"
+  ],
+  "answer": 1,
+  "explanation": "正交即内积为零：$2+2k+2\\times(-1)=0$，解得 $k=0$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "计算内积 $(2,-1,2)\\cdot(2,3,2)$。",
+  "options": [
+   "4",
+   "10",
+   "5",
+   "-5"
+  ],
+  "answer": 2,
+  "explanation": "对应分量相乘再相加：$2\\cdot2+(-1)\\cdot3+2\\cdot2=5$。结果是数，不是向量。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "当 $k$ 为何值时，$(1,k,2)$ 与 $(3,1,-1)$ 正交？",
+  "options": [
+   "1",
+   "0",
+   "-2",
+   "-1"
+  ],
+  "answer": 3,
+  "explanation": "正交即内积为零：$3+1k+2\\times(-1)=0$，解得 $k=-1$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "计算内积 $(3,-1,2)\\cdot(2,3,3)$。",
+  "options": [
+   "9",
+   "6",
+   "12",
+   "-9"
+  ],
+  "answer": 0,
+  "explanation": "对应分量相乘再相加：$3\\cdot2+(-1)\\cdot3+2\\cdot3=9$。结果是数，不是向量。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "当 $k$ 为何值时，$(1,k,2)$ 与 $(4,3,-1)$ 正交？",
+  "options": [
+   "2/3",
+   "-2/3",
+   "2",
+   "1/3"
+  ],
+  "answer": 1,
+  "explanation": "正交即内积为零：$4+3k+2\\times(-1)=0$，解得 $k=-2/3$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "计算内积 $(4,-1,2)\\cdot(2,3,4)$。",
+  "options": [
+   "8",
+   "14",
+   "13",
+   "-13"
+  ],
+  "answer": 2,
+  "explanation": "对应分量相乘再相加：$4\\cdot2+(-1)\\cdot3+2\\cdot4=13$。结果是数，不是向量。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "dot_product",
+  "stem": "当 $k$ 为何值时，$(1,k,2)$ 与 $(5,2,-1)$ 正交？",
+  "options": [
+   "3/2",
+   "3",
+   "-1/2",
+   "-3/2"
+  ],
+  "answer": 3,
+  "explanation": "正交即内积为零：$5+2k+2\\times(-1)=0$，解得 $k=-3/2$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&1\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}1&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "2",
+   "1",
+   "0",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+1\\cdot2=2$。注意 $AB\\ne BA$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}2&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "0",
+   "4",
+   "2",
+   "5"
+  ],
+  "answer": 1,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+2\\cdot2=4$。注意 $AB\\ne BA$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&3\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}3&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "9",
+   "0",
+   "6",
+   "3"
+  ],
+  "answer": 2,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+3\\cdot2=6$。注意 $AB\\ne BA$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&1\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}4&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "4",
+   "0",
+   "1",
+   "2"
+  ],
+  "answer": 3,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+1\\cdot2=2$。注意 $AB\\ne BA$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}5&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "4",
+   "10",
+   "0",
+   "2"
+  ],
+  "answer": 0,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+2\\cdot2=4$。注意 $AB\\ne BA$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&3\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}6&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "18",
+   "6",
+   "0",
+   "3"
+  ],
+  "answer": 1,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+3\\cdot2=6$。注意 $AB\\ne BA$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&1\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}7&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "7",
+   "0",
+   "2",
+   "1"
+  ],
+  "answer": 2,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+1\\cdot2=2$。注意 $AB\\ne BA$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_ops",
+  "stem": "设 $A=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$，$B=\\begin{pmatrix}8&0\\\\1&2\\end{pmatrix}$，求 $AB$ 第 1 行第 2 列的元素。",
+  "options": [
+   "16",
+   "0",
+   "2",
+   "4"
+  ],
+  "answer": 3,
+  "explanation": "$(AB)_{12}$ 是 $A$ 的第 1 行与 $B$ 的第 2 列的内积：$1\\cdot0+2\\cdot2=4$。注意 $AB\\ne BA$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算二阶行列式 $\\begin{vmatrix}2&3\\\\1&2\\end{vmatrix}$。",
+  "options": [
+   "1",
+   "7",
+   "-1",
+   "0"
+  ],
+  "answer": 0,
+  "explanation": "主对角线乘积减副对角线乘积：$2\\times2-3\\times1=1$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算三阶行列式 $\\det\\begin{pmatrix}1&2&0\\\\0&1&3\\\\2&0&1\\end{pmatrix}$。",
+  "options": [
+   "-13",
+   "13",
+   "15",
+   "1"
+  ],
+  "answer": 1,
+  "explanation": "按对角线法则：$1\\cdot1\\cdot1+2\\cdot3\\cdot2+0-0-1\\cdot3\\cdot0-2\\cdot0\\cdot1=13$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算二阶行列式 $\\begin{vmatrix}4&3\\\\1&3\\end{vmatrix}$。",
+  "options": [
+   "15",
+   "-9",
+   "9",
+   "-8"
+  ],
+  "answer": 2,
+  "explanation": "主对角线乘积减副对角线乘积：$4\\times3-3\\times1=9$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算三阶行列式 $\\det\\begin{pmatrix}1&2&0\\\\0&2&3\\\\2&0&1\\end{pmatrix}$。",
+  "options": [
+   "-14",
+   "16",
+   "2",
+   "14"
+  ],
+  "answer": 3,
+  "explanation": "按对角线法则：$1\\cdot2\\cdot1+2\\cdot3\\cdot2+0-0-1\\cdot3\\cdot0-2\\cdot0\\cdot1=14$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算二阶行列式 $\\begin{vmatrix}6&3\\\\1&4\\end{vmatrix}$。",
+  "options": [
+   "21",
+   "27",
+   "-21",
+   "-20"
+  ],
+  "answer": 0,
+  "explanation": "主对角线乘积减副对角线乘积：$6\\times4-3\\times1=21$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算三阶行列式 $\\det\\begin{pmatrix}1&2&0\\\\0&3&3\\\\2&0&1\\end{pmatrix}$。",
+  "options": [
+   "-15",
+   "15",
+   "17",
+   "3"
+  ],
+  "answer": 1,
+  "explanation": "按对角线法则：$1\\cdot3\\cdot1+2\\cdot3\\cdot2+0-0-1\\cdot3\\cdot0-2\\cdot0\\cdot1=15$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算二阶行列式 $\\begin{vmatrix}8&3\\\\1&5\\end{vmatrix}$。",
+  "options": [
+   "43",
+   "-37",
+   "37",
+   "-36"
+  ],
+  "answer": 2,
+  "explanation": "主对角线乘积减副对角线乘积：$8\\times5-3\\times1=37$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "determinant",
+  "stem": "计算三阶行列式 $\\det\\begin{pmatrix}1&2&0\\\\0&4&3\\\\2&0&1\\end{pmatrix}$。",
+  "options": [
+   "-16",
+   "18",
+   "4",
+   "16"
+  ],
+  "answer": 3,
+  "explanation": "按对角线法则：$1\\cdot4\\cdot1+2\\cdot3\\cdot2+0-0-1\\cdot3\\cdot0-2\\cdot0\\cdot1=16$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}2&1\\\\3&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 1 列的元素。",
+  "options": [
+   "2",
+   "-2",
+   "3",
+   "1"
+  ],
+  "answer": 0,
+  "explanation": "$\\det A=2\\cdot2-1\\cdot3=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 2。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}3&1\\\\5&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 2 列的元素。",
+  "options": [
+   "3",
+   "-1",
+   "1",
+   "0"
+  ],
+  "answer": 1,
+  "explanation": "$\\det A=3\\cdot2-1\\cdot5=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 -1。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}4&1\\\\7&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 1 列的元素。",
+  "options": [
+   "4",
+   "-2",
+   "2",
+   "3"
+  ],
+  "answer": 2,
+  "explanation": "$\\det A=4\\cdot2-1\\cdot7=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 2。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}5&1\\\\9&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 2 列的元素。",
+  "options": [
+   "5",
+   "1",
+   "0",
+   "-1"
+  ],
+  "answer": 3,
+  "explanation": "$\\det A=5\\cdot2-1\\cdot9=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 -1。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}6&1\\\\11&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 1 列的元素。",
+  "options": [
+   "2",
+   "6",
+   "-2",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "$\\det A=6\\cdot2-1\\cdot11=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 2。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}7&1\\\\13&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 2 列的元素。",
+  "options": [
+   "7",
+   "-1",
+   "1",
+   "0"
+  ],
+  "answer": 1,
+  "explanation": "$\\det A=7\\cdot2-1\\cdot13=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 -1。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}8&1\\\\15&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 1 列的元素。",
+  "options": [
+   "8",
+   "-2",
+   "2",
+   "3"
+  ],
+  "answer": 2,
+  "explanation": "$\\det A=8\\cdot2-1\\cdot15=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 2。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "matrix_inverse",
+  "stem": "设 $A=\\begin{pmatrix}9&1\\\\17&2\\end{pmatrix}$，求 $A^{-1}$ 第 1 行第 2 列的元素。",
+  "options": [
+   "9",
+   "1",
+   "0",
+   "-1"
+  ],
+  "answer": 3,
+  "explanation": "$\\det A=9\\cdot2-1\\cdot17=1$，$A^{-1}=\\frac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$，所求元素为 -1。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=3\\\\2x-y=0\\end{cases}$，求 $x$。",
+  "options": [
+   "1",
+   "2",
+   "-1",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=2$，回代得 $x=3-(2)=1$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=4\\\\2x-2y=0\\end{cases}$，求 $x$。",
+  "options": [
+   "-2",
+   "2",
+   "4",
+   "3"
+  ],
+  "answer": 1,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=2$，回代得 $x=4-(2)=2$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=4\\\\2x-y=5\\end{cases}$，求 $x$。",
+  "options": [
+   "1",
+   "-3",
+   "3",
+   "4"
+  ],
+  "answer": 2,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=1$，回代得 $x=4-(1)=3$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=5\\\\2x-2y=6\\end{cases}$，求 $x$。",
+  "options": [
+   "1",
+   "-4",
+   "5",
+   "4"
+  ],
+  "answer": 3,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=1$，回代得 $x=5-(1)=4$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=1\\\\2x-y=2\\end{cases}$，求 $x$。",
+  "options": [
+   "1",
+   "0",
+   "-1",
+   "2"
+  ],
+  "answer": 0,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=0$，回代得 $x=1-(0)=1$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=2\\\\2x-2y=4\\end{cases}$，求 $x$。",
+  "options": [
+   "0",
+   "2",
+   "-2",
+   "3"
+  ],
+  "answer": 1,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=0$，回代得 $x=2-(0)=2$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=2\\\\2x-y=7\\end{cases}$，求 $x$。",
+  "options": [
+   "-1",
+   "-3",
+   "3",
+   "2"
+  ],
+  "answer": 2,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=-1$，回代得 $x=2-(-1)=3$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "gaussian_elimination",
+  "stem": "用消元法解方程组 $\\begin{cases}x+y=3\\\\2x-2y=10\\end{cases}$，求 $x$。",
+  "options": [
+   "-1",
+   "-4",
+   "3",
+   "4"
+  ],
+  "answer": 3,
+  "explanation": "第二个方程减去第一个方程的 2 倍消去 $x$，得 $y=-1$，回代得 $x=3-(-1)=4$。可代回原方程检验。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&1&2\\\\2&2&4\\\\2&2&4\\end{pmatrix}$ 的秩。",
+  "options": [
+   "1",
+   "0",
+   "2",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。后两行都是第一行的倍数。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&2&0\\\\0&1&3\\\\1&3&3\\end{pmatrix}$ 的秩。",
+  "options": [
+   "0",
+   "2",
+   "1",
+   "3"
+  ],
+  "answer": 1,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。第三行等于前两行之和。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&3&0\\\\0&1&2\\\\1&0&1\\end{pmatrix}$ 的秩。",
+  "options": [
+   "0",
+   "1",
+   "3",
+   "2"
+  ],
+  "answer": 2,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。行列式不为零，矩阵满秩。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&1&0\\\\0&1&3\\\\1&2&3\\end{pmatrix}$ 的秩。",
+  "options": [
+   "0",
+   "1",
+   "3",
+   "2"
+  ],
+  "answer": 3,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。第三行等于前两行之和。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&2&2\\\\2&4&4\\\\2&4&4\\end{pmatrix}$ 的秩。",
+  "options": [
+   "1",
+   "0",
+   "2",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。后两行都是第一行的倍数。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&3&0\\\\0&1&3\\\\1&0&1\\end{pmatrix}$ 的秩。",
+  "options": [
+   "0",
+   "3",
+   "1",
+   "2"
+  ],
+  "answer": 1,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。行列式不为零，矩阵满秩。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&1&0\\\\0&1&2\\\\1&2&2\\end{pmatrix}$ 的秩。",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "answer": 2,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。第三行等于前两行之和。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "rank",
+  "stem": "求矩阵 $\\begin{pmatrix}1&2&0\\\\0&1&3\\\\1&0&1\\end{pmatrix}$ 的秩。",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "answer": 3,
+  "explanation": "用初等行变换化为行阶梯形，非零行个数即秩。行列式不为零，矩阵满秩。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "3 元齐次线性方程组 $A\\mathbf{x}=\\mathbf{0}$ 中 $r(A)=1$，其基础解系含几个向量？",
+  "options": [
+   "2",
+   "1",
+   "3",
+   "4"
+  ],
+  "answer": 0,
+  "explanation": "解空间维数为 $n-r=3-1=2$，基础解系含 2 个线性无关解。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "3 元线性方程组 $A\\mathbf{x}=\\mathbf{b}$ 满足 $r(A)=2,\\ r([A\\mid\\mathbf{b}])=3$，它的解的情况是？",
+  "options": [
+   "唯一解",
+   "无解",
+   "无穷多解",
+   "恰有两个解"
+  ],
+  "answer": 1,
+  "explanation": "r(A)<r([A|b])，方程组无解。线性方程组不会恰好有两个解。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "4 元齐次线性方程组 $A\\mathbf{x}=\\mathbf{0}$ 中 $r(A)=1$，其基础解系含几个向量？",
+  "options": [
+   "1",
+   "4",
+   "3",
+   "2"
+  ],
+  "answer": 2,
+  "explanation": "解空间维数为 $n-r=4-1=3$，基础解系含 3 个线性无关解。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "3 元线性方程组 $A\\mathbf{x}=\\mathbf{b}$ 满足 $r(A)=r([A\\mid\\mathbf{b}])=3$，它的解的情况是？",
+  "options": [
+   "无解",
+   "无穷多解",
+   "恰有两个解",
+   "唯一解"
+  ],
+  "answer": 3,
+  "explanation": "有解且 r(A) 等于未知数个数 3，解唯一。线性方程组不会恰好有两个解。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "5 元齐次线性方程组 $A\\mathbf{x}=\\mathbf{0}$ 中 $r(A)=2$，其基础解系含几个向量？",
+  "options": [
+   "3",
+   "2",
+   "5",
+   "4"
+  ],
+  "answer": 0,
+  "explanation": "解空间维数为 $n-r=5-2=3$，基础解系含 3 个线性无关解。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "3 元线性方程组 $A\\mathbf{x}=\\mathbf{b}$ 满足 $r(A)=r([A\\mid\\mathbf{b}])=2$，它的解的情况是？",
+  "options": [
+   "无解",
+   "无穷多解",
+   "唯一解",
+   "恰有两个解"
+  ],
+  "answer": 1,
+  "explanation": "有解且 r(A)=2<3，有无穷多解。线性方程组不会恰好有两个解。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "6 元齐次线性方程组 $A\\mathbf{x}=\\mathbf{0}$ 中 $r(A)=2$，其基础解系含几个向量？",
+  "options": [
+   "2",
+   "6",
+   "4",
+   "5"
+  ],
+  "answer": 2,
+  "explanation": "解空间维数为 $n-r=6-2=4$，基础解系含 4 个线性无关解。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "solution_structure",
+  "stem": "4 元线性方程组 $A\\mathbf{x}=\\mathbf{b}$ 满足 $r(A)=r([A\\mid\\mathbf{b}])=4$，它的解的情况是？",
+  "options": [
+   "无解",
+   "无穷多解",
+   "恰有两个解",
+   "唯一解"
+  ],
+  "answer": 3,
+  "explanation": "有解且 r(A) 等于未知数个数 4，解唯一。线性方程组不会恰好有两个解。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "当 $k$ 为何值时，向量 $(1,2,1)$ 与 $(2,4,k)$ 线性相关？",
+  "options": [
+   "2",
+   "1",
+   "3",
+   "-2"
+  ],
+  "answer": 0,
+  "explanation": "两个向量线性相关当且仅当成比例。第二个向量的前两个分量是第一个的 2 倍，所以 $k=2\\times1=2$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "$\\mathbb{R}^3$ 中任取 4 个向量，它们是否线性相关？",
+  "options": [
+   "一定线性无关",
+   "一定线性相关",
+   "不能确定，需要计算",
+   "一定构成一组基"
+  ],
+  "answer": 1,
+  "explanation": "$\\mathbb{R}^3$ 中多于 3 个的向量必线性相关；不超过 3 个时要用秩判断。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "当 $k$ 为何值时，向量 $(1,3,2)$ 与 $(2,6,k)$ 线性相关？",
+  "options": [
+   "2",
+   "5",
+   "4",
+   "-4"
+  ],
+  "answer": 2,
+  "explanation": "两个向量线性相关当且仅当成比例。第二个向量的前两个分量是第一个的 2 倍，所以 $k=2\\times2=4$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "$\\mathbb{R}^3$ 中任取 2 个向量，它们是否线性相关？",
+  "options": [
+   "一定线性相关",
+   "一定线性无关",
+   "一定构成一组基",
+   "不能确定，需要计算"
+  ],
+  "answer": 3,
+  "explanation": "$\\mathbb{R}^3$ 中多于 3 个的向量必线性相关；不超过 3 个时要用秩判断。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "当 $k$ 为何值时，向量 $(1,4,3)$ 与 $(2,8,k)$ 线性相关？",
+  "options": [
+   "6",
+   "3",
+   "7",
+   "-6"
+  ],
+  "answer": 0,
+  "explanation": "两个向量线性相关当且仅当成比例。第二个向量的前两个分量是第一个的 2 倍，所以 $k=2\\times3=6$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "$\\mathbb{R}^2$ 中任取 3 个向量，它们是否线性相关？",
+  "options": [
+   "一定线性无关",
+   "一定线性相关",
+   "不能确定，需要计算",
+   "一定构成一组基"
+  ],
+  "answer": 1,
+  "explanation": "$\\mathbb{R}^2$ 中多于 2 个的向量必线性相关；不超过 2 个时要用秩判断。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "当 $k$ 为何值时，向量 $(1,5,4)$ 与 $(2,10,k)$ 线性相关？",
+  "options": [
+   "4",
+   "9",
+   "8",
+   "-8"
+  ],
+  "answer": 2,
+  "explanation": "两个向量线性相关当且仅当成比例。第二个向量的前两个分量是第一个的 2 倍，所以 $k=2\\times4=8$。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "linear_independence",
+  "stem": "$\\mathbb{R}^4$ 中任取 5 个向量，它们是否线性相关？",
+  "options": [
+   "一定线性无关",
+   "不能确定，需要计算",
+   "一定构成一组基",
+   "一定线性相关"
+  ],
+  "answer": 3,
+  "explanation": "$\\mathbb{R}^4$ 中多于 4 个的向量必线性相关；不超过 4 个时要用秩判断。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,0,1)$、$(0,1,1)$、$(1,1,2)$ 张成的空间维数是多少？",
+  "options": [
+   "2",
+   "0",
+   "1",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 2。第三个向量是前两个之和。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,2,0)$、$(2,4,0)$、$(3,6,0)$ 张成的空间维数是多少？",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "answer": 1,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 1。三个向量互相成比例。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,0,0)$、$(0,1,3)$、$(0,0,1)$ 张成的空间维数是多少？",
+  "options": [
+   "0",
+   "1",
+   "3",
+   "2"
+  ],
+  "answer": 2,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 3。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,0,1)$、$(0,1,1)$、$(1,1,2)$ 张成的空间维数是多少？",
+  "options": [
+   "0",
+   "1",
+   "3",
+   "2"
+  ],
+  "answer": 3,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 2。第三个向量是前两个之和。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,2,0)$、$(2,4,0)$、$(3,6,0)$ 张成的空间维数是多少？",
+  "options": [
+   "1",
+   "0",
+   "2",
+   "3"
+  ],
+  "answer": 0,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 1。三个向量互相成比例。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,0,0)$、$(0,1,3)$、$(0,0,1)$ 张成的空间维数是多少？",
+  "options": [
+   "0",
+   "3",
+   "1",
+   "2"
+  ],
+  "answer": 1,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 3。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,0,1)$、$(0,1,1)$、$(1,1,2)$ 张成的空间维数是多少？",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "answer": 2,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 2。第三个向量是前两个之和。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "basis_dimension",
+  "stem": "向量 $(1,2,0)$、$(2,4,0)$、$(3,6,0)$ 张成的空间维数是多少？",
+  "options": [
+   "0",
+   "2",
+   "3",
+   "1"
+  ],
+  "answer": 3,
+  "explanation": "张成空间的维数等于以这些向量为列的矩阵的秩，此处秩为 1。三个向量互相成比例。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "以下哪一个是矩阵 $\\begin{pmatrix}1&3\\\\0&-2\\end{pmatrix}$ 的特征值？",
+  "options": [
+   "-2",
+   "3",
+   "-1",
+   "2"
+  ],
+  "answer": 0,
+  "explanation": "上三角矩阵的特征值是主对角线元素 1 和 -2。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "矩阵 $\\begin{pmatrix}2&2\\\\1&3\\end{pmatrix}$ 的全部特征值之和是多少？",
+  "options": [
+   "4",
+   "5",
+   "6",
+   "-5"
+  ],
+  "answer": 1,
+  "explanation": "特征值之和等于迹，结果为 5，无需求出每个特征值。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "以下哪一个是矩阵 $\\begin{pmatrix}2&5\\\\0&-3\\end{pmatrix}$ 的特征值？",
+  "options": [
+   "5",
+   "-1",
+   "-3",
+   "3"
+  ],
+  "answer": 2,
+  "explanation": "上三角矩阵的特征值是主对角线元素 2 和 -3。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "矩阵 $\\begin{pmatrix}4&2\\\\1&3\\end{pmatrix}$ 的全部特征值之积是多少？",
+  "options": [
+   "7",
+   "12",
+   "-10",
+   "10"
+  ],
+  "answer": 3,
+  "explanation": "特征值之积等于行列式，结果为 10，无需求出每个特征值。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "以下哪一个是矩阵 $\\begin{pmatrix}3&7\\\\0&-4\\end{pmatrix}$ 的特征值？",
+  "options": [
+   "-4",
+   "7",
+   "-1",
+   "4"
+  ],
+  "answer": 0,
+  "explanation": "上三角矩阵的特征值是主对角线元素 3 和 -4。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "矩阵 $\\begin{pmatrix}6&2\\\\1&3\\end{pmatrix}$ 的全部特征值之和是多少？",
+  "options": [
+   "16",
+   "9",
+   "18",
+   "-9"
+  ],
+  "answer": 1,
+  "explanation": "特征值之和等于迹，结果为 9，无需求出每个特征值。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "以下哪一个是矩阵 $\\begin{pmatrix}4&9\\\\0&-5\\end{pmatrix}$ 的特征值？",
+  "options": [
+   "9",
+   "-1",
+   "-5",
+   "5"
+  ],
+  "answer": 2,
+  "explanation": "上三角矩阵的特征值是主对角线元素 4 和 -5。",
+  "difficulty": 1,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "eigen",
+  "stem": "矩阵 $\\begin{pmatrix}8&2\\\\1&3\\end{pmatrix}$ 的全部特征值之积是多少？",
+  "options": [
+   "11",
+   "24",
+   "-22",
+   "22"
+  ],
+  "answer": 3,
+  "explanation": "特征值之积等于行列式，结果为 22，无需求出每个特征值。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "2 阶矩阵 $A$ 的特征值为 1 和 -1，求 $A^2$ 的迹。",
+  "options": [
+   "2",
+   "0",
+   "3",
+   "1"
+  ],
+  "answer": 0,
+  "explanation": "$A^2$ 的特征值为 $1^2$ 与 $(-1)^2$，迹等于特征值之和：2。注意不是 $(\\operatorname{tr}A)^2$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "3 阶矩阵有 3 个互不相同的特征值，它能否相似对角化？",
+  "options": [
+   "不可以对角化",
+   "一定可以对角化",
+   "不能确定，需检查线性无关特征向量的个数",
+   "只有对称矩阵才能对角化"
+  ],
+  "answer": 1,
+  "explanation": "有 n 个线性无关的特征向量（互异特征值的特征向量线性无关）即可对角化。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "2 阶矩阵 $A$ 的特征值为 2 和 -1，求 $A^3$ 的迹。",
+  "options": [
+   "1",
+   "9",
+   "7",
+   "8"
+  ],
+  "answer": 2,
+  "explanation": "$A^3$ 的特征值为 $2^3$ 与 $(-1)^3$，迹等于特征值之和：7。注意不是 $(\\operatorname{tr}A)^3$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "3 阶矩阵有一个二重特征值，它能否相似对角化？",
+  "options": [
+   "一定可以对角化",
+   "不可以对角化",
+   "只有对称矩阵才能对角化",
+   "不能确定，需检查线性无关特征向量的个数"
+  ],
+  "answer": 3,
+  "explanation": "有重特征值时可能可对角化也可能不可以。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "2 阶矩阵 $A$ 的特征值为 3 和 -1，求 $A^2$ 的迹。",
+  "options": [
+   "10",
+   "4",
+   "2",
+   "8"
+  ],
+  "answer": 0,
+  "explanation": "$A^2$ 的特征值为 $3^2$ 与 $(-1)^2$，迹等于特征值之和：10。注意不是 $(\\operatorname{tr}A)^2$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "4 阶矩阵有 4 个线性无关的特征向量，它能否相似对角化？",
+  "options": [
+   "不可以对角化",
+   "一定可以对角化",
+   "不能确定，需检查线性无关特征向量的个数",
+   "只有对称矩阵才能对角化"
+  ],
+  "answer": 1,
+  "explanation": "有 n 个线性无关的特征向量（互异特征值的特征向量线性无关）即可对角化。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "2 阶矩阵 $A$ 的特征值为 4 和 -1，求 $A^3$ 的迹。",
+  "options": [
+   "27",
+   "3",
+   "63",
+   "65"
+  ],
+  "answer": 2,
+  "explanation": "$A^3$ 的特征值为 $4^3$ 与 $(-1)^3$，迹等于特征值之和：63。注意不是 $(\\operatorname{tr}A)^3$。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ },
+ {
+  "knowledge": "diagonalization",
+  "stem": "2 阶矩阵 $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，它能否相似对角化？",
+  "options": [
+   "一定可以对角化",
+   "不能确定，需检查线性无关特征向量的个数",
+   "只有对称矩阵才能对角化",
+   "不可以对角化"
+  ],
+  "answer": 3,
+  "explanation": "特征值 1 是二重的，但 $(I-A)\\mathbf{x}=\\mathbf{0}$ 的基础解系只有 1 个向量。",
+  "difficulty": 2,
+  "source": "知序自编线性代数参数化题库 v1"
+ }
+]

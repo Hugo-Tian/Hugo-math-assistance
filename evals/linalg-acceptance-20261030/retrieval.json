@@ -1,0 +1,956 @@
+{
+ "course": "linalg",
+ "cases": 24,
+ "index": {
+  "version": "3870484c884d4db68a7a4ae93ee00536",
+  "chunks": 65,
+  "dimension": 512,
+  "model": "BAAI/bge-small-zh-v1.5"
+ },
+ "top_k": 5,
+ "thresholds": {
+  "vector": 0.65,
+  "keyword": 0.08,
+  "hybrid_keyword": 0.2,
+  "hybrid_vector_floor": 0.6
+ },
+ "summary": {
+  "keyword": {
+   "hit_at_k": "12/12",
+   "refused_out_of_scope": "2/6",
+   "refused_other_course": "2/6",
+   "foreign_chunks": 0,
+   "mean_ms": 1.67
+  },
+  "vector": {
+   "hit_at_k": "11/12",
+   "refused_out_of_scope": "6/6",
+   "refused_other_course": "6/6",
+   "foreign_chunks": 0,
+   "mean_ms": 4.38
+  },
+  "hybrid": {
+   "hit_at_k": "12/12",
+   "refused_out_of_scope": "5/6",
+   "refused_other_course": "6/6",
+   "foreign_chunks": 0,
+   "mean_ms": 5.07
+  }
+ },
+ "rows": [
+  {
+   "id": "la-vectors",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-002",
+    "linalg-05-vector-spaces-000",
+    "linalg-04-linear-systems-003",
+    "linalg-05-vector-spaces-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 3.919
+  },
+  {
+   "id": "la-vectors",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-001",
+    "linalg-02-matrices-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 6.055
+  },
+  {
+   "id": "la-vectors",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-002",
+    "linalg-02-matrices-000",
+    "linalg-01-vectors-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.579
+  },
+  {
+   "id": "la-dot",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-01-vectors-003",
+    "linalg-05-vector-spaces-000",
+    "linalg-01-vectors-002",
+    "linalg-05-vector-spaces-001",
+    "linalg-01-vectors-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.498
+  },
+  {
+   "id": "la-dot",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": 0,
+   "refused": null,
+   "ms": 5.101
+  },
+  {
+   "id": "la-dot",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-01-vectors-003"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 6.244
+  },
+  {
+   "id": "la-matmul",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-02-matrices-001",
+    "linalg-03-determinants-002",
+    "linalg-02-matrices-000",
+    "linalg-02-matrices-004",
+    "linalg-03-determinants-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.638
+  },
+  {
+   "id": "la-matmul",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-02-matrices-001",
+    "linalg-02-matrices-000",
+    "linalg-04-linear-systems-001",
+    "linalg-03-determinants-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.518
+  },
+  {
+   "id": "la-matmul",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-02-matrices-001",
+    "linalg-02-matrices-000",
+    "linalg-03-determinants-002",
+    "linalg-04-linear-systems-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 6.073
+  },
+  {
+   "id": "la-det",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-03-determinants-000",
+    "linalg-03-determinants-001",
+    "linalg-02-matrices-004",
+    "linalg-03-determinants-002",
+    "linalg-01-vectors-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.508
+  },
+  {
+   "id": "la-det",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-03-determinants-000",
+    "linalg-03-determinants-001",
+    "linalg-02-matrices-004"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.285
+  },
+  {
+   "id": "la-det",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-03-determinants-000",
+    "linalg-03-determinants-001",
+    "linalg-02-matrices-004",
+    "linalg-03-determinants-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.397
+  },
+  {
+   "id": "la-inverse",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-06-eigenvalues-000",
+    "linalg-02-matrices-003",
+    "linalg-02-matrices-004",
+    "linalg-04-linear-systems-001",
+    "linalg-06-eigenvalues-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.657
+  },
+  {
+   "id": "la-inverse",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-02-matrices-004",
+    "linalg-02-matrices-003"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.651
+  },
+  {
+   "id": "la-inverse",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-02-matrices-004",
+    "linalg-02-matrices-003",
+    "linalg-04-linear-systems-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.79
+  },
+  {
+   "id": "la-gauss",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-04-linear-systems-000",
+    "linalg-03-determinants-001",
+    "linalg-04-linear-systems-001",
+    "linalg-04-linear-systems-002",
+    "linalg-04-linear-systems-003"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.832
+  },
+  {
+   "id": "la-gauss",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-04-linear-systems-000",
+    "linalg-04-linear-systems-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.001
+  },
+  {
+   "id": "la-gauss",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-04-linear-systems-000",
+    "linalg-03-determinants-001",
+    "linalg-04-linear-systems-002",
+    "linalg-04-linear-systems-003",
+    "linalg-04-linear-systems-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.453
+  },
+  {
+   "id": "la-rank",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-04-linear-systems-001",
+    "linalg-05-vector-spaces-000",
+    "linalg-05-vector-spaces-001",
+    "linalg-02-matrices-000",
+    "linalg-02-matrices-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.446
+  },
+  {
+   "id": "la-rank",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-04-linear-systems-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 3.495
+  },
+  {
+   "id": "la-rank",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-04-linear-systems-001",
+    "linalg-02-matrices-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.177
+  },
+  {
+   "id": "la-solutions",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-04-linear-systems-002",
+    "linalg-04-linear-systems-003",
+    "linalg-04-linear-systems-000",
+    "linalg-06-eigenvalues-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.599
+  },
+  {
+   "id": "la-solutions",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-04-linear-systems-002",
+    "linalg-04-linear-systems-003"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.501
+  },
+  {
+   "id": "la-solutions",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-04-linear-systems-002",
+    "linalg-04-linear-systems-003"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.065
+  },
+  {
+   "id": "la-independence",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-05-vector-spaces-001",
+    "linalg-05-vector-spaces-000",
+    "linalg-04-linear-systems-003",
+    "linalg-06-eigenvalues-002",
+    "linalg-01-vectors-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.491
+  },
+  {
+   "id": "la-independence",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-05-vector-spaces-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.095
+  },
+  {
+   "id": "la-independence",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-05-vector-spaces-000",
+    "linalg-01-vectors-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.751
+  },
+  {
+   "id": "la-dimension",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-04-linear-systems-003",
+    "linalg-05-vector-spaces-001",
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-002",
+    "linalg-05-vector-spaces-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.596
+  },
+  {
+   "id": "la-dimension",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-01-vectors-001",
+    "linalg-05-vector-spaces-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.164
+  },
+  {
+   "id": "la-dimension",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-05-vector-spaces-001",
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-001"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.283
+  },
+  {
+   "id": "la-eigen",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-06-eigenvalues-000",
+    "linalg-04-linear-systems-001",
+    "linalg-05-vector-spaces-001",
+    "linalg-06-eigenvalues-002",
+    "linalg-02-matrices-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 1.656
+  },
+  {
+   "id": "la-eigen",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-06-eigenvalues-000",
+    "linalg-06-eigenvalues-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.623
+  },
+  {
+   "id": "la-eigen",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-06-eigenvalues-000",
+    "linalg-06-eigenvalues-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 5.708
+  },
+  {
+   "id": "la-diag",
+   "category": "knowledge",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-06-eigenvalues-002",
+    "linalg-02-matrices-000",
+    "linalg-02-matrices-004",
+    "linalg-03-determinants-001",
+    "linalg-06-eigenvalues-000"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 2.016
+  },
+  {
+   "id": "la-diag",
+   "category": "knowledge",
+   "mode": "vector",
+   "recalled": [
+    "linalg-06-eigenvalues-002",
+    "linalg-02-matrices-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.664
+  },
+  {
+   "id": "la-diag",
+   "category": "knowledge",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-06-eigenvalues-002",
+    "linalg-02-matrices-002"
+   ],
+   "foreign": [],
+   "hit": 1,
+   "refused": null,
+   "ms": 4.586
+  },
+  {
+   "id": "la-out-limit",
+   "category": "insufficient",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-04-linear-systems-000",
+    "linalg-04-linear-systems-002",
+    "linalg-04-linear-systems-003",
+    "linalg-05-vector-spaces-002",
+    "linalg-06-eigenvalues-000"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.455
+  },
+  {
+   "id": "la-out-limit",
+   "category": "insufficient",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 5.355
+  },
+  {
+   "id": "la-out-limit",
+   "category": "insufficient",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 5.198
+  },
+  {
+   "id": "la-out-fourier",
+   "category": "insufficient",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-02-matrices-003",
+    "linalg-01-vectors-002",
+    "linalg-02-matrices-001",
+    "linalg-03-determinants-001",
+    "linalg-04-linear-systems-000"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.499
+  },
+  {
+   "id": "la-out-fourier",
+   "category": "insufficient",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.607
+  },
+  {
+   "id": "la-out-fourier",
+   "category": "insufficient",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.53
+  },
+  {
+   "id": "la-out-chem",
+   "category": "insufficient",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-03-determinants-000",
+    "linalg-03-determinants-001",
+    "linalg-03-determinants-002",
+    "linalg-05-vector-spaces-000",
+    "linalg-06-eigenvalues-003"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.479
+  },
+  {
+   "id": "la-out-chem",
+   "category": "insufficient",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.676
+  },
+  {
+   "id": "la-out-chem",
+   "category": "insufficient",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.825
+  },
+  {
+   "id": "la-out-stock",
+   "category": "insufficient",
+   "mode": "keyword",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 1.452
+  },
+  {
+   "id": "la-out-stock",
+   "category": "insufficient",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.465
+  },
+  {
+   "id": "la-out-stock",
+   "category": "insufficient",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.025
+  },
+  {
+   "id": "la-out-ode",
+   "category": "insufficient",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-04-linear-systems-000",
+    "linalg-04-linear-systems-003",
+    "linalg-04-linear-systems-002",
+    "linalg-06-eigenvalues-000",
+    "linalg-06-eigenvalues-001"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.466
+  },
+  {
+   "id": "la-out-ode",
+   "category": "insufficient",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.773
+  },
+  {
+   "id": "la-out-ode",
+   "category": "insufficient",
+   "mode": "hybrid",
+   "recalled": [
+    "linalg-04-linear-systems-003"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 4.701
+  },
+  {
+   "id": "la-out-english",
+   "category": "insufficient",
+   "mode": "keyword",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 1.578
+  },
+  {
+   "id": "la-out-english",
+   "category": "insufficient",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.195
+  },
+  {
+   "id": "la-out-english",
+   "category": "insufficient",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.668
+  },
+  {
+   "id": "la-hs-monotone",
+   "category": "other_course",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-001"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.429
+  },
+  {
+   "id": "la-hs-monotone",
+   "category": "other_course",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.71
+  },
+  {
+   "id": "la-hs-monotone",
+   "category": "other_course",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.505
+  },
+  {
+   "id": "la-hs-log",
+   "category": "other_course",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-02-matrices-003",
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-002",
+    "linalg-02-matrices-001"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.445
+  },
+  {
+   "id": "la-hs-log",
+   "category": "other_course",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.748
+  },
+  {
+   "id": "la-hs-log",
+   "category": "other_course",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.613
+  },
+  {
+   "id": "la-hs-quadratic",
+   "category": "other_course",
+   "mode": "keyword",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 1.595
+  },
+  {
+   "id": "la-hs-quadratic",
+   "category": "other_course",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.287
+  },
+  {
+   "id": "la-hs-quadratic",
+   "category": "other_course",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 5.171
+  },
+  {
+   "id": "la-hs-tangent",
+   "category": "other_course",
+   "mode": "keyword",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 1.675
+  },
+  {
+   "id": "la-hs-tangent",
+   "category": "other_course",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.636
+  },
+  {
+   "id": "la-hs-tangent",
+   "category": "other_course",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.946
+  },
+  {
+   "id": "la-hs-sets",
+   "category": "other_course",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-05-vector-spaces-001",
+    "linalg-01-vectors-000",
+    "linalg-01-vectors-002",
+    "linalg-01-vectors-003",
+    "linalg-04-linear-systems-002"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.492
+  },
+  {
+   "id": "la-hs-sets",
+   "category": "other_course",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.668
+  },
+  {
+   "id": "la-hs-sets",
+   "category": "other_course",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.746
+  },
+  {
+   "id": "la-hs-exp",
+   "category": "other_course",
+   "mode": "keyword",
+   "recalled": [
+    "linalg-01-vectors-000"
+   ],
+   "foreign": [],
+   "hit": null,
+   "refused": 0,
+   "ms": 1.551
+  },
+  {
+   "id": "la-hs-exp",
+   "category": "other_course",
+   "mode": "vector",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 3.895
+  },
+  {
+   "id": "la-hs-exp",
+   "category": "other_course",
+   "mode": "hybrid",
+   "recalled": [],
+   "foreign": [],
+   "hit": null,
+   "refused": 1,
+   "ms": 4.585
+  }
+ ]
+}

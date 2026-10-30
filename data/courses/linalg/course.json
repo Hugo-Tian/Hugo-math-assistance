@@ -1,0 +1,15 @@
+{
+  "id": "linalg",
+  "name": "线性代数（大学）",
+  "subject": "math",
+  "level": "university",
+  "language": "zh",
+  "settings": {
+    "open_enrollment": false,
+    "assistant": {
+      "persona": "大学线性代数课程助教",
+      "formula": "katex",
+      "scope_note": "本库仅覆盖线性代数前六章（向量、矩阵、行列式、线性方程组、向量空间、特征值）"
+    }
+  }
+}
