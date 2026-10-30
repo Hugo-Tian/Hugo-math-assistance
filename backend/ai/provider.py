@@ -56,6 +56,13 @@ class DeepSeekProvider:
 class TestMockProvider:
     """Explicit deterministic fixture, NOT an LLM, never selected by real-mode errors."""
     async def complete(self,messages,tools,trace_id,max_tokens):
+        if messages and messages[0]['content'].startswith('【知识图谱草拟】'):
+            # Deterministic draft: one node per material chunk (up to 6), chained in material order.
+            chunks=json.loads(messages[1]['content'].split('资料片段：',1)[1])['chunks'][:6]
+            nodes=[{'slug':f'topic_{i+1}','name':(c['title'] or f'主题{i+1}')[:40],'chapter':(c['chapter'] or '未分章')[:40],
+                'description':'测试 Mock 草稿：'+c['excerpt'][:60],'evidence':[c['id']]} for i,c in enumerate(chunks)]
+            edges=[{'from':f'topic_{i}','to':f'topic_{i+1}','reason':'测试 Mock：按资料顺序'} for i in range(1,len(nodes))]
+            return {'message':{'role':'assistant','content':json.dumps({'nodes':nodes,'edges':edges},ensure_ascii=False)},'usage':None,'elapsed_ms':0,'provider_attempts':0}
         has_results=any(m['role']=='tool' for m in messages)
         if tools and not has_results:
             calls=[{'id':f'mock-{i}','type':'function','function':{'name':name,'arguments':json.dumps(args)}} for i,(name,args) in enumerate([

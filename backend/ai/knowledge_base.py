@@ -89,10 +89,12 @@ def import_document(db,filename,data,kid,source,question_id=None,title=None,docu
             if any(len(text.strip())<15 for _,text in pages):raise ValueError('PDF 存在无可提取文本的页面，可能是扫描件，需要 OCR；本版未开放 OCR')
         else:pages=[(None,data.decode('utf-8-sig'))]
         if sum(len(t) for _,t in pages)>250000:raise ValueError('文本超过 25 万字符')
+        # Course-wide material has no knowledge point; its document title stands in for the chapter.
+        chapter=knowledge.chapter if knowledge else doc.title[:100]
         chunks=[]
         for page,text in pages:
             for heading,content in split_text(text,doc.title):
-                chunks.append(Chunk(id=f'{doc.id}-{len(chunks):03d}',document_id=doc.id,title=heading,chapter=knowledge.chapter,page=page,content=content,position=len(chunks)))
+                chunks.append(Chunk(id=f'{doc.id}-{len(chunks):03d}',document_id=doc.id,title=heading,chapter=chapter,page=page,content=content,position=len(chunks)))
         if not chunks:raise ValueError('文档没有可处理的文本')
         db.add_all(chunks);doc.status='parsed'
     except Exception as exc:

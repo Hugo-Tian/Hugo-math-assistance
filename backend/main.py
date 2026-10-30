@@ -314,7 +314,9 @@ def rebuild(uid: int, ctx=Depends(course_staff), db=Depends(get_db)):
 
 from .ai.routes import router as assistant_router
 from .teacher import router as teacher_router
+from .ai.drafts import router as drafts_router
 for prefix in ('/api/courses/{cid}', '/api'):
     app.include_router(learning, prefix=prefix)
     app.include_router(assistant_router, prefix=prefix)
     app.include_router(teacher_router, prefix=prefix)
+    app.include_router(drafts_router, prefix=prefix)

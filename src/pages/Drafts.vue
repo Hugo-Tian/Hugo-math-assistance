@@ -1,0 +1,44 @@
+<script setup>
+import { computed, ref, onMounted } from 'vue'
+import { useLearning } from '../store'
+const store=useLearning(), drafts=ref([]), draft=ref(null), nodes=ref([]), edges=ref([]), busy=ref(''), message=ref(''), problem=ref('')
+const statusName={pending:'待审核',approved:'已生效',rejected:'已驳回',superseded:'已被新草稿取代'}
+const editable=computed(()=>draft.value?.status==='pending')
+const chunkTitle=id=>{const c=draft.value?.chunks.find(c=>c.id===id)||draft.value?.evidence[id];return c?`${c.document} · ${c.title}`:id}
+const prereqs=slug=>edges.value.filter(e=>e.to===slug)
+async function list(){ drafts.value=await store.api('/teacher/drafts') }
+async function open(id){ await store.run(async()=>{ const d=await store.api(`/teacher/drafts/${id}`); draft.value=d; nodes.value=d.payload.nodes.map(n=>({...n,evidence:[...n.evidence]})); edges.value=d.payload.edges.map(e=>({...e})); problem.value='' }) }
+async function generate(){ busy.value='正在阅读课程资料并草拟知识图谱，通常需要 10–40 秒…'; message.value=''; await store.run(async()=>{ const d=await store.api('/teacher/drafts',{method:'POST'}); await list(); await open(d.id); message.value=`草稿已生成：${d.nodes} 个知识点、${d.edges} 条先修关系，请逐项审核。` }); busy.value='' }
+// Editing keeps edges consistent: renaming a slug, deleting or merging a node rewires every edge that touched it.
+function rename(node,event){ const old=node.slug, slug=event.target.value.trim(); if(!slug||slug===old)return; edges.value.forEach(e=>{if(e.from===old)e.from=slug;if(e.to===old)e.to=slug}); node.slug=slug }
+function removeNode(slug){ nodes.value=nodes.value.filter(n=>n.slug!==slug); edges.value=edges.value.filter(e=>e.from!==slug&&e.to!==slug) }
+function mergeInto(source,target){ if(!target)return; const s=nodes.value.find(n=>n.slug===source), t=nodes.value.find(n=>n.slug===target); t.evidence=[...new Set([...t.evidence,...s.evidence])].slice(0,10)
+  edges.value=edges.value.map(e=>({...e,from:e.from===source?target:e.from,to:e.to===source?target:e.to})).filter((e,i,all)=>e.from!==e.to&&all.findIndex(x=>x.from===e.from&&x.to===e.to)===i); removeNode(source) }
+function addPrereq(slug,event){ const from=event.target.value; event.target.value=''; if(from&&!edges.value.some(e=>e.from===from&&e.to===slug)) edges.value.push({from,to:slug,reason:'老师审核时添加'}) }
+function removePrereq(edge){ edges.value=edges.value.filter(e=>e!==edge) }
+function addEvidence(node,event){ const id=event.target.value; event.target.value=''; if(id&&!node.evidence.includes(id)&&node.evidence.length<10) node.evidence.push(id) }
+function addNode(){ let i=nodes.value.length+1; while(nodes.value.some(n=>n.slug===`topic_${i}`))i++; nodes.value.push({slug:`topic_${i}`,name:'新知识点',chapter:nodes.value.at(-1)?.chapter||'未分章',description:'请补充说明',evidence:[draft.value.chunks[0]?.id].filter(Boolean)}) }
+async function save(){ problem.value=''; return await store.run(async()=>{ try{ const d=await store.api(`/teacher/drafts/${draft.value.id}`,{method:'PUT',body:JSON.stringify({nodes:nodes.value,edges:edges.value})}); message.value='修改已保存，校验通过。'; return d }catch(e){ problem.value=e.message; throw e } }) }
+async function approve(){ if(!await save())return; busy.value='正在写入知识图谱…'; await store.run(async()=>{ const r=await store.api(`/teacher/drafts/${draft.value.id}/approve`,{method:'POST'}); message.value=`已生效：新建 ${r.created} 个、更新 ${r.updated} 个知识点`+(r.retained.length?`；${r.retained.length} 个原有知识点不在草稿中，保持不变`:'')+'。'; await store.refresh(); await list(); await open(draft.value.id) }); busy.value='' }
+async function reject(){ await store.run(async()=>{ await store.api(`/teacher/drafts/${draft.value.id}/reject`,{method:'POST'}); message.value='草稿已驳回。'; await list(); await open(draft.value.id) }) }
+onMounted(()=>{ if(store.isStaff) store.run(async()=>{ await list(); const p=drafts.value.find(d=>d.status==='pending'); if(p) await open(p.id) }) })
+</script>
+<template><div v-if="!store.isStaff" class="empty">需要本课程老师或助教权限</div><template v-else>
+<div class="page-heading"><div><p class="eyebrow">{{ store.currentCourse?.name }} · 知识图谱草稿</p><h1>让 AI 起草，由老师定稿</h1><p>模型只根据本课程已导入的公共资料草拟；每个知识点必须引用资料片段。生效前可以改名、合并、删除和调整先修关系，原有知识点不会被删除。</p></div><button class="primary" :disabled="!!busy" @click="generate">生成新草稿</button></div>
+<p v-if="busy" class="callout" role="status">{{ busy }}</p><p v-else-if="message" class="callout" role="status">{{ message }}</p><p v-if="problem" class="error" role="alert">{{ problem }}</p>
+<div class="drafts-layout"><section class="panel"><h2>草稿记录</h2><button v-for="d in drafts" :key="d.id" class="admin-node" :class="{active:draft?.id===d.id}" @click="open(d.id)">{{ statusName[d.status] }} · {{ d.nodes }} 个知识点<small>{{ String(d.created_at).slice(0,16).replace('T',' ') }} · {{ d.model_meta.model }}{{ d.model_meta.provider_mode==='mock'?'（测试 Mock）':'' }}</small></button><p v-if="!drafts.length" class="muted">还没有草稿。请先在“知识库管理”导入课程资料。</p></section>
+<section v-if="draft" class="panel"><div class="section-heading"><div><h2>{{ statusName[draft.status] }} · {{ nodes.length }} 个知识点 · {{ edges.length }} 条先修</h2><p>模型调用 {{ draft.model_meta.model_calls }} 次<template v-if="draft.model_meta.repaired">（含一次自动修正）</template> · 耗时 {{ draft.model_meta.elapsed_ms }} ms · 使用 {{ draft.model_meta.chunks_used }} 个资料片段<template v-if="draft.model_meta.truncated">（资料较多，已截断）</template></p></div><div v-if="editable" class="actions"><button class="secondary" @click="addNode">新增知识点</button><button class="secondary" @click="save">保存修改</button><button class="text-button" @click="reject">驳回</button><button class="primary" :disabled="!!busy" @click="approve">确认生效</button></div></div>
+<p v-if="draft.review_diff" class="callout">审核改动：节点 {{ draft.review_diff.nodes_original }} → {{ draft.review_diff.nodes_final }}（新增 {{ draft.review_diff.nodes_added }}、删除 {{ draft.review_diff.nodes_removed }}、修改 {{ draft.review_diff.nodes_edited }}）；先修 {{ draft.review_diff.edges_original }} → {{ draft.review_diff.edges_final }}（新增 {{ draft.review_diff.edges_added }}、删除 {{ draft.review_diff.edges_removed }}）。</p>
+<article v-for="n in nodes" :key="n.slug" class="draft-node"><div class="form-grid"><label>标识（slug）<input :value="n.slug" :disabled="!editable" pattern="[a-z][a-z0-9_]{1,39}" @change="rename(n,$event)"/></label><label>名称<input v-model="n.name" :disabled="!editable" maxlength="100"/></label><label>章节<input v-model="n.chapter" :disabled="!editable" maxlength="100"/></label></div><label>说明<textarea v-model="n.description" :disabled="!editable" rows="2" maxlength="1000"></textarea></label>
+<div class="chips"><strong>先修</strong><span v-for="e in prereqs(n.slug)" :key="e.from" class="chip" :title="e.reason">{{ nodes.find(x=>x.slug===e.from)?.name || e.from }}<button v-if="editable" @click="removePrereq(e)" aria-label="移除先修">×</button></span><select v-if="editable" @change="addPrereq(n.slug,$event)" aria-label="添加先修"><option value="">＋ 添加先修</option><option v-for="o in nodes.filter(o=>o.slug!==n.slug)" :key="o.slug" :value="o.slug">{{ o.name }}</option></select><span v-if="!prereqs(n.slug).length" class="muted">学习起点</span></div>
+<div class="chips"><strong>依据</strong><span v-for="e in n.evidence" :key="e" class="chip evidence">{{ chunkTitle(e) }}<button v-if="editable&&n.evidence.length>1" @click="n.evidence=n.evidence.filter(x=>x!==e)" aria-label="移除依据">×</button></span><select v-if="editable" @change="addEvidence(n,$event)" aria-label="添加依据"><option value="">＋ 添加依据</option><option v-for="c in draft.chunks" :key="c.id" :value="c.id">{{ c.document }} · {{ c.title }}</option></select></div>
+<div v-if="editable" class="actions"><select @change="mergeInto(n.slug,$event.target.value)" aria-label="合并到"><option value="">合并到…</option><option v-for="o in nodes.filter(o=>o.slug!==n.slug)" :key="o.slug" :value="o.slug">{{ o.name }}</option></select><button class="text-button" @click="removeNode(n.slug)">删除此知识点</button></div></article></section></div>
+</template></template>
+
+<style scoped>
+.drafts-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start}.admin-node.active{border-color:var(--purple);background:var(--light)}
+.draft-node{border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-top:14px}.draft-node textarea{width:100%}
+.chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;font-size:12px}.chips strong{font-size:12px;margin-right:4px}.chip{display:inline-flex;align-items:center;gap:4px;background:var(--light);color:var(--purple);border-radius:12px;padding:3px 10px}.chip.evidence{background:#f3f1f8;color:#5b5476}.chip button{border:0;background:none;color:inherit;cursor:pointer;padding:0 2px}
+.chips select,.actions select{font-size:12px;padding:4px 8px;width:auto}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+@media(max-width:900px){.drafts-layout{grid-template-columns:1fr}}
+</style>
