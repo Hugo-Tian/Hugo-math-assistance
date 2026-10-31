@@ -51,8 +51,8 @@ test('Mock assistant + REAL embedding: knowledge → source → wrong explanatio
 
 test('model HTML output is inert, citations never navigate to arbitrary URLs',async({page,request})=>{
   // Exercise the exact UI renderer with a mocked HTTP response, independent of model intelligence.
-  await page.route('**/api/assistant/conversations/render-fixture',route=>route.fulfill({json:{id:'render-fixture',title:'安全渲染测试',turns:[{id:'fixture',question:'测试',answer:'<img src=x onerror="window.__injected=1"><script>window.__injected=2</script> [恶意](javascript:alert(1))\n\n$f(x)=x^2$',status:'completed',provider_mode:'mock',citations:[]}]}}))
-  await page.route('**/api/assistant/conversations',route=>route.request().method()==='GET'?route.fulfill({json:[{id:'render-fixture',title:'安全渲染测试'}]}):route.continue())
+  await page.route('**/assistant/conversations/render-fixture',route=>route.fulfill({json:{id:'render-fixture',title:'安全渲染测试',turns:[{id:'fixture',question:'测试',answer:'<img src=x onerror="window.__injected=1"><script>window.__injected=2</script> [恶意](javascript:alert(1))\n\n$f(x)=x^2$',status:'completed',provider_mode:'mock',citations:[]}]}}))
+  await page.route('**/assistant/conversations',route=>route.request().method()==='GET'?route.fulfill({json:[{id:'render-fixture',title:'安全渲染测试'}]}):route.continue())
   await page.goto('/')
   await page.getByRole('button',{name:'登录',exact:true}).click()
   await page.getByRole('link',{name:'学习助手',exact:true}).click()
